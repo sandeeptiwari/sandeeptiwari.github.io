@@ -20,7 +20,7 @@ module.exports = {
     experience: [
       {
         name: 'Larsen & Toubro Infotech Limited ',
-        description: 'Senior Software Engineer, April 2019 - Present',
+        description: 'Team Lead, April 2019 - Present',
         link: 'https://www.lntinfotech.com/',
         children: [
           {
@@ -50,9 +50,9 @@ module.exports = {
         ]
       },
       {
-        name: 'Sentry Insurance',
-        description: 'Programmer Analyst II, May 2011 - March 2014',
-        link: 'https://www.sentry.com/',
+        name: 'Aricent Alran Group',
+        description: 'Team Lead, May 2017 - March 2019',
+        link: 'https://	aricent.com/',
         children: [
           {
             description: 'Member of a project tasked to replace a legacy policy administration system with Guidewire PolicyCenter.'
@@ -78,9 +78,37 @@ module.exports = {
         ]
       },
       {
-        name: 'University of Iowa Hospitals and Clinics',
-        description: 'Student Programmer, February 2010 - May 2011',
-        link: 'https://uihc.org/',
+        name: 'Aricent Alran Group',
+        description: 'Senior Software Engineer, Oct 2014 - July 2017',
+        link: 'https://	aricent.com/',
+        children: [
+          {
+            description: 'Member of a project tasked to replace a legacy policy administration system with Guidewire PolicyCenter.'
+          },
+          {
+            description: 'Implemented an efficient tool to extract, store, and version ISO XML electronic rating content into SQL Server databases using Hibernate. Subsequently, designed and developed an extensible Java API to update and retrieve the rating content for several consumers.'
+          },
+          {
+            description: 'Constructed an application that interacted with several external vendors to enable real-time ordering, storage, and retrieval of experience rating data.'
+          },
+          {
+            description: 'Developed an enterprise integration that synchronized agent and agency licensing information from an internal web service to a running policy administration system.'
+          },
+          {
+            description: 'Wrote significant logic to automate several manual user workflows that kept data synchronized between key entities, which resulted in a higher level of system data integrity and a superior user experience.'
+          },
+          {
+            description: 'Designed and implemented the refactoring of major entities in a production code base to allow for greater code reuse throughout the project’s lifecycle.'
+          },
+          {
+            description: 'Responsible for performing monthly code base merges from a production system and testing existing functionality.'
+          }
+        ]
+      },
+      {
+        name: 'KiwiTech India Pvt.Ltd.',
+        description: 'Software Developer, July 2013 - Oct 2014',
+        link: 'https://www.kiwitech.com/',
         children: [
           {
             description: 'Part of a Revenue Integrity team that tracked payment progress from more than sixty insurance companies sending payments on behalf of over one million patients that visit The University of Iowa Hospitals and Clinics each year.'
@@ -96,16 +124,6 @@ module.exports = {
           },
           {
             description: 'Created informative reports using metrics collected from applications showing where analysts could better focus their efforts.'
-          }
-        ]
-      },
-      {
-        name: 'dsmHack',
-        description: 'Charity Hackathon Volunteer, 2017 - Present',
-        link: 'https://dsmhack.org/',
-        children: [
-          {
-            description: 'Helped nonprofits build various tools and websites to assist them in helping others across Central Iowa.'
           }
         ]
       }
