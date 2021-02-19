@@ -15,7 +15,7 @@ module.exports = {
     // Optional: LinkedIn account URL
     linkedin: `https://www.linkedin.com/in/techie-sandeep-tiwari/`,
     // Content of the About Me section
-    about: `I am an accomplished Software Engineer with over 8+ years of experience writing full-stack applications for the insurance industry. I have experience with modern backend Java development utilizing many components of the Spring Framework. I also have 4+ years of experience writing a performant frontend in JavaScript utilizing AngularJS.`,
+    about: `I am an accomplished Software Engineer with over 8+ years of experience writing full-stack applications for the insurance industry. I have experience with modern backend Java development utilizing many components of the Spring Framework. I also have 4+ years of experience writing a performant frontend in JavaScript utilizing AngularJS And Angular framework.`,
     // Optional: List your experience, they must have `name` and `description`. `link` is optional.
     experience: [
       {
@@ -204,7 +204,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#333f99`, // This color appears on mobile
         display: `minimal-ui`,
-        icon: `src/images/icon.png`,
+        icon: `src/images/favicon.ico`,
       },
     },
   ],
