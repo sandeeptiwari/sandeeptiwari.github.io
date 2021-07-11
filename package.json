@@ -1,9 +1,9 @@
 {
-  "name": "devfolio",
+  "name": "sandifolio",
   "private": true,
   "description": "A modern and production-ready personal portfolio + blog template built with GatsbyJs and TailwindCSS",
   "version": "0.1.0",
-  "author": "Ryan Fitzgerald",
+  "author": "Sandeep Tiwari",
   "dependencies": {
     "gatsby": "^2.32.4",
     "gatsby-image": "^2.11.0",
@@ -50,9 +50,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RyanFitzgerald/devfolio"
+    "url": "https://github.com/sandeeptiwari/sandeeptiwari.github.io"
   },
   "bugs": {
-    "url": "https://github.com/RyanFitzgerald/devfolio/issues"
+    "url": "https://github.com/sandeeptiwari/sandeeptiwari.github.io/issues"
   }
 }

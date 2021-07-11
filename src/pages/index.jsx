@@ -10,6 +10,7 @@ import SectionExperience from '../components/section-experience';
 import SectionProjects from '../components/section-projects';
 import SectionSkills from '../components/section-skills';
 import SEO from '../components/seo';
+import Footer from '../components/footer';
 
 const Index = ({ data }) => {
   const about = get(data, 'site.siteMetadata.about', false);

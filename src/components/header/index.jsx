@@ -67,6 +67,13 @@ const Header = ({ metadata = {}, noBlog = false }) => {
               </Link>
             </li>
           )}
+          {/*{(
+            <li className={classes.item}>
+              <Link className={classes.link} to="/resume">
+                Blog
+              </Link>
+            </li>
+          )}*/}
         </ul>
       </div>
     </div>

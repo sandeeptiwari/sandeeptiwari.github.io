@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     // Site URL for when it goes live
-    siteUrl: `https://elastic-meninsky-aa7c74.netlify.app/`,
+    siteUrl: `https://sandeeptiwari.in/`,
     // Your Name
     name: 'Sandeep Tiwari',
     // Main Site Title
@@ -50,9 +50,9 @@ module.exports = {
         ]
       },
       {
-        name: 'Aricent Alran Group',
+        name: 'Aricent [Current is capgemini]',
         description: 'Team Lead, May 2017 - March 2019',
-        link: 'https://	aricent.com/',
+        link: 'https://aricent.com/',
         children: [
           {
             description: 'Member of a project tasked to replace a legacy policy administration system with Guidewire PolicyCenter.'
@@ -78,9 +78,9 @@ module.exports = {
         ]
       },
       {
-        name: 'Aricent Alran Group',
+        name: 'Aricent Alran Group [Current is capgemini]',
         description: 'Senior Software Engineer, Oct 2014 - July 2017',
-        link: 'https://	aricent.com/',
+        link: 'https://aricent.com/',
         children: [
           {
             description: 'Member of a project tasked to replace a legacy policy administration system with Guidewire PolicyCenter.'
@@ -192,14 +192,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-20537868-1`, // Optional Google Analytics
+        trackingId: `UA-201883174-1`, // Optional Google Analytics
       },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `devfolio`,
-        short_name: `devfolio`,
+        name: `sandifolio`,
+        short_name: `sandifolio`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#333f99`, // This color appears on mobile
