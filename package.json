@@ -1,5 +1,5 @@
 {
-  "homepage": "https://sandeeptiwari.github.io/sandeep",
+  "homepage": "https://sandeeptiwari.github.io",
   "name": "sandeeptiwari.github.io",
   "version": "0.1.0",
   "private": true,
@@ -21,7 +21,7 @@
     "predeploy": "npm run build",
     "start": "react-scripts --openssl-legacy-provider  start",
     "build": "react-scripts --openssl-legacy-provider build",
-    "deploy": "gh-pages -b master -d build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
