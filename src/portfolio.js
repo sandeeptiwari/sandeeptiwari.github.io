@@ -6,9 +6,9 @@ import emoji from "react-easy-emoji";
 
 const greeting = {
   username: "Sandeep Tiwari",
-  title: "Hi all, I'm Sandeep",
+  title: "Hi all, I'm Sandeep Tiwari",
   subTitle: emoji(
-    "A Fullstack Developer 👨‍💻 | Data Science Enthusiast 📊 | Tech Writer ✍️ "
+    "A Java Fullstack Developer 👨‍💻 | Game Development Enthusiast 📊 | Tech Writer ✍️ "
   ),
   resumeLink:
     "https://docs.google.com/document/d/13hBmlGjSFjGZBr2H_9Oazq04QpgKg6WB/view?usp=sharing",
@@ -50,56 +50,70 @@ const skillsSection = {
   softwareSkills: [
     {
       skillName: "java",
-      classname: "logos:java",
+      icon: "devicon:java",
+      style: {
+        backgroundColor: "transparent",
+      },
+    },
+    {
+      skillName: "spring-boot",
+      icon: "simple-icons:springboot",
       style: {
         backgroundColor: "transparent",
       },
     },
     {
       skillName: "reactJS",
-      classname: "simple-icons:react",
+      icon: "vscode-icons:file-type-reactjs",
       style: {
         color: "#61DAFB",
       },
     },
     {
       skillName: "maven",
-      classname: "vscode-icons:file-type-maven",
+      icon: "skill-icons:maven-light",
+      style: {
+        backgroundColor: "transparent",
+      },
+    },
+    {
+      skillName: "gradle",
+      icon: "skill-icons:gradle-light",
       style: {
         backgroundColor: "transparent",
       },
     },
     {
       skillName: "git",
-      classname: "logos:git-icon",
+      icon: "ri:git-branch-line",
       style: {
         backgroundColor: "transparent",
       },
     },
     {
       skillName: "jenkins",
-      classname: "vscode-icons:file-type-jenkins",
+      icon: "logos:jenkins",
       style: {
         backgroundColor: "transparent",
       },
     },
     {
-      skillName: "postgres",
-      classname: "logos:postgresql",
+      skillName: "mysql",
+      icon: "logos:mysql",
       style: {
         backgroundColor: "transparent",
       },
     },
     {
       skillName: "angular",
-      classname: "logos-angular",
+      icon: "devicon:angular",
       style: {
         backgroundColor: "transparent",
       },
     },
     {
       skillName: "kafka",
-      classname: "simple-icons:kafka",
+      icon: "mdi:apache-kafka",
       style: {
         backgroundColor: "white",
         color: "#D00000",
@@ -107,7 +121,7 @@ const skillsSection = {
     },
     {
       skillName: "android",
-      classname: "simple-icons:android",
+      icon: "wpf:android",
       style: {
         backgroundColor: "transparent",
       },
@@ -185,8 +199,8 @@ const certifications = {
   certifications: [
     {
       title: "Java8",
-      subtitle: "- Jose Portilla",
-      logo_path: "pierian-data-logo.png",
+      subtitle: "- Java 8",
+      logo_path: "java8.png",
       certificate_link:
         "https://www.udemy.com/certificate/UC-23220abe-444e-4265-9afc-639ecf52916c/",
       alt_name: "Java 8",
@@ -195,10 +209,10 @@ const certifications = {
     {
       title: "Android",
       subtitle: "- Android NDK",
-      logo_path: "rahulshettyacademy-logo.png",
+      logo_path: "ndk_android.png",
       certificate_link:
         "https://www.udemy.com/certificate/UC-d420e92f-3aca-4363-b563-0b886919f6d6/",
-      alt_name: "RahulShettyAcademy",
+      alt_name: "Android NDK",
       color_code: "#FDE9EA",
     },
   ],
