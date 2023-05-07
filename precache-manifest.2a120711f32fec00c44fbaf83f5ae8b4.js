@@ -1,39 +1,39 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4bd86a7a9c53a4feff60279f8ada7200",
+    "revision": "ef6b298a35ad02c034531648dbf97ea4",
     "url": "/index.html"
   },
   {
-    "revision": "0b639b878e98005f013e",
+    "revision": "c3ebb6243a7e6d2bb902",
     "url": "/static/css/3.ce554f52.chunk.css"
   },
   {
-    "revision": "99ade0ff927d2747df0d",
+    "revision": "11297df7299af0d4a452",
     "url": "/static/css/4.c8ac464a.chunk.css"
   },
   {
-    "revision": "636efd2c9ee83691b713",
+    "revision": "2d9be69957359bd8eb66",
     "url": "/static/css/main.94a8c6ed.chunk.css"
   },
   {
-    "revision": "76df9564adc74cc0c0aa",
-    "url": "/static/js/2.cbb33305.chunk.js"
+    "revision": "49769d26f638fac28ddb",
+    "url": "/static/js/2.3cc46cbb.chunk.js"
   },
   {
-    "revision": "0b639b878e98005f013e",
-    "url": "/static/js/3.8cc14781.chunk.js"
+    "revision": "c3ebb6243a7e6d2bb902",
+    "url": "/static/js/3.84a381d8.chunk.js"
   },
   {
-    "revision": "99ade0ff927d2747df0d",
-    "url": "/static/js/4.53006dfa.chunk.js"
+    "revision": "11297df7299af0d4a452",
+    "url": "/static/js/4.72977a70.chunk.js"
   },
   {
-    "revision": "636efd2c9ee83691b713",
-    "url": "/static/js/main.fb8ef000.chunk.js"
+    "revision": "2d9be69957359bd8eb66",
+    "url": "/static/js/main.f9d5659f.chunk.js"
   },
   {
-    "revision": "9294a7435806fa4cce06",
-    "url": "/static/js/runtime-main.c620e6a6.js"
+    "revision": "32498a5ba67eee03c00a",
+    "url": "/static/js/runtime-main.c1d3fe26.js"
   },
   {
     "revision": "21f233e19402cc4a66866a7f31191f0d",
@@ -60,6 +60,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/favicon.b1648bd0.ico"
   },
   {
+    "revision": "12b6d910f6dbf43b679ddc9797bb1fe6",
+    "url": "/static/media/java8.12b6d910.png"
+  },
+  {
     "revision": "b1ae2adc77bafd0ab3f670d9ab06b5ca",
     "url": "/static/media/jsFramework.b1ae2adc.svg"
   },
@@ -80,16 +84,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/meta_pic.1fbec64f.jpg"
   },
   {
-    "revision": "f041d99793f0c15a757a3d8b73d937a8",
-    "url": "/static/media/pierian-data-logo.f041d997.png"
+    "revision": "00118ef0afd07b75f56dc2c146f8598a",
+    "url": "/static/media/ndk_android.00118ef0.png"
   },
   {
     "revision": "4b2938b9f5ea2f1ddbd45dccaff628bc",
     "url": "/static/media/quoraLogo.4b2938b9.png"
-  },
-  {
-    "revision": "05b89315da86d827606f827e50c8e7ca",
-    "url": "/static/media/rahulshettyacademy-logo.05b89315.png"
   },
   {
     "revision": "1591c202ea86be03349f8d565ac1f959",
@@ -102,9 +102,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "7ebc764bf5f86dd0e65964bc4a734411",
     "url": "/static/media/vskills-logo.7ebc764b.png"
-  },
-  {
-    "revision": "d0a70af7f35f5943c7e28883adbbb7fd",
-    "url": "/static/media/zero-to-mastery.d0a70af7.png"
   }
 ]);
