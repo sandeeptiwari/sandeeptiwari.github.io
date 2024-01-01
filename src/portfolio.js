@@ -6,7 +6,7 @@ import emoji from "react-easy-emoji";
 
 const greeting = {
   username: "Sandeep Tiwari",
-  title: "Hi all, I'm Sandeep Tiwari",
+  title: "Hi All, I'm Sandeep Tiwari",
   subTitle: emoji(
     "A Java Fullstack Developer 👨‍💻 | Game Development Enthusiast 📊 | Tech Writer ✍️ "
   ),
@@ -27,10 +27,10 @@ const socialMediaLinks = {
 // Your Skills Section
 
 const skillsSection = {
-  title: "What i do",
+  title: "What I do",
   subTitle:
     "I am an accomplished Software Engineer with over 11+ years of experience writing full-stack applications for the IT industry. I have experience with modern backend Java development utilizing many components of the Spring Framework. " +
-      "I also have 4+ years of experience writing a performant frontend in JavaScript utilizing AngularJS And Angular framework.",
+    "I also have 4+ years of experience writing a performant frontend in JavaScript utilizing AngularJS And Angular framework.",
   skills: [
     emoji(
       "⚡ Developed a microservices-based architecture using Docker and Kubernetes to improve scalability and reduce deployment time for a financial services application"
@@ -227,20 +227,32 @@ const blogSection = {
 
   blogs: [
     {
-      url:
-        "",
-      title: "",
-      description:
-        "",
+      url: "https://medium.com/@sandeep15mca/java-memory-leaks-and-memory-optimization-39813b54dbcd",
+      title: "Java Memory leaks and Memory optimization",
+      description: "Introduction of Memory Leaks",
+    },
+    {
+      url: "https://medium.com/@sandeep15mca/rest-api-call-in-angular-application-289d907020ff",
+      title: "Rest API Call In Angular Application",
+      description: "In modern web development, it is common to build applications that interact with external data sources through APIs (Application Programming Interfaces). Angular, a powerful and popular front-end framework, provides robust tools and features to seamlessly integrate RESTful APIs into your applications.",
+    },
+    {
+      url: "https://medium.com/@sandeep15mca/running-angular-app-over-https-with-a-trusted-certificate-af8b6742160f",
+      title: "Running Angular App over HTTPS with a Trusted Certificate",
+      description: "Obtain a trusted SSL certificate: For testing purposes, you can generate a self-signed certificate using OpenSSL. Here’s how",
+    },
+    {
+      url: "https://medium.com/@sandeep15mca/addressing-the-producer-consumer-challenge-facilitating-inter-thread-communication-in-java-b21d95809546",
+      title: "Addressing the Producer-Consumer Challenge: Facilitating Inter-Thread Communication in Java",
+      description: "Navigating the Challenges of Java Producer-Consumer Problem: A Thorough Exploration and Solutions",
     }
   ],
 };
 
 const contactInfo = {
   title: emoji("Contact Me ☎️"),
-  subtitle:
-    "Discuss a project or just want to say hi? My Inbox is open for all.",
-  number: "123",
+  subtitle: "Discuss a project or just want to say hi? My Inbox is open for all.",
+  number: "********",
   email_address: "sandeep15mca@gmail.com",
 };
 

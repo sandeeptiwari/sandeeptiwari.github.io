@@ -9,7 +9,7 @@ import Footer from "../components/footer/Footer";
 import Top from "./topbutton/Top";
 import Profile from "./profile/Profile";
 import Certifications from "./certifications/Certifications";
-
+// <!--Projects -->
 export default class Main extends Component {
   render() {
     return (
@@ -18,7 +18,6 @@ export default class Main extends Component {
         <Greeting />
         <Skills />
         <WorkExperience />
-        <Projects />
         <Certifications />
         <Blogs />
         <Profile />
