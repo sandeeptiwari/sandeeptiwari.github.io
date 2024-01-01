@@ -1,23 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.94a8c6ed.chunk.css",
-    "main.js": "/static/js/main.f9d5659f.chunk.js",
-    "main.js.map": "/static/js/main.f9d5659f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.c1d3fe26.js",
-    "runtime-main.js.map": "/static/js/runtime-main.c1d3fe26.js.map",
-    "static/js/2.3cc46cbb.chunk.js": "/static/js/2.3cc46cbb.chunk.js",
-    "static/js/2.3cc46cbb.chunk.js.map": "/static/js/2.3cc46cbb.chunk.js.map",
+    "main.js": "/static/js/main.a75a727f.chunk.js",
+    "main.js.map": "/static/js/main.a75a727f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4a6802e8.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4a6802e8.js.map",
+    "static/js/2.2c120abf.chunk.js": "/static/js/2.2c120abf.chunk.js",
+    "static/js/2.2c120abf.chunk.js.map": "/static/js/2.2c120abf.chunk.js.map",
     "static/css/3.ce554f52.chunk.css": "/static/css/3.ce554f52.chunk.css",
-    "static/js/3.84a381d8.chunk.js": "/static/js/3.84a381d8.chunk.js",
-    "static/js/3.84a381d8.chunk.js.map": "/static/js/3.84a381d8.chunk.js.map",
-    "static/css/4.c8ac464a.chunk.css": "/static/css/4.c8ac464a.chunk.css",
-    "static/js/4.72977a70.chunk.js": "/static/js/4.72977a70.chunk.js",
-    "static/js/4.72977a70.chunk.js.map": "/static/js/4.72977a70.chunk.js.map",
+    "static/js/3.ab2b3e4d.chunk.js": "/static/js/3.ab2b3e4d.chunk.js",
+    "static/js/3.ab2b3e4d.chunk.js.map": "/static/js/3.ab2b3e4d.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.2a120711f32fec00c44fbaf83f5ae8b4.js": "/precache-manifest.2a120711f32fec00c44fbaf83f5ae8b4.js",
+    "precache-manifest.97fed39f6e098a40f122135386b5b94c.js": "/precache-manifest.97fed39f6e098a40f122135386b5b94c.js",
     "service-worker.js": "/service-worker.js",
     "static/css/3.ce554f52.chunk.css.map": "/static/css/3.ce554f52.chunk.css.map",
-    "static/css/4.c8ac464a.chunk.css.map": "/static/css/4.c8ac464a.chunk.css.map",
     "static/css/main.94a8c6ed.chunk.css.map": "/static/css/main.94a8c6ed.chunk.css.map",
     "static/media/index.css": "/static/media/Montserrat-Regular.ee653992.ttf",
     "static/media/contactMail.webp": "/static/media/contactMail.68e84138.webp",
@@ -37,9 +33,9 @@
     "static/media/vskills-logo.png": "/static/media/vskills-logo.7ebc764b.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.c1d3fe26.js",
-    "static/js/2.3cc46cbb.chunk.js",
+    "static/js/runtime-main.4a6802e8.js",
+    "static/js/2.2c120abf.chunk.js",
     "static/css/main.94a8c6ed.chunk.css",
-    "static/js/main.f9d5659f.chunk.js"
+    "static/js/main.a75a727f.chunk.js"
   ]
 }
