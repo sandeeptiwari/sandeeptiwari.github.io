@@ -1,0 +1,134 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #e0e0e0;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #e0e0e0;
+}
+
+/* Content wrap */
+.wrap {
+    max-width: 1400px;
+    width: 100%;
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: normal;
+    color: #333333;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #4d4d4d;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+
+a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.field-container {
+    padding: 20px;
+}
+
+.field-body {
+    margin-bottom: 40px;
+}
+
+.rtecenter {
+    text-align: center;
+}
+
+
+.service-info {
+    background-color: #f7f7f7; /* Light gray background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    margin: 20px 0; /* Margin to separate from other elements */
+    font-family: Arial, sans-serif; /* Font family */
+    color: #333; /* Dark gray text color */
+}
+
+.service-info p {
+    font-size: 16px; /* Font size for paragraphs */
+    line-height: 1.5; /* Line height for better readability */
+    margin-bottom: 10px; /* Space between paragraphs */
+}
+
+.service-info ul {
+    list-style-type: disc; /* Bulleted list */
+    padding-left: 20px; /* Indent for list items */
+}
+
+.service-info li {
+    margin-bottom: 5px; /* Space between list items */
+    font-size: 16px; /* Font size for list items */
+}
+
+
+@media (max-width: 768px) {
+    .wrap {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+}
