@@ -34,11 +34,14 @@
 .greeting-text {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1.1;
+  color: #1e2a3b;
+  letter-spacing: -0.05em;
 }
 
 .greeting-text-p {
   font-size: clamp(1.1rem, 2vw, 1.9rem);
-  line-height: 1.6;
+  line-height: 1.7;
+  color: #425466;
 }
 
 /* newly added block - start */

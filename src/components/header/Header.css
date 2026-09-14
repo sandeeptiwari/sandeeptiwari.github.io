@@ -1,10 +1,17 @@
 /* header */
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   max-width: 100%;
   padding: 0px 20px;
   margin: 0px auto;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0, 28, 85, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 .header ul {
@@ -53,6 +60,14 @@
   clear: both;
   max-height: 0;
   transition: max-height 0.2s ease-out;
+}
+
+.header .menu li {
+  list-style: none;
+}
+
+.header .menu a {
+  color: #001C55;
 }
 
 /* menu icon */

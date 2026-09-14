@@ -10,9 +10,9 @@ import kiwiLogo from "./assets/images/kiwi.png";
 
 const greeting = {
   username: "Sandeep Tiwari",
-  title: "Hi All, I'm Sandeep Tiwari",
+  title: "Hi, I'm Sandeep Tiwari",
   subTitle: emoji(
-    "A Java Fullstack Developer 👨‍💻 | Game Development Enthusiast 📊 | Tech Writer ✍️ ",
+    "Lead Software Engineer & Software Architect | Distributed Systems | Applied AI & GenAI ⚡",
   ),
   resumeLink:
     "https://docs.google.com/document/d/13hBmlGjSFjGZBr2H_9Oazq04QpgKg6WB/view?usp=sharing",
@@ -33,104 +33,85 @@ const socialMediaLinks = {
 const skillsSection = {
   title: "What I do",
   subTitle:
-    "I am an accomplished Software Engineer with over 11+ years of experience writing full-stack applications for the IT industry. I have experience with modern backend Java development utilizing many components of the Spring Framework. " +
-    "I also have 4+ years of experience writing a performant frontend in JavaScript utilizing AngularJS And Angular framework.",
+    "I am a Lead Software Engineer and Software Architect with 13+ years of experience building scalable, distributed, and high-performance software systems for enterprise and financial services. My core expertise is in Java, Scala, Spring Boot, distributed systems, event-driven architectures, microservices, messaging, and cloud-native applications. I have designed and implemented systems using Kafka, IBM MQ, RabbitMQ, Kubernetes, Docker, and relational and NoSQL databases. Over the years, I have worked across the full engineering lifecycle — from understanding business requirements and designing system architecture to implementation, performance optimization, production support, and technical leadership.",
   skills: [
     emoji(
-      "⚡ Developed a microservices-based architecture using Docker and Kubernetes to improve scalability and reduce deployment time for a financial services application",
+      "⚡ Distributed Systems — scalable services, asynchronous processing, messaging, concurrency, fault tolerance, and high-throughput architectures",
     ),
     emoji(
-      "⚡ Managed the entire software development life cycle for a mobile application, Angular Application, including requirements gathering, design, development, testing, deployment, and maintenance",
+      "⚡ Backend Engineering — Java, Scala, Spring Boot, Akka/Pekko, ZIO, REST APIs, microservices, and event-driven systems",
     ),
     emoji(
-      "⚡ Designed and implemented a high-throughput, low-latency messaging system using Apache Kafka to enable real-time data processing for a large e-commerce platform, etc",
+      "⚡ Generative AI & Applied AI — LLM applications, RAG pipelines, embeddings, vector databases, AI agents, tool calling, MCP, and enterprise AI workflows",
     ),
     emoji(
-      "⚡ Designed and developed responsive and user-friendly web applications using Angular, HTML, CSS, and JavaScript",
+      "⚡ Cloud & Infrastructure — AWS, Docker, Kubernetes, CI/CD, observability, and production-ready cloud-native architectures",
     ),
     emoji(
-      "⚡ Collaborated with designers to ensure the implementation of responsive and visually appealing UI designs",
+      "⚡ Frontend Engineering — React, Angular, TypeScript, JavaScript, and responsive web applications",
     ),
   ],
 
   softwareSkills: [
     {
-      skillName: "java",
-      icon: "devicon:java",
-      style: {
-        backgroundColor: "transparent",
-      },
+      skillName: "Java",
+      icon: "logos:java",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "spring-boot",
-      icon: "simple-icons:springboot",
-      style: {
-        backgroundColor: "transparent",
-      },
+      skillName: "Scala",
+      icon: "logos:scala",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "reactJS",
-      icon: "vscode-icons:file-type-reactjs",
-      style: {
-        color: "#61DAFB",
-      },
+      skillName: "Spring Boot",
+      icon: "logos:spring",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "maven",
-      icon: "skill-icons:maven-light",
-      style: {
-        backgroundColor: "transparent",
-      },
+      skillName: "Kafka",
+      icon: "logos:apache-kafka",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "gradle",
-      icon: "skill-icons:gradle-light",
-      style: {
-        backgroundColor: "transparent",
-      },
+      skillName: "Docker",
+      icon: "logos:docker-icon",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "git",
-      icon: "ri:git-branch-line",
-      style: {
-        backgroundColor: "transparent",
-      },
+      skillName: "Kubernetes",
+      icon: "logos:kubernetes",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "jenkins",
-      icon: "logos:jenkins",
-      style: {
-        backgroundColor: "transparent",
-      },
+      skillName: "AWS",
+      icon: "logos:aws",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "mysql",
-      icon: "logos:mysql",
-      style: {
-        backgroundColor: "transparent",
-      },
+      skillName: "AI",
+      icon: "logos:openai-icon",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "angular",
-      icon: "devicon:angular",
-      style: {
-        backgroundColor: "transparent",
-      },
+      skillName: "React",
+      icon: "logos:react",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "kafka",
-      icon: "mdi:apache-kafka",
-      style: {
-        backgroundColor: "white",
-        color: "#D00000",
-      },
+      skillName: "Angular",
+      icon: "logos:angular-icon",
+      style: { backgroundColor: "transparent" },
     },
     {
-      skillName: "android",
-      icon: "wpf:android",
-      style: {
-        backgroundColor: "transparent",
-      },
+      skillName: "TypeScript",
+      icon: "logos:typescript-icon",
+      style: { backgroundColor: "transparent" },
+    },
+    {
+      skillName: "MongoDB",
+      icon: "logos:mongodb-icon",
+      style: { backgroundColor: "transparent" },
     },
   ],
 };

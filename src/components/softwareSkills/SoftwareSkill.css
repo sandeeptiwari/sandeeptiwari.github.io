@@ -1,29 +1,67 @@
 .dev-icons {
   padding-left: 0;
   list-style: none;
-  font-size: 3rem;
-  margin-bottom: 0px;
-  margin-top: 0px;
+  font-size: 2.6rem;
+  margin: 0 0 1.5rem;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem 1.1rem;
 }
 
 .software-skill-inline {
-  display: inline-block;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  padding: 0.8rem 0.75rem;
+  border-radius: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.software-skill-inline > i {
-  color: #868e96;
+.software-skill-inline:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
 }
 
-.software-skill-inline > i:hover {
-  color: #645beb;
+.software-skill-inline svg {
+  color: #1f2d3d;
+  font-size: 2.2rem;
+  opacity: 0.9;
 }
+
 .software-skill-inline > p {
-  color: #868e96;
+  color: #4b5d73;
   font-size: 10px;
+  margin: 0.5rem 0 0;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 600;
 }
-.software-skill-inline > i:hover ~ p{
-  color: #645beb;
+
+.software-skill-inline:hover svg,
+.software-skill-inline:hover > p {
+  color: #2d6cdf;
+}
+
+@media (max-width: 768px) {
+  .dev-icons {
+    gap: 0.6rem 0.9rem;
+    margin: 0 0 1rem;
+  }
+
+  .software-skill-inline {
+    min-width: 60px;
+    padding: 0.7rem 0.65rem;
+  }
+
+  .software-skill-inline svg {
+    font-size: 2rem;
+  }
+
+  .software-skill-inline > p {
+    font-size: 9px;
+  }
 }

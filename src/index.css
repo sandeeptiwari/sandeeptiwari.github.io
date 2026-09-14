@@ -30,6 +30,10 @@ body {
   scroll-behavior: smooth;
 }
 
+html {
+  scroll-padding-top: 90px;
+}
+
 body {
   margin: 0;
   font: 16px / 1.6 'Montserrat', 'Segoe UI', sans-serif;
