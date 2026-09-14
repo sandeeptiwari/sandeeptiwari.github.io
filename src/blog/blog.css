@@ -5,6 +5,46 @@
   color: #1f2937;
 }
 
+.blog-back-home {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #2d6cdf;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.blog-back-home:hover {
+  text-decoration: underline;
+}
+
+.blog-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+.blog-list-page .blog-header {
+  padding: 0 0 24px;
+  text-align: center;
+}
+
+.blog-list-page .blog-text-div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.blog-list-page .blog-view-all-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.blog-load-more {
+  border: none;
+}
+
 .blog-header {
   padding: 0 0 24px;
 }

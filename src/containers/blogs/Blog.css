@@ -40,6 +40,16 @@
   gap: 32px;
 }
 
+.blog-view-all-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.blog-view-all-wrapper .main-button {
+  margin-right: 0;
+}
+
 /* Media Query */
 @media (max-width: 1380px) {
   .blog-header-text {

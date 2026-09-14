@@ -1,10 +1,16 @@
 import React from "react";
 import "./Blog.css";
 import BlogCard from "../../components/blogCard/BlogCard";
+import Button from "../../components/button/Button";
 import { blogSection } from "../../data/blogs";
 import { Fade } from "react-reveal";
 
+const HOMEPAGE_BLOG_LIMIT = 6;
+
 export default function Blogs() {
+  const previewBlogs = blogSection.blogs.slice(0, HOMEPAGE_BLOG_LIMIT);
+  const hasMoreBlogs = blogSection.blogs.length > HOMEPAGE_BLOG_LIMIT;
+
   return (
     <Fade bottom duration={1000} distance="20px">
     <div className="main" id="blogs">
@@ -14,9 +20,10 @@ export default function Blogs() {
       </div>
       <div className="blog-main-div">
         <div className="blog-text-div">
-          {blogSection.blogs.map(blog => {
+          {previewBlogs.map(blog => {
             return (
               <BlogCard
+                key={blog.url}
                 blog={{
                   url: blog.url,
                   image: blog.image,
@@ -28,6 +35,11 @@ export default function Blogs() {
           })}
         </div>
       </div>
+      {hasMoreBlogs && (
+        <div className="blog-view-all-wrapper">
+          <Button text="View All Blogs" href="/blogs" />
+        </div>
+      )}
     </div>
     </Fade>
   );
