@@ -1,14 +1,22 @@
-import React, { useState, useEffect, createRef } from "react";
+import React, { useState, createRef } from "react";
 import "./ExperienceCard.css";
-import ColorThief from "colorthief";
 
 export default function ExperienceCard({ cardInfo }) {
   const [colorArrays, setColorArrays] = useState([]);
   const imgRef = createRef();
 
   function getColorArrays() {
-    const colorThief = new ColorThief();
-    setColorArrays(colorThief.getColor(imgRef.current));
+    if (!imgRef.current) {
+      return;
+    }
+
+    try {
+      const ColorThief = require("colorthief");
+      const colorThief = new ColorThief();
+      setColorArrays(colorThief.getColor(imgRef.current));
+    } catch (error) {
+      console.warn("Unable to load color extraction library:", error);
+    }
   }
 
   function rgb(values) {

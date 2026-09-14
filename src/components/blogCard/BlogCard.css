@@ -8,7 +8,7 @@
   height: 200px;
 }
 
-.blog-title {
+.blog-card-title {
   color: #262626;
   font-size: 20px;
   line-height: 24px;
@@ -131,7 +131,7 @@
 }
 
 @media screen and (max-width: 480px) and (min-width: 300px) {
-  .blog-title {
+  .blog-card-title {
     font-size: 18px;
   }
 }

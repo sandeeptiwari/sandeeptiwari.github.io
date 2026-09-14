@@ -3,6 +3,7 @@ import "./Skills.css";
 import SoftwareSkill from "../../components/softwareSkills/SoftwareSkill";
 import { skillsSection } from "../../portfolio";
 import { Fade } from "react-reveal";
+import developerActivityImage from "../../assets/images/developerActivity.svg";
 
 export default function Skills() {
   return (
@@ -10,10 +11,7 @@ export default function Skills() {
       <div className="skills-main-div">
         <Fade left duration={1000}>
           <div className="skills-image-div">
-            <img
-              alt="Sandeep Working"
-              src={require("../../assets/images/developerActivity.svg")}
-            ></img>
+            <img alt="Sandeep Working" src={developerActivityImage}></img>
           </div>
         </Fade>
         <Fade right duration={1000}>

@@ -1,27 +1,18 @@
-# This file is the main docker file configurations
+# Use a supported Node.js LTS base image for the current app
+FROM node:18-alpine
 
-# Official Node JS runtime as a parent image
-FROM node:10.16.0-alpine
+WORKDIR /app
 
-# Set the working directory to ./app
-WORKDIR ./app
-
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
+# Copy package manifests first for better layer caching
 COPY package*.json ./
 
-# Install any needed packages
+# Install app dependencies
 RUN npm install
 
-# Audit fix npm packages
-RUN npm audit fix
+# Copy the rest of the app source
+COPY . .
 
-# Bundle app source
-COPY . /app
-
-# Make port 3000 available to the world outside this container
+# Expose the React development server port
 EXPOSE 3000
 
-# Run app.js when the container launches
 CMD ["npm", "start"]

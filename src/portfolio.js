@@ -1,6 +1,10 @@
-﻿/* Change this file to get your personal Portfolio */
+/* Change this file to get your personal Portfolio */
 
 import emoji from "react-easy-emoji";
+import { blogSection } from "./data/blogs";
+import ltiLogo from "./assets/images/lti.png";
+import aricentLogo from "./assets/images/aricent.png";
+import kiwiLogo from "./assets/images/kiwi.png";
 
 // Your Summary And Greeting Section
 
@@ -8,7 +12,7 @@ const greeting = {
   username: "Sandeep Tiwari",
   title: "Hi All, I'm Sandeep Tiwari",
   subTitle: emoji(
-    "A Java Fullstack Developer 👨‍💻 | Game Development Enthusiast 📊 | Tech Writer ✍️ "
+    "A Java Fullstack Developer 👨‍💻 | Game Development Enthusiast 📊 | Tech Writer ✍️ ",
   ),
   resumeLink:
     "https://docs.google.com/document/d/13hBmlGjSFjGZBr2H_9Oazq04QpgKg6WB/view?usp=sharing",
@@ -33,18 +37,20 @@ const skillsSection = {
     "I also have 4+ years of experience writing a performant frontend in JavaScript utilizing AngularJS And Angular framework.",
   skills: [
     emoji(
-      "⚡ Developed a microservices-based architecture using Docker and Kubernetes to improve scalability and reduce deployment time for a financial services application"
-    ),
-    emoji("⚡ Managed the entire software development life cycle for a mobile application, Angular Application, including requirements gathering, design, development, testing, deployment, and maintenance"),
-    emoji(
-      "⚡ Designed and implemented a high-throughput, low-latency messaging system using Apache Kafka to enable real-time data processing for a large e-commerce platform, etc"
+      "⚡ Developed a microservices-based architecture using Docker and Kubernetes to improve scalability and reduce deployment time for a financial services application",
     ),
     emoji(
-      "⚡ Designed and developed responsive and user-friendly web applications using Angular, HTML, CSS, and JavaScript"
+      "⚡ Managed the entire software development life cycle for a mobile application, Angular Application, including requirements gathering, design, development, testing, deployment, and maintenance",
     ),
     emoji(
-        "⚡ Collaborated with designers to ensure the implementation of responsive and visually appealing UI designs"
-    )
+      "⚡ Designed and implemented a high-throughput, low-latency messaging system using Apache Kafka to enable real-time data processing for a large e-commerce platform, etc",
+    ),
+    emoji(
+      "⚡ Designed and developed responsive and user-friendly web applications using Angular, HTML, CSS, and JavaScript",
+    ),
+    emoji(
+      "⚡ Collaborated with designers to ensure the implementation of responsive and visually appealing UI designs",
+    ),
   ],
 
   softwareSkills: [
@@ -137,10 +143,9 @@ const workExperiences = {
     {
       role: "Project Lead",
       company: "Larsen & Toubro Infotech Limited ",
-      companylogo: require("./assets/images/lti.png"),
+      companylogo: ltiLogo,
       date: "April 2019 – Dec 2021",
-      desc:
-        "Lead developer of a team working on insurance related enterprise application.",
+      desc: "Lead developer of a team working on insurance related enterprise application.",
       descBullets: [
         "Assisted migrating a legacy JSF application to an AngularJS 1.8 SPA.",
         "Helped create a HATEOAS-driven REST API using Spring Boot with Spring Data. Subsequently led the effort to build documentation using Spring REST Docs to guarantee the API is always accurately documented.",
@@ -148,16 +153,15 @@ const workExperiences = {
         "Integrated a JavaScript testing framework into our developers\\' daily workflow and created documentation for how best to create the tests. Over time, the test suite has risen to over 3,000 tests written by developers of all skill levels on the team.",
         "Served as Scrum Master for a team composed of developers, business analysts, and test analysts. Also worked on a company-wide pilot program to help spread agile across the corporation by defining best practices, sharing successes, and discussing lessons learned.",
         "Participated in organization-wide development standards meetings to help move team and enterprise best practices forward. Also facilitated large group discussions and presented on several technical topics to developers across the company to help drive culture shift toward knowledge sharing between teams.",
-        "Served as mentor and technical leader to developers of varying skill levels and experience across multiple teams both on and off-shore."
-      ]
+        "Served as mentor and technical leader to developers of varying skill levels and experience across multiple teams both on and off-shore.",
+      ],
     },
     {
       role: "Team Lead",
       company: "Aricent [Current is capgemini]",
-      companylogo: require("./assets/images/aricent.png"),
+      companylogo: aricentLogo,
       date: "Oct 2014 – March 2019",
-      desc:
-        "Successfully led a team of developers in the design, development, and implementation of enterprise applications for clients in various industries",
+      desc: "Successfully led a team of developers in the design, development, and implementation of enterprise applications for clients in various industries",
       descBullets: [
         "Collaborated with cross-functional teams to identify project requirements, define project scope, and develop project timelines and budgets",
         "Designed and developed microservices-based software solutions for clients in various industries.",
@@ -166,21 +170,20 @@ const workExperiences = {
         "Integrated a JavaScript testing framework into our developers\\' daily workflow and created documentation for how best to create the tests. Over time, the test suite has risen to over 3,000 tests written by developers of all skill levels on the team.",
         "Served as Scrum Master for a team composed of developers, business analysts, and test analysts. Also worked on a company-wide pilot program to help spread agile across the corporation by defining best practices, sharing successes, and discussing lessons learned.",
         "Participated in code reviews, testing, and debugging activities to ensure the quality and reliability of software products.",
-        "Researched and implemented new technologies and tools to enhance software development processes and improve team efficiency."
-      ]
+        "Researched and implemented new technologies and tools to enhance software development processes and improve team efficiency.",
+      ],
     },
     {
       role: "Mobile Developer",
       company: "Kiwi Tech India",
-      companylogo: require("./assets/images/kiwi.png"),
+      companylogo: kiwiLogo,
       date: "July 2013 – Oct-2014",
-      desc:
-          "Successfully migrated the existing feature to a new and improved system, resulting in increased efficiency and productivity.",
+      desc: "Successfully migrated the existing feature to a new and improved system, resulting in increased efficiency and productivity.",
       descBullets: [
         "Developed and implemented a strategy for the migration of the existing system to a new system, resulting in enhanced user experience and streamlined processes.",
         "Demonstrated adaptability and problem-solving skills by successfully leading the migration of the existing system to a new microservice architecture.",
       ],
-    }
+    },
   ],
 };
 
@@ -218,40 +221,10 @@ const certifications = {
   ],
 };
 
-// Blogs Section
-
-const blogSection = {
-  title: "Blogs",
-  subtitle:
-    "With Love for Developing cool stuff, I love to write and teach others what I have learnt.",
-
-  blogs: [
-    {
-      url: "https://medium.com/@sandeep15mca/java-memory-leaks-and-memory-optimization-39813b54dbcd",
-      title: "Java Memory leaks and Memory optimization",
-      description: "Introduction of Memory Leaks",
-    },
-    {
-      url: "https://medium.com/@sandeep15mca/rest-api-call-in-angular-application-289d907020ff",
-      title: "Rest API Call In Angular Application",
-      description: "In modern web development, it is common to build applications that interact with external data sources through APIs (Application Programming Interfaces). Angular, a powerful and popular front-end framework, provides robust tools and features to seamlessly integrate RESTful APIs into your applications.",
-    },
-    {
-      url: "https://medium.com/@sandeep15mca/running-angular-app-over-https-with-a-trusted-certificate-af8b6742160f",
-      title: "Running Angular App over HTTPS with a Trusted Certificate",
-      description: "Obtain a trusted SSL certificate: For testing purposes, you can generate a self-signed certificate using OpenSSL. Here’s how",
-    },
-    {
-      url: "https://medium.com/@sandeep15mca/addressing-the-producer-consumer-challenge-facilitating-inter-thread-communication-in-java-b21d95809546",
-      title: "Addressing the Producer-Consumer Challenge: Facilitating Inter-Thread Communication in Java",
-      description: "Navigating the Challenges of Java Producer-Consumer Problem: A Thorough Exploration and Solutions",
-    }
-  ],
-};
-
 const contactInfo = {
   title: emoji("Contact Me ☎️"),
-  subtitle: "Discuss a project or just want to say hi? My Inbox is open for all.",
+  subtitle:
+    "Discuss a project or just want to say hi? My Inbox is open for all.",
   number: "********",
   email_address: "sandeep15mca@gmail.com",
 };

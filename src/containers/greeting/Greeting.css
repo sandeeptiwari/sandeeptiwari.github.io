@@ -27,17 +27,18 @@
 }
 .button-greeting-div {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 20px;
 }
 
 .greeting-text {
-  font-size: 70px;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1.1;
 }
 
 .greeting-text-p {
-  font-size: 30px;
-  line-height: 40px;
+  font-size: clamp(1.1rem, 2vw, 1.9rem);
+  line-height: 1.6;
 }
 
 /* newly added block - start */
@@ -87,10 +88,10 @@
 /* Media Query */
 @media (max-width: 1380px) {
   .greeting-text {
-    font-size: 50px;
+    font-size: clamp(2.2rem, 4vw, 4rem);
   }
   .greeting-text-p {
-    font-size: 20px;
+    font-size: clamp(1rem, 1.8vw, 1.45rem);
   }
 }
 @media (max-width: 768px) {
@@ -98,11 +99,11 @@
     justify-content: space-around;
   }
   .greeting-text {
-    font-size: 30px;
+    font-size: clamp(1.75rem, 7vw, 2.6rem);
     text-align: center;
   }
   .greeting-text-p {
-    font-size: 16px;
+    font-size: clamp(1rem, 3vw, 1.25rem);
     line-height: normal;
     text-align: center;
   }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect ,lazy, Suspense } from "react";
-import ApolloClient, { gql } from "apollo-boost";
+import React, { useState, useEffect ,lazy, Suspense, useCallback } from "react";
+import { ApolloClient, gql, HttpLink, InMemoryCache } from "@apollo/client";
 import { openSource } from "../../portfolio";
 import Contact from "../contact/Contact";
 import Loading from "../loading/Loading";
@@ -11,16 +11,15 @@ export default function Profile() {
   function setProfileFunction(array) {
     setrepo(array);
   }
-  function getProfileData() {
+  const getProfileData = useCallback(() => {
     const client = new ApolloClient({
-      uri: "https://api.github.com/graphql",
-      request: (operation) => {
-        operation.setContext({
-          headers: {
-            authorization: `Bearer ${openSource.githubConvertedToken}`,
-          },
-        });
-      },
+      cache: new InMemoryCache(),
+      link: new HttpLink({
+        uri: "https://api.github.com/graphql",
+        headers: {
+          authorization: `Bearer ${openSource.githubConvertedToken}`,
+        },
+      }),
     });
 
     client
@@ -46,12 +45,12 @@ export default function Profile() {
           console.log("Because of this Error Contact Section is Showed instead of Profile");
           openSource.showGithubProfile = "false";
       });
-  }
+  }, []);
   useEffect(() => {
     if (openSource.showGithubProfile === "true") {
       getProfileData();
     }
-  }, []);
+  }, [getProfileData]);
 if (openSource.showGithubProfile === "true" && !(typeof prof === 'string' || prof instanceof String)){  
     return (
       <Suspense fallback={renderLoader()}>

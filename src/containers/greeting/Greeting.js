@@ -1,10 +1,11 @@
-﻿import React from "react";
+import React from "react";
 import "./Greeting.css";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
 import { greeting } from "../../portfolio";
 import { Fade } from "react-reveal";
 import emoji from "react-easy-emoji";
+import greetingImage from "../../assets/images/sandeep-tech-architecture-illustration.svg";
 
 export default function Greeting() {
   return (
@@ -31,10 +32,7 @@ export default function Greeting() {
             </div>
           </div>
           <div className="greeting-image-div">
-            <img
-              alt="man at desk"
-              src={require("../../assets/images/manOnTable.svg")}
-            ></img>
+            <img alt="man at desk" src={greetingImage}></img>
           </div>
         </div>
       </div>

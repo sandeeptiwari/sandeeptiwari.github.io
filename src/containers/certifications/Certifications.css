@@ -16,7 +16,7 @@
 }
 
 .cert-header-title {
-  font-size: 56px;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
   font-weight: 400;
   line-height: normal;
 }
@@ -34,25 +34,22 @@
 }
 .cert-text-div{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 32px;
 }
 
 /* Media Query */
 @media (max-width: 1380px) {
   .cert-header-title {
-    font-size: 40px;
+    font-size: clamp(2rem, 3vw, 2.75rem);
   }
 }
 @media (max-width: 768px) {
   .cert-header-title {
-    font-size: 30px;
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
     text-align: center;
   }
-}
-
-@media screen and (max-width: 480px) and (min-width:300px){
-  .cert-text-div{
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  .cert-text-div {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }

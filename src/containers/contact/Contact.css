@@ -7,14 +7,14 @@
 }
 
 .contact-title {
-    font-size: 65px;
+    font-size: clamp(2.4rem, 4.8vw, 4.0625rem);
     font-weight: 400;
 }
 
 .contact-detail,
 .contact-detail-email {
     margin-top: 20px;
-    font-size: 40px;
+    font-size: clamp(1.4rem, 2.8vw, 2.5rem);
     font-weight: 400;
     color: #868e96;
     text-decoration: none;
@@ -47,15 +47,9 @@
 }
 
 /* Media Query */
-@media (max-width: 1380px), (max-width: 768px) {
+@media (max-width: 1380px) {
     .contact-title {
-        font-size: 56px;
-        font-weight: 400;
-        text-align: center;
-    }
-
-    .contact-title {
-        font-size: 40px;
+        font-size: clamp(2rem, 4vw, 3rem);
         text-align: center;
     }
 
@@ -72,7 +66,34 @@
 
     .contact-detail,
     .contact-detail-email {
-        font-size: 20px;
+        font-size: clamp(1rem, 2vw, 1.4rem);
+    }
+
+    .contact-image-div {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-title {
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+        text-align: center;
+    }
+
+    .contact-subtitle {
+        font-size: 16px;
+        line-height: normal;
+        text-align: center;
+    }
+
+    .contact-text-div {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .contact-detail,
+    .contact-detail-email {
+        font-size: clamp(1rem, 3vw, 1.25rem);
     }
 
     .contact-image-div {

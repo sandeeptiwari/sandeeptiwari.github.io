@@ -24,19 +24,19 @@
 }
 
 .skills-heading {
-  font-size: 56px;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
   font-weight: 400;
 }
 
 /* Media Query */
 @media (max-width: 1380px) {
   .skills-heading {
-    font-size: 40px;
+    font-size: clamp(2rem, 3vw, 2.75rem);
   }
 }
 @media (max-width: 768px) {
   .skills-heading {
-    font-size: 30px;
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
     text-align: center;
   }
   .greeting-text-p {
