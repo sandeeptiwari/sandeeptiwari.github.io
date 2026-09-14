@@ -182,17 +182,33 @@ const openSource = {
 const certifications = {
   certifications: [
     {
+      title: "Applied AI Masterclass",
+      subtitle: "- LLMs • RAG • AI Agents • MCP | Arpit Bhayani",
+      logo_path: "applied-ai-logo.svg",
+      certificate_link: require("./assets/images/8325-certificate.pdf"),
+      alt_name: "Applied AI Masterclass certificate",
+      color_code: "#F3F5F7",
+    },
+    {
+      title: "Spring Security Zero to Master",
+      subtitle: "- JWT, OAuth2 | Eazy Bytes",
+      logo_path: "spring-security-logo.svg",
+      certificate_link: require("./assets/spring_security.pdf"),
+      alt_name: "Spring Security Zero to Master certificate",
+      color_code: "#EAF4FF",
+    },
+    {
       title: "Java8",
-      subtitle: "- Java 8",
+      subtitle: "- Java 8 • Lambda Function • Stream",
       logo_path: "java8.png",
       certificate_link:
         "https://www.udemy.com/certificate/UC-23220abe-444e-4265-9afc-639ecf52916c/",
-      alt_name: "Java 8",
+      alt_name: "Java 8 • Lambda Function • Stream",
       color_code: "#FEF6E6",
     },
     {
       title: "Android",
-      subtitle: "- Android NDK",
+      subtitle: "- Android NDK, Video Editing, FMPEG",
       logo_path: "ndk_android.png",
       certificate_link:
         "https://www.udemy.com/certificate/UC-d420e92f-3aca-4363-b563-0b886919f6d6/",

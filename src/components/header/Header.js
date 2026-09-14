@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import {greeting, workExperiences} from "../../portfolio";
+import { greeting, workExperiences } from "../../portfolio";
 
 function Header() {
   const exp = workExperiences.viewExperiences;
@@ -22,20 +22,30 @@ function Header() {
         checked={menuOpen}
         onChange={(event) => setMenuOpen(event.target.checked)}
       />
-      <label className="menu-icon" htmlFor="menu-btn" aria-label="Toggle navigation menu">
+      <label
+        className="menu-icon"
+        htmlFor="menu-btn"
+        aria-label="Toggle navigation menu"
+      >
         <span className="navicon"></span>
       </label>
       <ul className="menu">
         <li>
-          <a href="#skills" onClick={closeMenu}>Skills</a>
+          <a href="#skills" onClick={closeMenu}>
+            Skills
+          </a>
         </li>
         {exp === true && (
           <li>
-            <a href="#experience" onClick={closeMenu}>Work Experiences</a>
+            <a href="#experience" onClick={closeMenu}>
+              Work Experiences
+            </a>
           </li>
         )}
         <li>
-          <a href="#opensource" onClick={closeMenu}>Projects</a>
+          <a href="#opensource" onClick={closeMenu}>
+            Projects
+          </a>
         </li>
         {/*<li>
           <a href="#projects">Projects</a>
@@ -44,16 +54,22 @@ function Header() {
           <a href="#achievements">Achievements</a>
         </li>*/}
         <li>
-          <a href="#certs" onClick={closeMenu}>Certfications</a>
+          <a href="#certs" onClick={closeMenu}>
+            Certfications
+          </a>
         </li>
         <li>
-          <a href="#blogs" onClick={closeMenu}>Blogs</a>
+          <a href="#blogs" onClick={closeMenu}>
+            Blogs
+          </a>
         </li>
         {/*<li>
           <a href="#talks">Talks</a>
         </li>*/}
         <li>
-          <a href="#contact" onClick={closeMenu}>Contact Me</a>
+          <a href="#contact" onClick={closeMenu}>
+            Contact Me
+          </a>
         </li>
       </ul>
     </header>
