@@ -37,6 +37,8 @@ export function parseBlogXml(xmlString) {
       })
     : [];
 
+  assignHeadingIds(blocks);
+
   return { meta, blocks };
 }
 
@@ -78,4 +80,31 @@ function mapNodeToBlock(node) {
   }
 
   return tagConfig.parser(node);
+}
+
+function slugify(text) {
+  return (
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "") || "section"
+  );
+}
+
+// Table-of-contents anchors need stable, unique ids per heading.
+function assignHeadingIds(blocks) {
+  const usedSlugs = new Map();
+
+  blocks.forEach((block) => {
+    if (block.type !== "heading") {
+      return;
+    }
+
+    const baseSlug = slugify(block.value);
+    const occurrence = usedSlugs.get(baseSlug) || 0;
+    usedSlugs.set(baseSlug, occurrence + 1);
+
+    block.id = occurrence === 0 ? baseSlug : `${baseSlug}-${occurrence}`;
+  });
 }

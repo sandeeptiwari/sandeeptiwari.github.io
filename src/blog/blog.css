@@ -5,6 +5,116 @@
   color: #1f2937;
 }
 
+.blog-layout {
+  position: relative;
+}
+
+.blog-toc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  max-width: 100%;
+  height: 100vh;
+  padding: 0;
+  border-right: 1px solid #e5e7eb;
+  background: #ffffff;
+  z-index: 5;
+}
+
+.blog-toc-sticky {
+  height: 100%;
+  overflow-y: auto;
+  padding: 32px 20px;
+}
+
+.blog-toc-heading {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.blog-toc-sticky nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.blog-toc-sticky nav a {
+  display: block;
+  padding: 6px 10px;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.4;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+.blog-toc-sticky nav a:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.blog-toc-level-3 a {
+  padding-left: 22px;
+  font-size: 13px;
+}
+
+.blog-toc-active a {
+  color: #1d4ed8;
+  font-weight: 700;
+  background: #eef2ff;
+  border-left-color: #2d6cdf;
+}
+
+.blog-layout .blog-article {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 32px 40px 80px;
+}
+
+.blog-article-area {
+  padding-left: 260px;
+}
+
+.blog-heading {
+  scroll-margin-top: 24px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 960px) {
+  .blog-toc {
+    position: static;
+    width: auto;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .blog-toc-sticky {
+    height: auto;
+    max-height: 320px;
+  }
+
+  .blog-article-area {
+    padding-left: 0;
+  }
+
+  .blog-layout .blog-article {
+    max-width: 100%;
+    padding: 24px 16px 60px;
+  }
+}
+
 .blog-back-home {
   display: inline-block;
   margin-bottom: 20px;

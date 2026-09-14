@@ -1,24 +1,44 @@
 import React from "react";
 
 function TitleBlock({ block, index }) {
-  return <h1 key={index} className="blog-title">{block.value}</h1>;
+  return (
+    <h1 key={index} className="blog-title">
+      {block.value}
+    </h1>
+  );
 }
 
 function SummaryBlock({ block, index }) {
-  return <div key={index} className="blog-summary">{block.value}</div>;
+  return (
+    <div key={index} className="blog-summary">
+      {block.value}
+    </div>
+  );
 }
 
 function HeadingBlock({ block, index }) {
   const Tag = `h${block.level || 2}`;
-  return <Tag key={index} className="blog-heading">{block.value}</Tag>;
+  return (
+    <Tag key={index} id={block.id} className="blog-heading">
+      {block.value}
+    </Tag>
+  );
 }
 
 function ParagraphBlock({ block, index }) {
-  return <p key={index} className="blog-paragraph">{block.value}</p>;
+  return (
+    <p key={index} className="blog-paragraph">
+      {block.value}
+    </p>
+  );
 }
 
 function QuoteBlock({ block, index }) {
-  return <blockquote key={index} className="blog-quote">{block.value}</blockquote>;
+  return (
+    <blockquote key={index} className="blog-quote">
+      {block.value}
+    </blockquote>
+  );
 }
 
 function ImageBlock({ block, index }) {
@@ -41,7 +61,7 @@ function ListBlock({ block, index }) {
         { className: listClass },
         block.items.map((item, itemIndex) => (
           <li key={`${index}-${itemIndex}`}>{item}</li>
-        ))
+        )),
       )}
     </div>
   );
@@ -68,17 +88,29 @@ export const blogTagConfig = {
   },
   hd1: {
     blockType: "heading",
-    parser: (node) => ({ type: "heading", level: 1, value: node.textContent.trim() }),
+    parser: (node) => ({
+      type: "heading",
+      level: 1,
+      value: node.textContent.trim(),
+    }),
     component: HeadingBlock,
   },
   hd2: {
     blockType: "heading",
-    parser: (node) => ({ type: "heading", level: 2, value: node.textContent.trim() }),
+    parser: (node) => ({
+      type: "heading",
+      level: 2,
+      value: node.textContent.trim(),
+    }),
     component: HeadingBlock,
   },
   hd3: {
     blockType: "heading",
-    parser: (node) => ({ type: "heading", level: 3, value: node.textContent.trim() }),
+    parser: (node) => ({
+      type: "heading",
+      level: 3,
+      value: node.textContent.trim(),
+    }),
     component: HeadingBlock,
   },
   p: {
@@ -155,7 +187,7 @@ export const blogBlockTypeConfig = Object.values(blogTagConfig).reduce(
     registry[tagEntry.blockType] = tagEntry.component;
     return registry;
   },
-  {}
+  {},
 );
 
 export function getBlogTagConfig(tagName) {

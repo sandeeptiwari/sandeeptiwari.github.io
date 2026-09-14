@@ -13,34 +13,34 @@ export default function Blogs() {
 
   return (
     <Fade bottom duration={1000} distance="20px">
-    <div className="main" id="blogs">
-      <div className="blog-header">
-        <h1 className="blog-header-text">{blogSection.title}</h1>
-        <p className="subTitle blog-subtitle">{blogSection.subtitle}</p>
-      </div>
-      <div className="blog-main-div">
-        <div className="blog-text-div">
-          {previewBlogs.map(blog => {
-            return (
-              <BlogCard
-                key={blog.url}
-                blog={{
-                  url: blog.url,
-                  image: blog.image,
-                  title: blog.title,
-                  description: blog.description
-                }}
-              />
-            );
-          })}
+      <div className="main" id="blogs">
+        <div className="blog-header">
+          <h1 className="blog-header-text">{blogSection.title}</h1>
+          <p className="subTitle blog-subtitle">{blogSection.subtitle}</p>
         </div>
-      </div>
-      {hasMoreBlogs && (
-        <div className="blog-view-all-wrapper">
-          <Button text="View All Blogs" href="/blogs" />
+        <div className="blog-main-div">
+          <div className="blog-text-div">
+            {previewBlogs.map((blog) => {
+              return (
+                <BlogCard
+                  key={blog.url}
+                  blog={{
+                    url: blog.url,
+                    image: blog.image,
+                    title: blog.title,
+                    description: blog.description,
+                  }}
+                />
+              );
+            })}
+          </div>
         </div>
-      )}
-    </div>
+        {hasMoreBlogs && (
+          <div className="blog-view-all-wrapper">
+            <Button text="View All Blogs" href="/blogs" />
+          </div>
+        )}
+      </div>
     </Fade>
   );
 }
