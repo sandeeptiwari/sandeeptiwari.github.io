@@ -56,6 +56,7 @@ This folder contains the reusable blog content architecture for the portfolio.
 - `codeP` - Python code block
 - `codeS` - Scala code block
 - `codeT` - TypeScript code block
+- `codeJava` - Java code block
 
 ## How to create a new blog
 
@@ -205,6 +206,7 @@ This keeps the system predictable and easier for the team to manage.
 - `codeP` → Python
 - `codeS` → Scala
 - `codeT` → TypeScript
+- `codeJava` → Java
 
 Example:
 

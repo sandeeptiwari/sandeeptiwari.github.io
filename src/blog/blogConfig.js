@@ -180,6 +180,15 @@ export const blogTagConfig = {
     }),
     component: CodeBlock,
   },
+  codejava: {
+    blockType: "code",
+    parser: (node) => ({
+      type: "code",
+      language: "java",
+      value: node.textContent.trim(),
+    }),
+    component: CodeBlock,
+  },
 };
 
 export const blogBlockTypeConfig = Object.values(blogTagConfig).reduce(

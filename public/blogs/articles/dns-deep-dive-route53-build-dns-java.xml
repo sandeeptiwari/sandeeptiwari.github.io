@@ -98,7 +98,7 @@
     </quote>
 
     <img
-      src="/images/blogs/networking/dns-real-life.svg"
+      src="/images/blogs/networking/dns-real-life.png"
       alt="Real life analogy showing names mapped to addresses"
       caption="DNS maps human-friendly names to machine-oriented network information"
     />
@@ -237,6 +237,154 @@
       Important distinction: the client normally talks to a recursive resolver,
       while the recursive resolver performs the hierarchy traversal.
     </quote>
+
+
+    <hd2>5.1 The Recursive Resolution Algorithm — Formal Definition</hd2>
+
+    <p>
+      "Recursive" here has a precise meaning that is easy to misread. From the
+      client's point of view the resolver behaves recursively: the client asks
+      one question and receives one final answer, with all intermediate work
+      hidden. Internally, however, the recursive resolver almost always walks
+      the hierarchy iteratively, hop by hop, and simply presents that work as a
+      single recursive call to the client. Modeling this as a recursive
+      algorithm is still the cleanest way to reason about it, because each hop
+      is naturally expressed as "resolve the next, more specific server, then
+      recurse into it."
+    </p>
+
+    <p>
+      The recursive resolver's job can be defined as a function
+      resolve(name, type, server) that:
+    </p>
+
+    <list type="arrow">
+      <item>Checks its local cache for (name, type) and returns immediately on a cache hit.</item>
+      <item>Sends the query to the current server (root on the first call).</item>
+      <item>If the response is a final answer, caches it using its TTL and returns it.</item>
+      <item>If the response is a referral to a more specific server (e.g. root → TLD → authoritative), recursively calls resolve(name, type, referredServer).</item>
+      <item>If the response is a CNAME, recursively calls resolve(cnameTarget, type, root) to resolve the alias target.</item>
+      <item>Fails with NXDOMAIN or SERVFAIL when no further referral exists or a safety limit is hit.</item>
+    </list>
+
+    <hd2>5.2 Step-by-Step Recursive Trace for api.example.com</hd2>
+
+    <p>
+      Tracing resolve("api.example.com", A, root) against the ten steps
+      introduced above produces the following recursive call chain. Each
+      arrow is one recursive invocation, not a loop iteration.
+    </p>
+
+    <list type="number">
+      <item>resolve(api.example.com, A, ROOT) → root has no direct answer, but knows the .com TLD servers → referral.</item>
+      <item>resolve(api.example.com, A, TLD_COM) → TLD has no direct answer, but knows example.com's authoritative servers → referral.</item>
+      <item>resolve(api.example.com, A, AUTH_EXAMPLE_COM) → authoritative server holds the A record → final answer.</item>
+      <item>The final answer unwinds back through the recursive call stack, and each frame caches the record with its TTL before returning.</item>
+    </list>
+
+    <quote>
+      Every "referral" response is exactly the trigger for the next recursive
+      call: the base case is a final answer or an authoritative "no such
+      record" response, and the recursive case is "ask a more specific server."
+    </quote>
+
+    <hd2>5.3 Pseudocode</hd2>
+
+    <list type="arrow">
+      <item>function resolve(name, type, server, depth):</item>
+      <item>&#160;&#160;if depth greater than MAX_DEPTH: return SERVFAIL // guards against referral loops</item>
+      <item>&#160;&#160;cached = cache.get(name, type)</item>
+      <item>&#160;&#160;if cached and not expired: return cached</item>
+      <item>&#160;&#160;response = query(server, name, type)</item>
+      <item>&#160;&#160;if response is ANSWER: cache.put(name, type, response, response.ttl); return response</item>
+      <item>&#160;&#160;if response is CNAME: return resolve(response.target, type, ROOT, depth + 1)</item>
+      <item>&#160;&#160;if response is REFERRAL: return resolve(name, type, response.nextServer, depth + 1)</item>
+      <item>&#160;&#160;return NXDOMAIN</item>
+    </list>
+
+    <hd2>5.4 Java Implementation of the Recursive Resolution Algorithm</hd2>
+
+    <p>
+      The following Java sketch mirrors the pseudocode directly. It models
+      DnsServerRef as "root, TLD, or authoritative server," and treats CNAME
+      and referral handling as two distinct recursive branches, exactly like a
+      classic tree/graph traversal.
+    </p>
+
+    <codeJava><![CDATA[
+public class RecursiveDnsResolver {
+
+    private static final int MAX_DEPTH = 20; // protects against referral cycles
+
+    private final DnsCache cache;
+    private final DnsServerRef rootServer;
+
+    public RecursiveDnsResolver(DnsCache cache, DnsServerRef rootServer) {
+        this.cache = cache;
+        this.rootServer = rootServer;
+    }
+
+    public DnsResponse resolve(String name, RecordType type) {
+        return resolve(name, type, rootServer, 0);
+    }
+
+    private DnsResponse resolve(String name, RecordType type, DnsServerRef server, int depth) {
+        if (depth > MAX_DEPTH) {
+            return DnsResponse.servfail("Max recursion depth exceeded for " + name);
+        }
+
+        DnsResponse cached = cache.get(name, type);
+        if (cached != null && !cached.isExpired()) {
+            return cached;
+        }
+
+        DnsResponse response = server.query(name, type);
+
+        switch (response.kind()) {
+            case ANSWER:
+                cache.put(name, type, response, response.ttl());
+                return response;
+
+            case CNAME:
+                // Recurse from the root again for the canonical name target.
+                return resolve(response.cnameTarget(), type, rootServer, depth + 1);
+
+            case REFERRAL:
+                // Recurse into the more specific server the current one pointed us to.
+                return resolve(name, type, response.referredServer(), depth + 1);
+
+            case NXDOMAIN:
+            default:
+                return response;
+        }
+    }
+}
+    ]]></codeJava>
+
+    <hd2>5.5 Why the Recursion Always Terminates</hd2>
+
+    <p>
+      A recursive algorithm is only safe if it is guaranteed to terminate.
+      Three properties make resolve() well-behaved:
+    </p>
+
+    <list type="arrow">
+      <item>Progress toward a base case: every referral moves strictly toward a more specific zone (root → TLD → authoritative), so referrals cannot legitimately point backward.</item>
+      <item>Explicit base cases: an ANSWER or NXDOMAIN response always stops recursion, with no further recursive call issued.</item>
+      <item>A depth guard as a safety net: MAX_DEPTH (or an equivalent hop counter) converts a misconfigured or malicious referral loop into a fast SERVFAIL instead of unbounded recursion or a stack overflow.</item>
+    </list>
+
+    <hd2>5.6 Complexity of the Recursive Resolution</hd2>
+
+    <p>
+      In the worst case, without any caching, each recursive call corresponds
+      to one network round trip and one additional stack frame, so resolving
+      a name costs O(d) network calls and O(d) recursion depth, where d is the
+      depth of DNS delegation for that name (typically 3 to 4: root, TLD,
+      domain, and optionally a CNAME hop). With a warm cache, most calls
+      short-circuit at the very first check in resolve(), making the amortized
+      cost O(1) for previously seen names until their TTL expires.
+    </p>
 
 
     <!-- ========================================================= -->

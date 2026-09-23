@@ -293,7 +293,8 @@ html {
 .blog-code-javascript,
 .blog-code-typescript,
 .blog-code-python,
-.blog-code-scala {
+.blog-code-scala,
+.blog-code-java {
   border: 1px solid rgba(148, 163, 184, 0.4);
 }
 
