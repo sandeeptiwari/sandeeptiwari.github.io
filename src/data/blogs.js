@@ -1,17 +1,13 @@
+import { internalBlogs } from "./blogs.generated";
+
 const blogSection = {
   title: "Blogs",
   subtitle:
     "With Love for Developing cool stuff, I love to write and teach others what I have learnt.",
 
+  // internalBlogs is auto-generated from public/blogs/articles/*.xml, see scripts/generate-blog-manifest.js
   blogs: [
-    {
-      url: "/blogs/aws-saa-deep-revision-guide",
-      title: "AWS Solutions Architect Associate — Deep Revision Guide",
-      description:
-        "A deep AWS Solutions Architect Associate revision guide focused on architecture decisions, trade-offs, reliability, scalability, storage, networking, security, databases, disaster recovery and real-world scenarios.",
-      category: "AWS Architecture",
-      readTime: "45 min read",
-    },
+    ...internalBlogs,
     {
       url: "https://medium.com/@sandeep15mca/fixed-window-rate-limiter-7-critical-trade-offs-every-software-engineer-should-know-7722d22d26d5",
       title:

@@ -1,0 +1,1732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<article>
+
+  <meta>
+
+    <title>DNS Deep Dive — From Domain Names to Route 53 and Building Your Own DNS in Java</title>
+
+    <slug>dns-deep-dive-route53-build-dns-java</slug>
+
+    <author>Sandeep Tiwari</author>
+
+    <date>2026-09-23</date>
+
+    <category>Networking &amp; Distributed Systems</category>
+
+    <readTime>60 min read</readTime>
+
+    <summary>
+      A deep practical tutorial on DNS covering domain names, DNS resolution,
+      recursive and authoritative DNS servers, DNS record types, A, AAAA,
+      CNAME, MX, TXT, NS, SOA, PTR, SRV and CAA records, TTL and caching,
+      Route 53, Alias records, Route 53 routing policies, DNS system design,
+      reliability and security, and how to design and build a simplified
+      DNS server in Java.
+    </summary>
+
+    <thumbnail
+      src="/images/blogs/networking/dns-deep-dive.png"
+      alt="DNS deep dive with Route 53 and Java DNS server architecture"
+    />
+
+    <tags>
+      <tag>DNS</tag>
+      <tag>Networking</tag>
+      <tag>Route 53</tag>
+      <tag>AWS</tag>
+      <tag>CNAME</tag>
+      <tag>DNS Records</tag>
+      <tag>Distributed Systems</tag>
+      <tag>System Design</tag>
+      <tag>Java</tag>
+      <tag>UDP</tag>
+      <tag>TCP</tag>
+      <tag>Cloud Architecture</tag>
+    </tags>
+
+  </meta>
+
+
+  <content>
+
+    <tle>
+      DNS Deep Dive — From Domain Names to Route 53 and Building Your Own DNS in Java
+    </tle>
+
+    <smr>
+      DNS looks simple when we say "domain name to IP address", but production DNS
+      is a distributed system involving clients, caches, recursive resolvers,
+      root servers, TLD servers, authoritative servers, delegation, TTL,
+      routing policies and health checks.
+
+      This tutorial starts from the absolute basics and gradually builds the
+      mental model required to understand DNS in AWS, Route 53, system design
+      interviews and Java networking.
+    </smr>
+
+
+    <!-- ========================================================= -->
+    <!-- 1. REAL LIFE INTRODUCTION -->
+    <!-- ========================================================= -->
+
+    <hd1>1. DNS in Real Life — Why Do We Need It?</hd1>
+
+    <p>
+      Imagine you want to call your bank. You probably remember the bank's name
+      rather than memorizing a telephone number for every service.
+
+      DNS provides a similar abstraction for computers. Humans use meaningful
+      names such as api.example.com while computers ultimately communicate using
+      network addresses such as IPv4 or IPv6 addresses.
+    </p>
+
+    <p>
+      Imagine an application running on an EC2 instance with the public IP
+      13.201.45.100.
+    </p>
+
+    <list type="arrow">
+      <item>Without DNS → users need to remember 13.201.45.100.</item>
+      <item>With DNS → users access api.example.com.</item>
+      <item>DNS resolves the name into information required to reach the service.</item>
+    </list>
+
+    <quote>
+      DNS is the naming and resolution system that allows applications to use
+      stable human-readable names instead of depending directly on network addresses.
+    </quote>
+
+    <img
+      src="/images/blogs/networking/dns-real-life.svg"
+      alt="Real life analogy showing names mapped to addresses"
+      caption="DNS maps human-friendly names to machine-oriented network information"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 2. DOMAIN NAME -->
+    <!-- ========================================================= -->
+
+    <hd1>2. Understanding a Domain Name</hd1>
+
+    <p>
+      Consider the hostname api.rotatingmind.com.
+      It is easier to understand DNS if we break this name into components.
+    </p>
+
+    <list type="arrow">
+      <item>api → hostname or subdomain.</item>
+      <item>rotatingmind → registered domain name.</item>
+      <item>com → top-level domain.</item>
+      <item>The final dot represents the DNS root.</item>
+    </list>
+
+    <p>
+      The technically complete DNS name is api.rotatingmind.com.
+      The final root dot is normally hidden from users.
+    </p>
+
+    <img
+      src="/images/blogs/networking/dns-domain-anatomy.svg"
+      alt="DNS domain name anatomy"
+      caption="Breaking a DNS name into root, TLD, domain and hostname"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 3. DNS HIERARCHY -->
+    <!-- ========================================================= -->
+
+    <hd1>3. DNS Is a Hierarchical System</hd1>
+
+    <p>
+      DNS is not one giant database containing every domain on the Internet.
+      It is a hierarchical and distributed system.
+    </p>
+
+    <list type="arrow">
+      <item>Root DNS servers.</item>
+      <item>Top-Level Domain servers such as .com and .org.</item>
+      <item>Authoritative servers for individual domains.</item>
+      <item>Recursive resolvers that perform resolution on behalf of clients.</item>
+    </list>
+
+    <img
+      src="/images/blogs/networking/dns-hierarchy.svg"
+      alt="DNS hierarchy from root to authoritative servers"
+      caption="The hierarchical DNS architecture"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 4. DNS ACTORS -->
+    <!-- ========================================================= -->
+
+    <hd1>4. The Four Important DNS Actors</hd1>
+
+    <hd2>DNS Client / Stub Resolver</hd2>
+
+    <p>
+      The application or operating system that needs DNS information first
+      contacts a configured DNS resolver.
+    </p>
+
+    <hd2>Recursive DNS Resolver</hd2>
+
+    <p>
+      A recursive resolver performs DNS lookups on behalf of the client.
+      It can communicate with root, TLD and authoritative servers and cache
+      the result.
+    </p>
+
+    <hd2>Root DNS Server</hd2>
+
+    <p>
+      Root DNS infrastructure helps the resolver discover the appropriate
+      Top-Level Domain servers.
+    </p>
+
+    <hd2>TLD DNS Server</hd2>
+
+    <p>
+      A TLD server knows which authoritative name servers are responsible
+      for domains under that TLD.
+    </p>
+
+    <hd2>Authoritative DNS Server</hd2>
+
+    <p>
+      An authoritative server stores the actual DNS records for a zone and
+      provides authoritative answers.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 5. COMPLETE DNS RESOLUTION -->
+    <!-- ========================================================= -->
+
+    <hd1>5. What Happens When You Type a URL?</hd1>
+
+    <p>
+      Suppose a user enters https://api.example.com in a browser.
+      Before the browser can establish the application connection, it normally
+      needs to resolve the hostname.
+    </p>
+
+    <list type="number">
+      <item>Browser checks its DNS-related cache.</item>
+      <item>Operating system resolver is consulted.</item>
+      <item>The configured recursive DNS resolver receives the query.</item>
+      <item>The recursive resolver checks its cache.</item>
+      <item>If necessary, it queries the DNS hierarchy.</item>
+      <item>The root directs the resolver toward the appropriate TLD infrastructure.</item>
+      <item>The TLD infrastructure identifies the authoritative servers.</item>
+      <item>The authoritative server returns the DNS record.</item>
+      <item>The recursive resolver caches the result according to TTL.</item>
+      <item>The client receives the answer and can connect to the destination.</item>
+    </list>
+
+    <img
+      src="/images/blogs/networking/dns-resolution-flow.svg"
+      alt="Complete DNS resolution flow"
+      caption="Complete recursive DNS resolution flow"
+    />
+
+    <quote>
+      Important distinction: the client normally talks to a recursive resolver,
+      while the recursive resolver performs the hierarchy traversal.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 6. DNS RECORDS -->
+    <!-- ========================================================= -->
+
+    <hd1>6. DNS Records — The Building Blocks of DNS</hd1>
+
+    <p>
+      A DNS record describes information associated with a DNS name.
+      A simplified record can be understood using four major concepts:
+      name, type, value and TTL.
+    </p>
+
+    <list type="arrow">
+      <item>Name → Which DNS name does this record belong to?</item>
+      <item>Type → What kind of DNS information is this?</item>
+      <item>Value → What information should DNS return?</item>
+      <item>TTL → How long can the answer be cached?</item>
+    </list>
+
+    <hd2>Example DNS Record</hd2>
+
+    <p>
+      api.example.com A 13.201.45.100 TTL 300 means that the IPv4 address
+      associated with api.example.com can be cached for 300 seconds.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 7. A -->
+    <!-- ========================================================= -->
+
+    <hd1>7. A Record — DNS Name to IPv4 Address</hd1>
+
+    <p>
+      The A record maps a DNS name to an IPv4 address.
+    </p>
+
+    <p>
+      Example:
+    </p>
+
+    <list type="arrow">
+      <item>api.example.com → A → 13.201.45.100.</item>
+      <item>Browser resolves the hostname.</item>
+      <item>The resulting IPv4 address can then be used for network communication.</item>
+    </list>
+
+    <img
+      src="/images/blogs/networking/dns-a-record.svg"
+      alt="A record mapping domain name to IPv4"
+      caption="A record: hostname to IPv4 address"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 8. AAAA -->
+    <!-- ========================================================= -->
+
+    <hd1>8. AAAA Record — DNS Name to IPv6 Address</hd1>
+
+    <p>
+      AAAA records map a DNS name to an IPv6 address.
+    </p>
+
+    <list type="arrow">
+      <item>A → IPv4.</item>
+      <item>AAAA → IPv6.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 9. CNAME -->
+    <!-- ========================================================= -->
+
+    <hd1>9. CNAME — DNS Name to Another DNS Name</hd1>
+
+    <p>
+      CNAME means Canonical Name. Unlike an A record, which directly provides
+      an IPv4 address, a CNAME points one DNS name to another DNS name.
+    </p>
+
+    <p>
+      Example:
+    </p>
+
+    <list type="arrow">
+      <item>api.example.com → CNAME → backend.example.com.</item>
+      <item>backend.example.com → A → 13.201.45.100.</item>
+      <item>The client can ultimately obtain the address of the backend.</item>
+    </list>
+
+    <img
+      src="/images/blogs/networking/dns-cname.svg"
+      alt="CNAME DNS resolution"
+      caption="CNAME creates an alias from one DNS name to another DNS name"
+    />
+
+    <quote>
+      A record = name to IPv4. CNAME = name to another name.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 10. CNAME PRACTICAL -->
+    <!-- ========================================================= -->
+
+    <hd1>10. Practical CNAME Example</hd1>
+
+    <p>
+      Imagine your company changes its backend infrastructure from one provider
+      to another. Instead of exposing infrastructure details to clients,
+      application-facing DNS names can reference stable service names.
+    </p>
+
+    <p>
+      For example:
+    </p>
+
+    <list type="arrow">
+      <item>payments.example.com → CNAME → payments-prod.example.net.</item>
+      <item>payments-prod.example.net → current infrastructure endpoint.</item>
+      <item>Clients continue using payments.example.com.</item>
+    </list>
+
+    <p>
+      This creates a level of indirection between the application name and
+      infrastructure endpoint.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 11. CNAME LIMITATION -->
+    <!-- ========================================================= -->
+
+    <hd1>11. Why CNAME Has an Important Restriction</hd1>
+
+    <p>
+      A traditional CNAME cannot normally coexist with other records at the
+      same DNS name. This becomes important at the DNS zone apex.
+    </p>
+
+    <p>
+      The root of example.com already needs authoritative records such as
+      NS and SOA. Therefore traditional DNS does not allow the zone apex
+      to simply become a CNAME.
+    </p>
+
+    <quote>
+      DNS zone apex and CNAME behavior is one of the most important concepts
+      to understand before learning AWS Route 53 Alias records.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 12. MX -->
+    <!-- ========================================================= -->
+
+    <hd1>12. MX Record — Email Routing</hd1>
+
+    <p>
+      MX records identify mail servers responsible for receiving email for
+      a domain.
+    </p>
+
+    <p>
+      Example:
+    </p>
+
+    <list type="arrow">
+      <item>example.com → MX → mail.example.com.</item>
+      <item>mail.example.com → A/AAAA → mail server address.</item>
+    </list>
+
+    <hd2>MX Priority</hd2>
+
+    <p>
+      MX records contain priorities. Lower numerical values represent higher
+      preference.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 13. TXT -->
+    <!-- ========================================================= -->
+
+    <hd1>13. TXT Record — Verification and Metadata</hd1>
+
+    <p>
+      TXT records store text associated with a DNS name and are widely used
+      for domain verification and email authentication mechanisms.
+    </p>
+
+    <list type="arrow">
+      <item>Domain ownership verification.</item>
+      <item>SPF-related email configuration.</item>
+      <item>Other service-specific DNS metadata.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 14. NS -->
+    <!-- ========================================================= -->
+
+    <hd1>14. NS Record — Who Is Authoritative?</hd1>
+
+    <p>
+      NS records identify the authoritative name servers for a DNS zone.
+    </p>
+
+    <img
+      src="/images/blogs/networking/dns-ns-delegation.svg"
+      alt="DNS delegation using NS records"
+      caption="NS records establish DNS delegation"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 15. SOA -->
+    <!-- ========================================================= -->
+
+    <hd1>15. SOA Record — Start of Authority</hd1>
+
+    <p>
+      The SOA record contains authoritative information about a DNS zone,
+      including the primary authoritative server and operational parameters
+      used by DNS infrastructure.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 16. PTR -->
+    <!-- ========================================================= -->
+
+    <hd1>16. PTR Record — Reverse DNS</hd1>
+
+    <p>
+      Normal DNS commonly maps names to addresses. Reverse DNS performs the
+      opposite conceptual operation, mapping an IP address to a hostname.
+    </p>
+
+    <list type="arrow">
+      <item>A → hostname to IPv4.</item>
+      <item>PTR → IPv4 to hostname.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 17. SRV -->
+    <!-- ========================================================= -->
+
+    <hd1>17. SRV Record — Service Discovery</hd1>
+
+    <p>
+      SRV records can describe where a particular service is available,
+      including target hostname and port information.
+    </p>
+
+    <p>
+      This makes SRV particularly interesting when connecting DNS concepts
+      with service discovery and distributed systems.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 18. CAA -->
+    <!-- ========================================================= -->
+
+    <hd1>18. CAA Record — Certificate Authority Control</hd1>
+
+    <p>
+      CAA records can specify which Certificate Authorities are authorized
+      to issue certificates for a domain.
+    </p>
+
+    <p>
+      This connects DNS with TLS certificate management and domain security.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 19. TTL -->
+    <!-- ========================================================= -->
+
+    <hd1>19. TTL — Why DNS Answers Are Cached</hd1>
+
+    <p>
+      DNS would be extremely inefficient if every application request required
+      a complete DNS hierarchy traversal. DNS therefore relies heavily on caching.
+    </p>
+
+    <p>
+      TTL defines how long a DNS answer can remain cached before it should be
+      considered stale and refreshed.
+    </p>
+
+    <img
+      src="/images/blogs/networking/dns-cache-ttl.svg"
+      alt="DNS resolver cache and TTL"
+      caption="Recursive resolver caching DNS responses using TTL"
+    />
+
+    <hd2>High TTL vs Low TTL</hd2>
+
+    <list type="arrow">
+      <item>High TTL → fewer DNS lookups and potentially longer propagation of changes.</item>
+      <item>Low TTL → changes can be observed sooner but may increase DNS query traffic.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 20. DNS CACHING -->
+    <!-- ========================================================= -->
+
+    <hd1>20. DNS Caching at Different Layers</hd1>
+
+    <p>
+      DNS information can be cached at multiple layers.
+    </p>
+
+    <list type="arrow">
+      <item>Browser or application layer.</item>
+      <item>Operating system.</item>
+      <item>Local network resolver.</item>
+      <item>Recursive DNS resolver.</item>
+    </list>
+
+    <quote>
+      DNS changes are not always immediately visible everywhere because
+      different caches can retain previous answers until their TTL expires.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 21. DNS OVER UDP/TCP -->
+    <!-- ========================================================= -->
+
+    <hd1>21. DNS Networking — UDP and TCP</hd1>
+
+    <p>
+      Traditional DNS queries commonly use UDP port 53 because it has low
+      overhead and is suitable for request-response DNS traffic.
+    </p>
+
+    <p>
+      TCP port 53 is also used in DNS for cases such as responses that require
+      TCP transport and certain DNS server-to-server operations.
+    </p>
+
+    <list type="arrow">
+      <item>DNS → port 53.</item>
+      <item>UDP → common DNS query transport.</item>
+      <item>TCP → also required in specific DNS scenarios.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 22. DNS SECURITY -->
+    <!-- ========================================================= -->
+
+    <hd1>22. DNS Security</hd1>
+
+    <hd2>DNS Spoofing</hd2>
+
+    <p>
+      An attacker may attempt to provide false DNS information so that users
+      are redirected to an unintended destination.
+    </p>
+
+    <hd2>DNSSEC</hd2>
+
+    <p>
+      DNSSEC adds cryptographic mechanisms that allow DNS data authenticity
+      and integrity to be validated.
+    </p>
+
+    <hd2>DNS over HTTPS and DNS over TLS</hd2>
+
+    <p>
+      Modern clients can protect communication between the DNS client and
+      resolver using encrypted DNS transport mechanisms such as DNS over HTTPS
+      and DNS over TLS.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 23. ROUTE 53 -->
+    <!-- ========================================================= -->
+
+    <hd1>23. AWS Route 53</hd1>
+
+    <p>
+      Amazon Route 53 is AWS's managed DNS service. It provides DNS hosting,
+      domain registration capabilities and DNS-based routing features.
+    </p>
+
+    <list type="arrow">
+      <item>Public Hosted Zones.</item>
+      <item>Private Hosted Zones.</item>
+      <item>DNS records.</item>
+      <item>Alias records.</item>
+      <item>Health checks.</item>
+      <item>Routing policies.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 24. HOSTED ZONE -->
+    <!-- ========================================================= -->
+
+    <hd1>24. Route 53 Hosted Zones</hd1>
+
+    <hd2>Public Hosted Zone</hd2>
+
+    <p>
+      A public hosted zone contains DNS information intended to be resolved
+      through the public DNS system.
+    </p>
+
+    <hd2>Private Hosted Zone</hd2>
+
+    <p>
+      A private hosted zone provides DNS resolution inside associated AWS VPCs.
+      It is useful for internal application names and service discovery.
+    </p>
+
+    <img
+      src="/images/blogs/networking/route53-public-private-zone.svg"
+      alt="Route 53 public and private hosted zones"
+      caption="Public and private Route 53 DNS"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 25. ROUTE 53 ALIAS -->
+    <!-- ========================================================= -->
+
+    <hd1>25. Route 53 Alias Records</hd1>
+
+    <p>
+      Route 53 Alias records provide AWS-specific DNS integration for supported
+      AWS resources. They are especially important when pointing a DNS name
+      to resources such as an Application Load Balancer or CloudFront distribution.
+    </p>
+
+    <p>
+      Example:
+    </p>
+
+    <list type="arrow">
+      <item>api.example.com → Route 53 Alias → Application Load Balancer.</item>
+      <item>www.example.com → Route 53 Alias → CloudFront.</item>
+    </list>
+
+    <quote>
+      CNAME points to a DNS name. Route 53 Alias can point a DNS name to
+      supported AWS resources.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 26. ROUTE 53 + ALB -->
+    <!-- ========================================================= -->
+
+    <hd1>26. Real AWS Architecture — Route 53 + ALB + EC2</hd1>
+
+    <p>
+      Consider a Spring Boot application running on multiple EC2 instances.
+    </p>
+
+    <img
+      src="/images/blogs/networking/route53-alb-ec2.svg"
+      alt="Route 53 ALB EC2 architecture"
+      caption="Production-style Route 53, ALB and EC2 architecture"
+    />
+
+    <list type="number">
+      <item>User requests api.example.com.</item>
+      <item>Route 53 provides the DNS answer for the API endpoint.</item>
+      <item>The request reaches the Application Load Balancer.</item>
+      <item>The ALB evaluates listeners and routing rules.</item>
+      <item>The ALB selects a healthy backend target.</item>
+      <item>The Spring Boot application processes the request.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 27. ROUTE 53 ROUTING POLICIES -->
+    <!-- ========================================================= -->
+
+    <hd1>27. Route 53 Routing Policies</hd1>
+
+    <list type="arrow">
+      <item>Simple routing.</item>
+      <item>Weighted routing.</item>
+      <item>Latency-based routing.</item>
+      <item>Failover routing.</item>
+      <item>Geolocation routing.</item>
+      <item>Geoproximity routing.</item>
+      <item>IP-based routing.</item>
+      <item>Multivalue answer routing.</item>
+    </list>
+
+
+    <hd2>Weighted Routing Example</hd2>
+
+    <p>
+      Suppose production receives 90 percent of DNS traffic and a new
+      canary environment receives 10 percent.
+    </p>
+
+    <img
+      src="/images/blogs/networking/route53-weighted-routing.svg"
+      alt="Route 53 weighted routing"
+      caption="Weighted DNS routing for gradual traffic migration"
+    />
+
+
+    <hd2>Latency-Based Routing Example</hd2>
+
+    <p>
+      A global application may have deployments in multiple AWS Regions.
+      Route 53 latency-based routing can direct clients toward the configured
+      Region expected to provide lower latency.
+    </p>
+
+
+    <hd2>Failover Routing Example</hd2>
+
+    <p>
+      A primary endpoint can be associated with a health-check-based failover
+      configuration and a secondary endpoint can be used when the primary is
+      considered unhealthy.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 28. DNS AND LOAD BALANCING -->
+    <!-- ========================================================= -->
+
+    <hd1>28. DNS vs Load Balancer — Do Not Confuse Them</hd1>
+
+    <p>
+      DNS routing and application load balancing happen at different layers
+      of the architecture.
+    </p>
+
+    <list type="arrow">
+      <item>Route 53 → resolves and routes DNS queries.</item>
+      <item>ALB → distributes HTTP or HTTPS application traffic.</item>
+      <item>EC2 → runs application instances.</item>
+    </list>
+
+    <img
+      src="/images/blogs/networking/dns-vs-alb.svg"
+      alt="Difference between DNS routing and application load balancing"
+      caption="DNS routing versus HTTP load balancing"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 29. SYSTEM DESIGN -->
+    <!-- ========================================================= -->
+
+    <hd1>29. System Design — How Would You Build DNS?</hd1>
+
+    <p>
+      Now move from using DNS to designing DNS.
+      This is where DNS becomes a distributed-systems problem.
+    </p>
+
+    <p>
+      Suppose an interviewer asks:
+      "Design a DNS service that can resolve millions of domain names."
+    </p>
+
+    <p>
+      Start by identifying the responsibilities of the system.
+    </p>
+
+    <list type="arrow">
+      <item>Accept DNS queries.</item>
+      <item>Find records.</item>
+      <item>Return responses quickly.</item>
+      <item>Cache frequently requested records.</item>
+      <item>Handle failures.</item>
+      <item>Scale horizontally.</item>
+      <item>Support record updates.</item>
+      <item>Prevent unauthorized modifications.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 30. OWN DNS ARCHITECTURE -->
+    <!-- ========================================================= -->
+
+    <hd1>30. High-Level Architecture of Our Own DNS</hd1>
+
+    <img
+      src="/images/blogs/networking/custom-dns-hld.svg"
+      alt="High level design of a custom DNS service"
+      caption="High-level architecture for a custom DNS platform"
+    />
+
+    <list type="arrow">
+      <item>DNS Client.</item>
+      <item>Load Balancer.</item>
+      <item>Stateless DNS Resolver nodes.</item>
+      <item>Local in-memory cache.</item>
+      <item>Distributed DNS record store.</item>
+      <item>Authoritative record management service.</item>
+      <item>Health and metrics system.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 31. DNS REQUEST PATH -->
+    <!-- ========================================================= -->
+
+    <hd1>31. Custom DNS Request Flow</hd1>
+
+    <list type="number">
+      <item>Client sends DNS query.</item>
+      <item>Load balancer or DNS-level distribution selects a resolver node.</item>
+      <item>Resolver checks local cache.</item>
+      <item>If cache hit exists, response is returned immediately.</item>
+      <item>If cache miss occurs, resolver looks up the authoritative record store.</item>
+      <item>The record and TTL are returned.</item>
+      <item>The response is cached.</item>
+      <item>The DNS response is returned to the client.</item>
+    </list>
+
+    <img
+      src="/images/blogs/networking/custom-dns-request-flow.svg"
+      alt="Custom DNS request flow with cache"
+      caption="DNS request path with cache hit and cache miss"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 32. DNS DATA MODEL -->
+    <!-- ========================================================= -->
+
+    <hd1>32. Designing the DNS Record Database</hd1>
+
+    <p>
+      A simplified DNS record model can be represented using:
+    </p>
+
+    <list type="arrow">
+      <item>zone.</item>
+      <item>name.</item>
+      <item>record type.</item>
+      <item>value.</item>
+      <item>TTL.</item>
+      <item>priority where applicable.</item>
+      <item>version.</item>
+    </list>
+
+    <hd2>Example</hd2>
+
+    <p>
+      Zone: example.com.
+      Name: api.example.com.
+      Type: A.
+      Value: 10.10.1.20.
+      TTL: 60 seconds.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 33. CACHE DESIGN -->
+    <!-- ========================================================= -->
+
+    <hd1>33. DNS Cache Design</hd1>
+
+    <p>
+      DNS is extremely latency-sensitive. A cache can avoid repeatedly querying
+      the authoritative data store.
+    </p>
+
+    <p>
+      A cache entry must contain both the DNS value and its expiration information.
+    </p>
+
+    <list type="arrow">
+      <item>Key → DNS name + record type.</item>
+      <item>Value → DNS record.</item>
+      <item>Expiration → current time plus TTL.</item>
+    </list>
+
+    <quote>
+      DNS caching converts repeated expensive lookups into fast memory lookups,
+      but cached information can become stale.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 34. CACHE CONSISTENCY -->
+    <!-- ========================================================= -->
+
+    <hd1>34. DNS Consistency and TTL</hd1>
+
+    <p>
+      DNS intentionally accepts a degree of eventual consistency because
+      caching is fundamental to its scalability.
+    </p>
+
+    <p>
+      If a record changes from one IP address to another, existing cached
+      responses may continue to be served until their TTL expires.
+    </p>
+
+    <list type="arrow">
+      <item>Short TTL → faster changes but more resolver traffic.</item>
+      <item>Long TTL → lower query load but slower visibility of changes.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 35. HORIZONTAL SCALING -->
+    <!-- ========================================================= -->
+
+    <hd1>35. Scaling Our DNS Service</hd1>
+
+    <p>
+      DNS resolver nodes should ideally be stateless so that more nodes can
+      be added horizontally.
+    </p>
+
+    <img
+      src="/images/blogs/networking/custom-dns-horizontal-scaling.svg"
+      alt="Horizontal scaling of DNS resolver nodes"
+      caption="Horizontally scalable DNS resolver architecture"
+    />
+
+    <list type="arrow">
+      <item>Resolver 1.</item>
+      <item>Resolver 2.</item>
+      <item>Resolver 3.</item>
+      <item>Resolver N.</item>
+    </list>
+
+    <p>
+      Shared authoritative state can live in a distributed database or
+      replicated storage system.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 36. AVAILABILITY -->
+    <!-- ========================================================= -->
+
+    <hd1>36. High Availability for DNS</hd1>
+
+    <list type="arrow">
+      <item>Multiple resolver nodes.</item>
+      <item>Multiple Availability Zones.</item>
+      <item>Replicated record storage.</item>
+      <item>Health checks.</item>
+      <item>Fast failover.</item>
+      <item>Independent failure domains.</item>
+    </list>
+
+    <quote>
+      DNS is infrastructure. If DNS becomes unavailable, applications can
+      appear unavailable even when the application servers themselves are healthy.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 37. JAVA CONNECTION -->
+    <!-- ========================================================= -->
+
+    <hd1>37. DNS and the Java World</hd1>
+
+    <p>
+      Java applications interact with DNS constantly, even when developers
+      do not explicitly write DNS code.
+    </p>
+
+    <p>
+      Consider:
+    </p>
+
+    <p>
+      http://api.example.com/orders
+    </p>
+
+    <p>
+      Before the application establishes a network connection, the hostname
+      must be resolved to an address.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 38. JAVA InetAddress -->
+    <!-- ========================================================= -->
+
+    <hd1>38. DNS Resolution in Java with InetAddress</hd1>
+
+    <p>
+      Java provides java.net.InetAddress for hostname resolution.
+    </p>
+
+    <p>
+      Example:
+    </p>
+
+    <list type="arrow">
+      <item>InetAddress.getByName("api.example.com").</item>
+      <item>Java asks the underlying networking stack to resolve the hostname.</item>
+      <item>The operating system and configured DNS infrastructure participate in resolution.</item>
+    </list>
+
+    <quote>
+      Most Java developers consume DNS indirectly through standard networking
+      APIs rather than implementing DNS resolution themselves.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 39. JAVA HTTP CLIENT -->
+    <!-- ========================================================= -->
+
+    <hd1>39. DNS Inside a Java HTTP Client</hd1>
+
+    <p>
+      Consider a Spring Boot service calling another service:
+    </p>
+
+    <p>
+      https://payment.example.com/payments
+    </p>
+
+    <list type="number">
+      <item>Java HTTP client receives the hostname.</item>
+      <item>Hostname resolution occurs.</item>
+      <item>An IP address is selected.</item>
+      <item>TCP connection is established.</item>
+      <item>TLS handshake occurs for HTTPS.</item>
+      <item>HTTP request is sent.</item>
+    </list>
+
+    <img
+      src="/images/blogs/networking/java-http-dns-flow.svg"
+      alt="DNS resolution inside a Java HTTP client"
+      caption="DNS to TCP to TLS to HTTP in a Java application"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 40. DNS CACHING IN JAVA -->
+    <!-- ========================================================= -->
+
+    <hd1>40. DNS Caching and JVM Applications</hd1>
+
+    <p>
+      DNS caching can occur below the application level, and Java runtimes
+      can also cache hostname resolution results.
+    </p>
+
+    <p>
+      This becomes important in long-running Spring Boot services because
+      infrastructure addresses may change while the JVM remains alive.
+    </p>
+
+    <quote>
+      In production Java systems, DNS caching behavior must be understood
+      when applications communicate with dynamic infrastructure.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 41. SERVICE DISCOVERY -->
+    <!-- ========================================================= -->
+
+    <hd1>41. DNS as Service Discovery</hd1>
+
+    <p>
+      DNS can also participate in service discovery.
+    </p>
+
+    <p>
+      Instead of hardcoding:
+    </p>
+
+    <p>
+      10.20.30.40:8080
+    </p>
+
+    <p>
+      an application can use:
+    </p>
+
+    <p>
+      payment-service.internal:8080
+    </p>
+
+    <p>
+      DNS provides an abstraction between the service identity and the
+      underlying network location.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 42. KUBERNETES CONNECTION -->
+    <!-- ========================================================= -->
+
+    <hd1>42. DNS in Kubernetes</hd1>
+
+    <p>
+      Kubernetes heavily relies on DNS for service discovery.
+      Applications can communicate using service names instead of
+      hardcoded pod IP addresses.
+    </p>
+
+    <list type="arrow">
+      <item>Pod IPs are dynamic.</item>
+      <item>Services provide stable logical identities.</item>
+      <item>Cluster DNS resolves service names.</item>
+      <item>Applications can communicate using DNS names.</item>
+    </list>
+
+    <quote>
+      DNS is one of the fundamental abstractions that allows distributed
+      applications to use stable service identities while infrastructure changes.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 43. BUILD OUR OWN DNS -->
+    <!-- ========================================================= -->
+
+    <hd1>43. Building a Simplified DNS Server in Java</hd1>
+
+    <p>
+      To understand DNS deeply, build a small authoritative DNS server rather
+      than immediately trying to reproduce the entire Internet DNS hierarchy.
+    </p>
+
+    <p>
+      Our first version will support:
+    </p>
+
+    <list type="arrow">
+      <item>UDP port 5353 for local development.</item>
+      <item>A records.</item>
+      <item>Simple in-memory record storage.</item>
+      <item>DNS query parsing.</item>
+      <item>DNS response generation.</item>
+      <item>Basic TTL handling.</item>
+    </list>
+
+    <quote>
+      Start with a simplified authoritative DNS server. Add recursion,
+      caching, persistence and clustering only after the protocol fundamentals work.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 44. JAVA DNS SERVER ARCHITECTURE -->
+    <!-- ========================================================= -->
+
+    <hd1>44. Java DNS Server Architecture</hd1>
+
+    <img
+      src="/images/blogs/networking/java-dns-server-lld.svg"
+      alt="Java DNS server low level architecture"
+      caption="Low-level design of a simplified Java DNS server"
+    />
+
+    <list type="arrow">
+      <item>UdpDnsServer → receives packets.</item>
+      <item>DnsMessageParser → parses DNS packet structure.</item>
+      <item>DnsQuestion → represents the query.</item>
+      <item>DnsRecordStore → stores DNS records.</item>
+      <item>DnsResolver → performs record lookup.</item>
+      <item>DnsResponseBuilder → creates DNS responses.</item>
+      <item>DnsCache → caches responses where applicable.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 45. JAVA RECORD MODEL -->
+    <!-- ========================================================= -->
+
+    <hd1>45. Java Domain Model for DNS Records</hd1>
+
+    <p>
+      A clean object-oriented design can represent different DNS record types
+      using a common abstraction.
+    </p>
+
+    <list type="arrow">
+      <item>DnsRecord.</item>
+      <item>ARecord.</item>
+      <item>AAAARecord.</item>
+      <item>CnameRecord.</item>
+      <item>MxRecord.</item>
+      <item>TxtRecord.</item>
+    </list>
+
+    <p>
+      This allows the resolver to work with the common DNS record abstraction
+      while each record type handles its own value representation.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 46. JAVA UDP -->
+    <!-- ========================================================= -->
+
+    <hd1>46. Receiving DNS Queries Using Java UDP</hd1>
+
+    <p>
+      DNS queries can be transported using UDP. Java provides DatagramSocket
+      and DatagramPacket for UDP networking.
+    </p>
+
+    <list type="number">
+      <item>Create a UDP socket.</item>
+      <item>Listen for incoming packets.</item>
+      <item>Read the DNS message bytes.</item>
+      <item>Parse the DNS header and question.</item>
+      <item>Resolve the requested record.</item>
+      <item>Build a DNS response.</item>
+      <item>Send the response packet back to the client.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 47. DNS PACKET -->
+    <!-- ========================================================= -->
+
+    <hd1>47. DNS Packet Structure</hd1>
+
+    <p>
+      A DNS message contains a header followed by sections such as question,
+      answer, authority and additional records.
+    </p>
+
+    <img
+      src="/images/blogs/networking/dns-packet-structure.svg"
+      alt="DNS packet structure"
+      caption="Simplified DNS message structure"
+    />
+
+    <list type="arrow">
+      <item>Header.</item>
+      <item>Question.</item>
+      <item>Answer.</item>
+      <item>Authority.</item>
+      <item>Additional.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 48. DNS HEADER -->
+    <!-- ========================================================= -->
+
+    <hd1>48. DNS Header — The Important Fields</hd1>
+
+    <p>
+      The DNS header contains identifiers and flags that allow the client and
+      server to understand the query and response.
+    </p>
+
+    <list type="arrow">
+      <item>ID → matches response with query.</item>
+      <item>QR → query or response.</item>
+      <item>Opcode → type of DNS operation.</item>
+      <item>AA → authoritative answer indicator.</item>
+      <item>TC → truncated response indicator.</item>
+      <item>RD → recursion desired.</item>
+      <item>RA → recursion available.</item>
+      <item>RCODE → response status.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 49. ITERATIVE VS RECURSIVE -->
+    <!-- ========================================================= -->
+
+    <hd1>49. Recursive vs Iterative DNS Resolution</hd1>
+
+    <p>
+      This distinction is critical when designing DNS systems.
+    </p>
+
+    <hd2>Recursive Query</hd2>
+
+    <p>
+      The client asks the resolver to obtain the final answer.
+    </p>
+
+    <hd2>Iterative Query</hd2>
+
+    <p>
+      A DNS server can respond with the best information it currently has,
+      such as a referral to another server.
+    </p>
+
+    <img
+      src="/images/blogs/networking/recursive-vs-iterative-dns.svg"
+      alt="Recursive versus iterative DNS resolution"
+      caption="Recursive and iterative DNS resolution"
+    />
+
+
+    <!-- ========================================================= -->
+    <!-- 50. AUTHORITATIVE DNS -->
+    <!-- ========================================================= -->
+
+    <hd1>50. Build an Authoritative DNS Server First</hd1>
+
+    <p>
+      Our first production-learning milestone is an authoritative DNS server.
+      It does not need to recursively query root and TLD servers.
+    </p>
+
+    <p>
+      If the server owns example.local, it can directly answer:
+    </p>
+
+    <list type="arrow">
+      <item>api.example.local → A → 10.0.0.10.</item>
+      <item>db.example.local → A → 10.0.0.20.</item>
+      <item>www.example.local → CNAME → api.example.local.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 51. ADD CACHE -->
+    <!-- ========================================================= -->
+
+    <hd1>51. Add a DNS Cache</hd1>
+
+    <p>
+      Once authoritative resolution works, add caching to understand
+      performance and TTL semantics.
+    </p>
+
+    <list type="number">
+      <item>Check cache.</item>
+      <item>Check expiration.</item>
+      <item>Return cached answer when valid.</item>
+      <item>Perform authoritative lookup when cache misses.</item>
+      <item>Store the result with expiration time.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 52. THREADING -->
+    <!-- ========================================================= -->
+
+    <hd1>52. Concurrency Model for Java DNS</hd1>
+
+    <p>
+      DNS is a high-QPS workload. A single-threaded implementation can become
+      a bottleneck as request volume increases.
+    </p>
+
+    <list type="arrow">
+      <item>UDP receiver.</item>
+      <item>Worker pool.</item>
+      <item>Concurrent record store.</item>
+      <item>Concurrent cache.</item>
+      <item>Non-blocking or asynchronous downstream operations where required.</item>
+    </list>
+
+    <p>
+      A Java implementation can start with a fixed ExecutorService and later
+      evolve toward NIO or a high-performance event-driven architecture.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 53. CACHE DATA STRUCTURE -->
+    <!-- ========================================================= -->
+
+    <hd1>53. Java Cache Design</hd1>
+
+    <p>
+      A simple implementation can use ConcurrentHashMap.
+      Production systems need explicit expiration, memory limits and eviction
+      behavior.
+    </p>
+
+    <list type="arrow">
+      <item>ConcurrentHashMap → concurrent access.</item>
+      <item>TTL timestamp → expiration.</item>
+      <item>Scheduled cleanup → optional expired-entry cleanup.</item>
+      <item>LRU/LFU policy → useful when memory is bounded.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 54. DISTRIBUTED DNS -->
+    <!-- ========================================================= -->
+
+    <hd1>54. Turning Our Java DNS into a Distributed System</hd1>
+
+    <p>
+      A single Java DNS process is not enough for a production-scale service.
+      The next step is replication and horizontal scaling.
+    </p>
+
+    <img
+      src="/images/blogs/networking/distributed-java-dns.svg"
+      alt="Distributed Java DNS architecture"
+      caption="Distributed DNS service with multiple resolver nodes"
+    />
+
+    <list type="arrow">
+      <item>Multiple resolver instances.</item>
+      <item>Multiple availability zones.</item>
+      <item>Replicated DNS record store.</item>
+      <item>Local cache on each resolver.</item>
+      <item>Health checks.</item>
+      <item>Metrics and alerting.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 55. CONSISTENCY -->
+    <!-- ========================================================= -->
+
+    <hd1>55. DNS Consistency vs Availability</hd1>
+
+    <p>
+      DNS provides an excellent distributed-systems example of the trade-off
+      between fast cached responses and immediate visibility of changes.
+    </p>
+
+    <p>
+      If multiple resolver nodes cache records independently, a record update
+      may not become visible to every resolver simultaneously.
+    </p>
+
+    <quote>
+      DNS teaches an important distributed-systems principle:
+      caching improves scalability and latency, but introduces staleness.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 56. FAILURE SCENARIOS -->
+    <!-- ========================================================= -->
+
+    <hd1>56. DNS Failure Scenarios</hd1>
+
+    <hd2>Resolver Failure</hd2>
+
+    <p>
+      Use multiple resolver instances and independent failure domains.
+    </p>
+
+    <hd2>Database Failure</hd2>
+
+    <p>
+      Use replicated authoritative storage and local caching where appropriate.
+    </p>
+
+    <hd2>Network Failure</hd2>
+
+    <p>
+      Distribute DNS infrastructure across independent network paths and
+      availability zones.
+    </p>
+
+    <hd2>Stale Cache</hd2>
+
+    <p>
+      Respect TTL and design record-update mechanisms carefully.
+    </p>
+
+
+    <!-- ========================================================= -->
+    <!-- 57. OBSERVABILITY -->
+    <!-- ========================================================= -->
+
+    <hd1>57. Observability for DNS</hd1>
+
+    <list type="arrow">
+      <item>Queries per second.</item>
+      <item>Cache hit ratio.</item>
+      <item>Cache miss ratio.</item>
+      <item>Average DNS latency.</item>
+      <item>P99 DNS latency.</item>
+      <item>Error rate.</item>
+      <item>NXDOMAIN rate.</item>
+      <item>Resolver health.</item>
+      <item>Record-store latency.</item>
+    </list>
+
+    <quote>
+      For DNS, latency and availability are critical because DNS often sits
+      before the application request itself.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 58. DNS SYSTEM DESIGN INTERVIEW -->
+    <!-- ========================================================= -->
+
+    <hd1>58. DNS System Design Interview Checklist</hd1>
+
+    <list type="number">
+      <item>What scale of DNS queries must be supported?</item>
+      <item>What is the expected QPS?</item>
+      <item>What is the latency target?</item>
+      <item>Is the service authoritative, recursive or both?</item>
+      <item>Which DNS record types are required?</item>
+      <item>How will records be stored?</item>
+      <item>How will records be cached?</item>
+      <item>How is TTL enforced?</item>
+      <item>How will nodes scale horizontally?</item>
+      <item>What happens when a resolver fails?</item>
+      <item>What happens when the record database fails?</item>
+      <item>How are configuration changes propagated?</item>
+      <item>How is DNS secured?</item>
+      <item>How will the system be monitored?</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 59. REAL WORLD AWS ARCHITECTURE -->
+    <!-- ========================================================= -->
+
+    <hd1>59. Putting Everything Together — Production AWS Architecture</hd1>
+
+    <img
+      src="/images/blogs/networking/production-dns-aws-architecture.svg"
+      alt="Production AWS DNS architecture with Route 53 CloudFront ALB and EC2"
+      caption="DNS and application architecture in AWS"
+    />
+
+    <list type="arrow">
+      <item>Route 53 → public DNS.</item>
+      <item>CloudFront → global content delivery.</item>
+      <item>ALB → HTTP application routing.</item>
+      <item>EC2/ECS → application compute.</item>
+      <item>Private Route 53 zone → internal service discovery.</item>
+      <item>Application → Java/Spring Boot services.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 60. PRACTICAL COMMANDS -->
+    <!-- ========================================================= -->
+
+    <hd1>60. Practical DNS Commands</hd1>
+
+    <p>
+      DNS becomes much easier when you inspect real records from your terminal.
+    </p>
+
+    <list type="arrow">
+      <item>nslookup example.com.</item>
+      <item>nslookup -type=A example.com.</item>
+      <item>nslookup -type=AAAA example.com.</item>
+      <item>nslookup -type=MX example.com.</item>
+      <item>nslookup -type=TXT example.com.</item>
+      <item>nslookup -type=NS example.com.</item>
+      <item>dig example.com.</item>
+      <item>dig example.com A.</item>
+      <item>dig example.com MX.</item>
+      <item>dig +trace example.com.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 61. PRACTICAL AWS LAB -->
+    <!-- ========================================================= -->
+
+    <hd1>61. Practical Route 53 Lab</hd1>
+
+    <p>
+      Create a small AWS environment and connect DNS to a real application.
+    </p>
+
+    <list type="number">
+      <item>Register or use an existing domain.</item>
+      <item>Create a Route 53 hosted zone.</item>
+      <item>Understand the NS records.</item>
+      <item>Create an A record.</item>
+      <item>Create a CNAME record.</item>
+      <item>Create an Alias record pointing to an ALB.</item>
+      <item>Deploy a simple application behind the ALB.</item>
+      <item>Resolve the domain using dig.</item>
+      <item>Change the DNS target and observe TTL behavior.</item>
+      <item>Experiment with Route 53 routing policies.</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 62. INTERVIEW QUESTIONS -->
+    <!-- ========================================================= -->
+
+    <hd1>62. DNS Interview Questions You Should Be Able to Answer</hd1>
+
+    <list type="arrow">
+      <item>What is DNS?</item>
+      <item>What is an A record?</item>
+      <item>What is an AAAA record?</item>
+      <item>What is a CNAME?</item>
+      <item>Why can't a traditional CNAME normally be used at the zone apex?</item>
+      <item>What is an Alias record in Route 53?</item>
+      <item>What is the difference between recursive and authoritative DNS?</item>
+      <item>What is TTL?</item>
+      <item>Why does DNS caching exist?</item>
+      <item>What is an MX record?</item>
+      <item>What is an NS record?</item>
+      <item>What is a TXT record?</item>
+      <item>What is reverse DNS?</item>
+      <item>How does DNS work with an ALB?</item>
+      <item>How would you design a highly available DNS service?</item>
+      <item>How would you build DNS in Java?</item>
+      <item>How would you handle millions of DNS queries per second?</item>
+      <item>How would you design DNS caching?</item>
+      <item>How would you handle DNS record updates?</item>
+    </list>
+
+
+    <!-- ========================================================= -->
+    <!-- 63. FINAL MENTAL MODEL -->
+    <!-- ========================================================= -->
+
+    <hd1>63. Final DNS Mental Model</hd1>
+
+    <p>
+      DNS should no longer be thought of simply as "domain name to IP address."
+      It is a distributed naming, delegation, caching and routing system.
+    </p>
+
+    <list type="arrow">
+      <item>A → name to IPv4.</item>
+      <item>AAAA → name to IPv6.</item>
+      <item>CNAME → name to another name.</item>
+      <item>MX → mail routing.</item>
+      <item>TXT → verification and metadata.</item>
+      <item>NS → authoritative name servers.</item>
+      <item>SOA → zone authority information.</item>
+      <item>PTR → reverse DNS.</item>
+      <item>SRV → service discovery information.</item>
+      <item>CAA → certificate authority policy.</item>
+      <item>TTL → caching lifetime.</item>
+      <item>Route 53 → managed AWS DNS and routing.</item>
+      <item>Alias → AWS resource integration.</item>
+      <item>Java → consumes DNS through networking APIs and can implement DNS using UDP/TCP.</item>
+    </list>
+
+    <quote>
+      The architect's mental model is:
+      Client → Recursive Resolver → DNS Hierarchy → Authoritative DNS →
+      Cached Answer → Application Endpoint.
+
+      The system designer's mental model is:
+      Protocol → Data Model → Cache → Concurrency → Replication →
+      Failure Handling → Consistency → Observability.
+    </quote>
+
+
+    <!-- ========================================================= -->
+    <!-- 64. FINAL TAKEAWAY -->
+    <!-- ========================================================= -->
+
+    <hd1>64. Final Takeaway</hd1>
+
+    <p>
+      DNS is one of the best examples of distributed-systems engineering.
+      It combines naming, hierarchical delegation, caching, eventual
+      consistency, replication, failure handling, routing and network protocols.
+    </p>
+
+    <p>
+      Once DNS is understood at this level, services such as AWS Route 53,
+      Kubernetes service discovery, Java HTTP clients, load balancers,
+      microservice architectures and cloud networking become much easier
+      to reason about.
+    </p>
+
+    <quote>
+      Don't memorize DNS record types.
+      Understand what problem each record solves, where the answer comes from,
+      how it is cached, and what happens when the infrastructure fails.
+    </quote>
+
+  </content>
+
+</article>

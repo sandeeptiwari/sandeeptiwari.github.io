@@ -18,6 +18,8 @@
   },
   "scripts": {
     "predeploy": "npm run build",
+    "prebuild": "node scripts/generate-blog-manifest.js",
+    "blog:check": "node scripts/generate-blog-manifest.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "postbuild": "node -e \"require('fs').copyFileSync('build/index.html', 'build/404.html')\"",
