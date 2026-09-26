@@ -1,0 +1,139 @@
+
+gameplay.png
+size: 914,501
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ant
+  rotate: false
+  xy: 304, 153
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+bee1
+  rotate: false
+  xy: 850, 448
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+bee2
+  rotate: false
+  xy: 234, 93
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+bee3
+  rotate: false
+  xy: 426, 220
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 2, 148
+  size: 300, 353
+  orig: 300, 353
+  offset: 0, 0
+  index: -1
+box
+  rotate: false
+  xy: 132, 58
+  size: 100, 88
+  orig: 100, 88
+  offset: 0, 0
+  index: -1
+closeButton
+  rotate: false
+  xy: 492, 281
+  size: 55, 58
+  orig: 55, 58
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 426, 275
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+grass
+  rotate: false
+  xy: 728, 365
+  size: 40, 14
+  orig: 40, 14
+  offset: 0, 0
+  index: -1
+grass2
+  rotate: false
+  xy: 2, 2
+  size: 62, 14
+  orig: 62, 14
+  offset: 0, 0
+  index: -1
+leaderboardsButton
+  rotate: false
+  xy: 850, 388
+  size: 55, 58
+  orig: 55, 58
+  offset: 0, 0
+  index: -1
+menuButton
+  rotate: false
+  xy: 492, 221
+  size: 55, 58
+  orig: 55, 58
+  offset: 0, 0
+  index: -1
+mountain
+  rotate: false
+  xy: 304, 341
+  size: 422, 160
+  orig: 422, 160
+  offset: 0, 0
+  index: -1
+pig
+  rotate: false
+  xy: 304, 219
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+restartButton
+  rotate: false
+  xy: 370, 161
+  size: 53, 56
+  orig: 53, 56
+  offset: 0, 0
+  index: -1
+shield
+  rotate: false
+  xy: 728, 381
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+storeButton
+  rotate: false
+  xy: 549, 281
+  size: 55, 58
+  orig: 55, 58
+  offset: 0, 0
+  index: -1
+submitButton
+  rotate: false
+  xy: 549, 221
+  size: 55, 58
+  orig: 55, 58
+  offset: 0, 0
+  index: -1
+trail
+  rotate: false
+  xy: 2, 18
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

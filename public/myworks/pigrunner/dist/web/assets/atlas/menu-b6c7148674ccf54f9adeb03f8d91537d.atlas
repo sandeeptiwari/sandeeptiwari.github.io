@@ -1,0 +1,55 @@
+
+menu.png
+size: 982,125
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+achievementsButton
+  rotate: false
+  xy: 728, 52
+  size: 105, 73
+  orig: 105, 73
+  offset: 0, 0
+  index: -1
+leaderboardsButton
+  rotate: false
+  xy: 835, 52
+  size: 105, 73
+  orig: 105, 73
+  offset: 0, 0
+  index: -1
+muteButton
+  rotate: false
+  xy: 2, 2
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+playButton
+  rotate: false
+  xy: 2, 46
+  size: 240, 79
+  orig: 240, 79
+  offset: 0, 0
+  index: -1
+scoresButton
+  rotate: false
+  xy: 244, 46
+  size: 240, 79
+  orig: 240, 79
+  offset: 0, 0
+  index: -1
+soundButton
+  rotate: false
+  xy: 942, 83
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+storeButton
+  rotate: false
+  xy: 486, 46
+  size: 240, 79
+  orig: 240, 79
+  offset: 0, 0
+  index: -1

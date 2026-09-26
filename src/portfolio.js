@@ -218,6 +218,23 @@ const certifications = {
   ],
 };
 
+const projectSection = {
+  title: "Projects",
+  subtitle: "A selection of things I have built",
+  projects: [
+    {
+      id: "pigrunner",
+      name: "PigRunner",
+      description:
+        "A colorful endless runner game. Jump in and see how far you can go.",
+      image:
+        "/myworks/pigrunner/dist/web/assets/images/menuBg-8aac7e9a2d302e3405354da08ec2771a.jpg",
+      launchUrl: "/myworks/pigrunner/dist/web/index.html",
+      category: "Game",
+    },
+  ],
+};
+
 const contactInfo = {
   title: emoji("Contact Me ☎️"),
   subtitle:
@@ -235,4 +252,5 @@ export {
   blogSection,
   contactInfo,
   certifications,
+  projectSection,
 };

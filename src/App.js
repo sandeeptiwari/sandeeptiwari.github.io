@@ -3,6 +3,7 @@ import "./App.css";
 import Main from "./containers/Main";
 import BlogPage from "./blog/BlogPage";
 import BlogListPage from "./blog/BlogListPage";
+import ProjectListPage from "./containers/projects/ProjectListPage";
 
 function App() {
   const [route, setRoute] = useState(window.location.pathname);
@@ -16,6 +17,7 @@ function App() {
 
   const blogMatch = route.match(/^\/blogs\/([^/?#]+)/);
   const isBlogListRoute = /^\/blogs\/?$/.test(route);
+  const isProjectsRoute = /^\/projects\/?$/.test(route);
 
   if (blogMatch) {
     return <BlogPage blogSlug={blogMatch[1]} />;
@@ -23,6 +25,10 @@ function App() {
 
   if (isBlogListRoute) {
     return <BlogListPage />;
+  }
+
+  if (isProjectsRoute) {
+    return <ProjectListPage />;
   }
 
   return (

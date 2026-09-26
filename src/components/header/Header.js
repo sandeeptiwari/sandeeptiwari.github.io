@@ -43,7 +43,7 @@ function Header() {
           </li>
         )}
         <li>
-          <a href="#opensource" onClick={closeMenu}>
+          <a href="#projects" onClick={closeMenu}>
             Projects
           </a>
         </li>
