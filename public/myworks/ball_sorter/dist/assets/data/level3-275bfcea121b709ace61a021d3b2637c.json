@@ -1,0 +1,27 @@
+{
+  "level": 4,
+  "numJars": 5,
+  "numOfBalls": 12,
+  "placements": [
+    [
+      {"id": 1, "color": "Pink", "isHide": "N"},
+      {"id": 2, "color": "Gray", "isHide": "N"},
+      {"id": 3, "color": "Pink", "isHide": "N"},
+      {"id": 4, "color": "Blue", "isHide": "N"}
+    ],
+    [
+      {"id": 5, "color": "Gray", "isHide": "N"},
+      {"id": 6, "color": "Blue", "isHide": "N"},
+      {"id": 7, "color": "Blue", "isHide": "N"},
+      {"id": 8, "color": "Gray", "isHide": "N"}
+    ],
+    [],
+    [
+      {"id": 9, "color": "Pink", "isHide": "N"},
+      {"id": 10, "color": "Blue", "isHide": "N"},
+      {"id": 11, "color": "Gray", "isHide": "N"},
+      {"id": 12, "color": "Pink", "isHide": "N"}
+    ],
+    []
+  ]
+}

@@ -22,9 +22,9 @@
 }
 
 .heading {
-  color: black;
+  color: var(--color-ink);
 }
 
 .subTitle {
-  color: #868e96;
+  color: var(--color-muted);
 }

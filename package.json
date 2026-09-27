@@ -18,7 +18,9 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "prebuild": "node scripts/generate-blog-manifest.js",
+    "prestart": "node scripts/generate-projects-manifest.js",
+    "prebuild": "node scripts/generate-blog-manifest.js && node scripts/generate-projects-manifest.js",
+    "projects:check": "node scripts/generate-projects-manifest.js",
     "blog:check": "node scripts/generate-blog-manifest.js",
     "start": "react-scripts start",
     "build": "react-scripts build",

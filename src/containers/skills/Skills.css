@@ -1,24 +1,14 @@
 .skills-main-div {
   display: flex;
+  width: 100%;
   align-items: flex-start;
   justify-content: center;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
 }
 
 .skills-text-div {
   width: 100%;
   flex: 1;
   min-width: 0;
-}
-
-.skills-heading {
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 500;
-  color: #1e2a3b;
-  letter-spacing: -0.04em;
-  margin: 0 0 1rem;
 }
 
 .skills-text-subtitle,
@@ -28,8 +18,6 @@
 }
 
 .skills-text-subtitle {
-  font-size: clamp(1.05rem, 1.5vw, 1.45rem);
-  margin-bottom: 2rem;
   max-width: 860px;
 }
 
@@ -42,31 +30,12 @@
   margin-bottom: 1rem;
 }
 
-@media (max-width: 1380px) {
-  .skills-heading {
-    font-size: clamp(2rem, 3vw, 2.75rem);
-  }
-}
-
 @media (max-width: 768px) {
-  .skills-main-div {
-    padding: 0 1.25rem;
-  }
-
-  .skills-heading {
-    font-size: clamp(1.75rem, 7vw, 2.5rem);
-    text-align: left;
-  }
-
   .skills-text-subtitle,
   .skills-text {
     font-size: 16px;
     line-height: 1.7;
     text-align: left;
-  }
-
-  .skills-text-subtitle {
-    margin-bottom: 1.5rem;
   }
 
   .skills-bullets {
@@ -76,4 +45,8 @@
   .skills-text {
     margin-bottom: 0.9rem;
   }
+}
+
+.skills-bullets > :last-child {
+  margin-bottom: 0;
 }

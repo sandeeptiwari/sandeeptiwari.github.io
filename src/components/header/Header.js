@@ -42,11 +42,6 @@ function Header() {
             </a>
           </li>
         )}
-        <li>
-          <a href="#projects" onClick={closeMenu}>
-            Projects
-          </a>
-        </li>
         {/*<li>
           <a href="#projects">Projects</a>
         </li>*/}
@@ -55,7 +50,12 @@ function Header() {
         </li>*/}
         <li>
           <a href="#certs" onClick={closeMenu}>
-            Certfications
+            Certifications
+          </a>
+        </li>
+        <li>
+          <a href="#projects" onClick={closeMenu}>
+            Projects
           </a>
         </li>
         <li>

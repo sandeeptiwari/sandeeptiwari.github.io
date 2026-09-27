@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="7">
+ <tileset firstgid="1" source="ballsort.tsx"/>
+ <layer id="1" name="jar" width="8" height="8" offsetx="2" offsety="-0.5">
+  <data encoding="csv">
+0,41,10,3,0,0,0,0,
+0,41,10,3,0,0,0,0,
+0,41,10,3,0,0,0,0,
+0,41,10,3,0,0,0,0,
+0,41,10,3,0,0,0,0,
+0,41,10,3,0,0,0,0,
+0,41,10,3,0,0,0,0,
+0,49,50,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="4" name="jar_wall">
+  <object id="6" x="42" y="2">
+   <polyline points="0,0 -0.666667,234.667 2,242.667 9.33333,248.667 21.3333,250.667 36,250.667 43.3333,246 48.6667,241.333 54.6667,228.667 54.6667,-2 56,-2 56,-0.666667"/>
+  </object>
+ </objectgroup>
+</map>

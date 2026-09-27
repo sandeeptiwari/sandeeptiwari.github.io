@@ -1,13 +1,13 @@
 .main-button {
-  background-color: #001C55;
-  border: solid 1px #001C55;
+  background-color: var(--color-brand);
+  border: solid 1px var(--color-brand);
   color: white;
   font-weight: 700;
   width: max-content;
   padding: 13px 22px;
-  margin-right: 50px;
+  margin-right: 16px;
   text-transform: uppercase;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   text-align: center;
   text-decoration: none;
   display: block;
@@ -17,8 +17,8 @@
   transition: all .3s ease-in-out 0s;
 }
 .main-button:hover {
-  background-color: #ffffff;
-  color: black;
+  background-color: var(--color-surface);
+  color: var(--color-brand);
   transition: all .3s ease 0s;
   transform: translateY(-3px);
 }

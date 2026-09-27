@@ -1,0 +1,74 @@
+{
+  "name": "PigRunner",
+  "description": "A colorful endless runner game. Jump in and see how far you can go.",
+  "category": "Game",
+  "image": "dist/web/assets/images/menuBg-8aac7e9a2d302e3405354da08ec2771a.jpg",
+  "order": 1,
+  "overview": "PigRunner is a side-scrolling endless runner built with libGDX and compiled to the web with GWT. It features physics-based jumping, procedurally generated hills, coin collection, particle effects and sound, all running at a smooth frame rate in the browser.",
+  "features": [
+    "Endless, procedurally generated terrain",
+    "Physics-based jump and collision handling",
+    "Coins, explosions and particle effects",
+    "Menu, HUD and game-over screens with a custom UI skin",
+    "Runs in any modern browser, no install needed"
+  ],
+  "benefits": [
+    "Production-ready libGDX project structure you can reuse for your own games",
+    "Clean separation of screens, game world, rendering and input",
+    "Single codebase that targets web, desktop, Android and iOS",
+    "A good reference for texture atlases, shaders and audio in libGDX"
+  ],
+  "techStack": [
+    "Java",
+    "libGDX",
+    "GWT",
+    "WebGL"
+  ],
+  "sourceCode": {
+    "status": "on-request",
+    "includes": [
+      "Complete Java source",
+      "Gradle build for web, desktop, Android and iOS",
+      "Setup notes",
+      "Placeholder art so the project builds",
+      "Licence and third-party notices"
+    ],
+    "excludes": [
+      "Artwork, sprites and backgrounds",
+      "Music and sound effects",
+      "Fonts",
+      "Game name, logo and store listing"
+    ]
+  },
+  "requirements": [
+    {
+      "label": "Language",
+      "value": "Java (JDK 17 recommended)"
+    },
+    {
+      "label": "Framework",
+      "value": "libGDX + Gradle"
+    },
+    {
+      "label": "Targets",
+      "value": "Web (GWT), desktop, Android, iOS"
+    },
+    {
+      "label": "IDE",
+      "value": "Android Studio or IntelliJ IDEA (iOS builds need a Mac with Xcode)"
+    }
+  ],
+  "customisation": [
+    "Game name",
+    "Package ID",
+    "App icon",
+    "Splash screen",
+    "Backgrounds",
+    "Sprites",
+    "Sounds",
+    "Fonts",
+    "Difficulty",
+    "Speed & gravity",
+    "Terrain generation"
+  ]
+}

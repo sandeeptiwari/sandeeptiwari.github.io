@@ -1,0 +1,16 @@
+{
+  "level": 1,
+  "numJars": 3,
+  "numOfBalls": 4,
+  "placements": [
+    [
+      {"id": 1, "color": "Pink", "isHide": "N"},
+      {"id": 2, "color": "Pink", "isHide": "N"}
+    ],
+    [
+      {"id": 3, "color": "Pink", "isHide": "N"},
+      {"id": 4, "color": "Pink", "isHide": "N"}
+    ],
+    []
+  ]
+}

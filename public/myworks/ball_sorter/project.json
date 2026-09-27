@@ -1,0 +1,71 @@
+{
+  "name": "Ball Sort Puzzle",
+  "description": "A relaxing color-sorting puzzle. Stack matching balls into the same tube.",
+  "category": "Game",
+  "image": "cover.png",
+  "order": 2,
+  "overview": "Ball Sort Puzzle is a casual brain-teaser: move balls between tubes until every tube holds a single color. It is built with libGDX and runs in the browser through GWT.",
+  "features": [
+    "Increasingly challenging levels",
+    "Tap-to-move controls for mouse and touch",
+    "Multiple background themes and ball skins",
+    "Runs in any modern browser, no install needed"
+  ],
+  "benefits": [
+    "Ready-to-extend puzzle engine with a clear level model",
+    "A good starting point for publishing a casual mobile game",
+    "Cross-platform libGDX setup for web, desktop, Android and iOS"
+  ],
+  "techStack": [
+    "Java",
+    "libGDX",
+    "GWT"
+  ],
+  "sourceCode": {
+    "status": "on-request",
+    "includes": [
+      "Complete Java source",
+      "Gradle build for web, desktop, Android and iOS",
+      "Level data format",
+      "Placeholder art so the project builds",
+      "Licence and third-party notices"
+    ],
+    "excludes": [
+      "Artwork, sprites and backgrounds",
+      "Music and sound effects",
+      "Fonts",
+      "Game name, logo and store listing"
+    ]
+  },
+  "requirements": [
+    {
+      "label": "Language",
+      "value": "Java (JDK 17 recommended)"
+    },
+    {
+      "label": "Framework",
+      "value": "libGDX + Gradle"
+    },
+    {
+      "label": "Targets",
+      "value": "Web (GWT), desktop, Android, iOS"
+    },
+    {
+      "label": "IDE",
+      "value": "Android Studio or IntelliJ IDEA (iOS builds need a Mac with Xcode)"
+    }
+  ],
+  "customisation": [
+    "Game name",
+    "Package ID",
+    "App icon",
+    "Splash screen",
+    "Backgrounds",
+    "Sprites",
+    "Sounds",
+    "Fonts",
+    "Difficulty",
+    "Levels",
+    "Ball colours"
+  ]
+}

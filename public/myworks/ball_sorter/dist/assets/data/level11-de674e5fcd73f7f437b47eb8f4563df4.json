@@ -1,0 +1,45 @@
+{
+  "level": 12,
+  "numJars": 8,
+  "numOfBalls": 24,
+  "placements": [
+    [],
+    [
+      {"id": 1, "color": "LightGreen", "isHide": "N"},
+      {"id": 2, "color": "LightGreen", "isHide": "N"},
+      {"id": 3, "color": "Red", "isHide": "N"},
+      {"id": 4, "color": "Blue", "isHide": "N"}
+    ],
+    [
+      {"id": 5, "color": "Pink", "isHide": "N"},
+      {"id": 6, "color": "Pink", "isHide": "N"},
+      {"id": 7, "color": "Red", "isHide": "N"},
+      {"id": 8, "color": "Gray", "isHide": "N"}
+    ],
+    [
+      {"id": 9, "color": "Pink", "isHide": "N"},
+      {"id": 10, "color": "Gray", "isHide": "N"},
+      {"id": 11, "color": "Red", "isHide": "Y"},
+      {"id": 12, "color": "LightGreen", "isHide": "N"}
+    ],
+    [
+      {"id": 13, "color": "Gray", "isHide": "Y"},
+      {"id": 14, "color": "Green", "isHide": "N"},
+      {"id": 15, "color": "Red", "isHide": "N"},
+      {"id": 16, "color": "Pink", "isHide": "N"}
+    ],
+    [],
+    [
+      {"id": 17, "color": "Blue", "isHide": "Y"},
+      {"id": 18, "color": "Blue", "isHide": "N"},
+      {"id": 19, "color": "Green", "isHide": "N"},
+      {"id": 20, "color": "Gray", "isHide": "N"}
+    ],
+    [
+      {"id": 21, "color": "Blue", "isHide": "N"},
+      {"id": 22, "color": "LightGreen", "isHide": "N"},
+      {"id": 23, "color": "Green", "isHide": "N"},
+      {"id": 24, "color": "Green", "isHide": "N"}
+    ]
+  ]
+}

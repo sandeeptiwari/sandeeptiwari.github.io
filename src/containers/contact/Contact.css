@@ -6,29 +6,21 @@
     flex: 1;
 }
 
-.contact-title {
-    font-size: clamp(2.4rem, 4.8vw, 4.0625rem);
-    font-weight: 400;
-}
-
 .contact-detail,
 .contact-detail-email {
-    margin-top: 20px;
-    font-size: clamp(1.4rem, 2.8vw, 2.5rem);
-    font-weight: 400;
-    color: #868e96;
+    display: inline-block;
+    margin: 0 0 16px;
+    font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+    font-weight: 600;
+    color: var(--color-brand);
     text-decoration: none;
+    word-break: break-word;
 }
 
 .contact-detail:hover,
 .contact-detail-email:hover {
-    color: black;
-    text-shadow: 2px 1px 2px #b5b5b5;
+    color: var(--color-accent);
     transition: all 0.3s;
-}
-
-.contact-subtitle {
-    text-transform: uppercase;
 }
 
 .contact-text-div {
@@ -36,31 +28,19 @@
 }
 
 .contact-margin-top {
-    margin-top: 4rem;
+    margin-top: 0;
 }
 
 .contact-image-div > img {
     max-width: 100%;
     height: auto;
     margin-left: 1.5rem;
-    margin-top: -4rem;
 }
 
 /* Media Query */
 @media (max-width: 1380px) {
-    .contact-title {
-        font-size: clamp(2rem, 4vw, 3rem);
-        text-align: center;
-    }
-
-    .contact-subtitle {
-        font-size: 16px;
-        line-height: normal;
-        text-align: center;
-    }
 
     .contact-text-div {
-        text-align: center;
         margin-top: 1.5rem;
     }
 
@@ -75,19 +55,8 @@
 }
 
 @media (max-width: 768px) {
-    .contact-title {
-        font-size: clamp(1.75rem, 7vw, 2.5rem);
-        text-align: center;
-    }
-
-    .contact-subtitle {
-        font-size: 16px;
-        line-height: normal;
-        text-align: center;
-    }
 
     .contact-text-div {
-        text-align: center;
         margin-top: 1.5rem;
     }
 

@@ -42,7 +42,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-img,
+/* Twemoji images (react-easy-emoji renders draggable="false") stay inline. */
+img:not([draggable="false"]),
 svg {
   display: block;
   max-width: 100%;
@@ -53,5 +54,132 @@ svg {
   html,
   body {
     font-size: 15px;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Design tokens. Every section and card reads from these so the site
+ * stays visually consistent; change a value here, not in a component.
+ * ------------------------------------------------------------------ */
+:root {
+  /* color */
+  --color-ink: #1e2a3b;          /* headings */
+  --color-text: #425466;         /* body copy */
+  --color-muted: #687385;        /* subtitles, meta */
+  --color-brand: #001c55;        /* primary actions */
+  --color-accent: #b7442e;       /* eyebrow labels, highlights */
+  --color-surface: #ffffff;
+  --color-border: #e1e6eb;
+
+  /* shape + elevation */
+  --radius-card: 10px;
+  --radius-control: 6px;
+  --shadow-card: 0 8px 24px rgba(21, 37, 54, 0.08);
+  --shadow-card-hover: 0 16px 36px rgba(21, 37, 54, 0.14);
+  --lift-hover: translateY(-4px);
+  --transition-base: 220ms ease;
+
+  /* layout */
+  --container-max: 1160px;
+  --gutter: 16px;
+  --section-space-y: clamp(24px, 3.5vw, 44px);
+  --grid-gap: 24px;
+  --grid-min-col: 280px;
+
+  /* type */
+  --font-section-title: clamp(1.75rem, 3.2vw, 2.75rem);
+  --font-section-subtitle: clamp(1rem, 1.3vw, 1.2rem);
+}
+
+/* Section shell: same width, gutter and vertical rhythm everywhere. */
+.main,
+.experience-container {
+  width: 90%;
+  margin: 0 auto;
+  padding: var(--section-space-y) 10px;
+}
+
+/* No stray margins leaking past a section's padding. */
+.main > :last-child,
+.experience-container > :last-child {
+  margin-bottom: 0;
+}
+
+img[draggable="false"] {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0 0.1em;
+  vertical-align: -0.12em;
+}
+
+/* Section titles share one scale, weight and alignment. */
+.skills-heading,
+.experience-heading,
+.cert-header-title,
+.blog-header-text,
+.project-title,
+.contact-title {
+  margin: 0 0 12px;
+  color: var(--color-ink);
+  font-size: var(--font-section-title);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.skills-text-subtitle,
+.blog-subtitle,
+.project-header > p,
+.contact-subtitle {
+  margin: 0 0 28px;
+  color: var(--color-muted);
+  font-size: var(--font-section-subtitle);
+  line-height: 1.6;
+  text-transform: none;
+  text-align: left;
+}
+
+/* Card grids. */
+.experience-cards-div,
+.cert-text-div,
+.blog-text-div,
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, var(--grid-min-col)), 1fr)
+  );
+  gap: var(--grid-gap);
+}
+
+/* Card surface. */
+.experience-card,
+.cert-card,
+.blog-container,
+.project-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.experience-card:hover,
+.cert-card:hover,
+.blog-container:hover,
+.project-card:hover {
+  transform: var(--lift-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-card:hover,
+  .cert-card:hover,
+  .blog-container:hover,
+  .project-card:hover {
+    transform: none;
   }
 }

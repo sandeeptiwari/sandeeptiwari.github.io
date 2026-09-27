@@ -1,9 +1,9 @@
 .footer-text {
   text-align: center;
-  color: #868e96;
+  color: var(--color-muted);
 }
 
 .footer-div {
-  margin-top: 2rem;
+  margin-top: 1rem;
 
 }

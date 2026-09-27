@@ -128,7 +128,7 @@
     </p>
 
     <img
-      src="/images/blogs/networking/dns-domain-anatomy.svg"
+      src="/images/blogs/networking/dns-domain-anatomy.png"
       alt="DNS domain name anatomy"
       caption="Breaking a DNS name into root, TLD, domain and hostname"
     />
@@ -153,7 +153,7 @@
     </list>
 
     <img
-      src="/images/blogs/networking/dns-hierarchy.svg"
+      src="/images/blogs/networking/dns-hierarchy.png"
       alt="DNS hierarchy from root to authoritative servers"
       caption="The hierarchical DNS architecture"
     />
@@ -228,7 +228,7 @@
     </list>
 
     <img
-      src="/images/blogs/networking/dns-resolution-flow.svg"
+      src="/images/blogs/networking/dns-resolution-flow.png"
       alt="Complete DNS resolution flow"
       caption="Complete recursive DNS resolution flow"
     />
@@ -435,7 +435,7 @@ public class RecursiveDnsResolver {
     </list>
 
     <img
-      src="/images/blogs/networking/dns-a-record.svg"
+      src="/images/blogs/networking/dns-a-record.png"
       alt="A record mapping domain name to IPv4"
       caption="A record: hostname to IPv4 address"
     />
@@ -597,7 +597,7 @@ public class RecursiveDnsResolver {
     </p>
 
     <img
-      src="/images/blogs/networking/dns-ns-delegation.svg"
+      src="/images/blogs/networking/dns-ns-delegation.png"
       alt="DNS delegation using NS records"
       caption="NS records establish DNS delegation"
     />
@@ -683,7 +683,7 @@ public class RecursiveDnsResolver {
     </p>
 
     <img
-      src="/images/blogs/networking/dns-cache-ttl.svg"
+      src="/images/blogs/networking/dns-cache-ttl.png"
       alt="DNS resolver cache and TTL"
       caption="Recursive resolver caching DNS responses using TTL"
     />
@@ -813,7 +813,7 @@ public class RecursiveDnsResolver {
     </p>
 
     <img
-      src="/images/blogs/networking/route53-public-private-zone.svg"
+      src="/images/blogs/networking/route53-public-private-zone.png"
       alt="Route 53 public and private hosted zones"
       caption="Public and private Route 53 DNS"
     />
@@ -857,7 +857,7 @@ public class RecursiveDnsResolver {
     </p>
 
     <img
-      src="/images/blogs/networking/route53-alb-ec2.svg"
+      src="/images/blogs/networking/route53-alb-ec2.png"
       alt="Route 53 ALB EC2 architecture"
       caption="Production-style Route 53, ALB and EC2 architecture"
     />
@@ -898,7 +898,7 @@ public class RecursiveDnsResolver {
     </p>
 
     <img
-      src="/images/blogs/networking/route53-weighted-routing.svg"
+      src="/images/blogs/networking/route53-weighted-routing.png"
       alt="Route 53 weighted routing"
       caption="Weighted DNS routing for gradual traffic migration"
     />

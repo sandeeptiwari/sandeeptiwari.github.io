@@ -1,0 +1,17 @@
+ballmatch.png
+size:256,256
+repeat:none
+blue
+bounds:151,187,38,40
+green
+bounds:112,184,37,43
+jar
+bounds:2,2,64,225
+pink
+bounds:68,184,42,43
+pink1
+bounds:68,143,42,39
+red
+bounds:68,100,39,41
+yelow
+bounds:68,58,36,40

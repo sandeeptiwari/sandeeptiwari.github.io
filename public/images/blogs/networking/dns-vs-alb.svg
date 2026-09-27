@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8fbff"/><stop offset="1" stop-color="#eef6ff"/></linearGradient>
+ <linearGradient id="dns" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#1746a2"/></linearGradient>
+ <linearGradient id="alb" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#5b21b6"/></linearGradient>
+ <filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity=".12"/></filter>
+ <marker id="ab" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#2563eb"/></marker>
+ <marker id="ap" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#7c3aed"/></marker>
+ <style>
+ .title{font:700 58px Arial,sans-serif;fill:#102a56}.sub{font:400 25px Arial,sans-serif;fill:#58708c}.h{font:700 26px Arial,sans-serif}.body{font:400 19px Arial,sans-serif;fill:#294968}.small{font:400 16px Arial,sans-serif;fill:#55708b}.mono{font:700 22px 'Courier New',monospace}.card{stroke:#d5e5f5;stroke-width:2}
+ </style>
+</defs>
+<rect width="1536" height="1024" fill="url(#bg)"/>
+<text x="64" y="82" class="title">DNS vs ALB</text>
+<text x="64" y="124" class="sub">Two different jobs: DNS finds the destination; an Application Load Balancer distributes requests.</text>
+
+<rect x="48" y="165" width="700" height="535" rx="28" fill="#fff" class="card" filter="url(#shadow)"/>
+<rect x="788" y="165" width="700" height="535" rx="28" fill="#fff" class="card" filter="url(#shadow)"/>
+<rect x="48" y="165" width="700" height="92" rx="28" fill="url(#dns)"/>
+<text x="92" y="218" font="700 28px Arial" fill="#fff">DNS</text><text x="154" y="207" class="h" fill="#fff">Domain Name System</text><text x="154" y="234" font="400 17px Arial" fill="#dbeafe">Name → network destination</text>
+<rect x="788" y="165" width="700" height="92" rx="28" fill="url(#alb)"/>
+<text x="810" y="218" font="700 26px Arial" fill="#fff">ALB</text><text x="894" y="207" class="h" fill="#fff">Application Load Balancer</text><text x="894" y="234" font="400 17px Arial" fill="#ede9fe">Request → healthy target</text>
+
+<text x="82" y="300" class="h" fill="#1746a2">What DNS does</text>
+<text x="82" y="334" class="body">Resolves a hostname to DNS information such as</text><text x="82" y="362" class="body">an IP address, CNAME target, or other record.</text>
+<rect x="82" y="392" width="632" height="100" rx="18" fill="#edf5ff" stroke="#bddbff"/>
+<text x="106" y="425" class="small">Example</text><text x="106" y="459" class="mono" fill="#1746a2">api.example.com → 3.4.5.6</text><text x="106" y="483" class="small">The client can now connect to the destination.</text>
+<text x="82" y="540" class="h" fill="#1746a2">Typical DNS responsibilities</text>
+<circle cx="102" cy="576" r="6" fill="#2563eb"/><text x="122" y="582" class="body">Domain / hostname resolution</text>
+<circle cx="102" cy="612" r="6" fill="#2563eb"/><text x="122" y="618" class="body">Routing policies such as weighted or latency routing</text>
+<circle cx="102" cy="648" r="6" fill="#2563eb"/><text x="122" y="654" class="body">Caching controlled by TTL</text>
+
+<text x="822" y="300" class="h" fill="#5b21b6">What ALB does</text>
+<text x="822" y="334" class="body">Receives an application request and chooses</text><text x="822" y="362" class="body">a healthy target based on listeners and rules.</text>
+<rect x="822" y="392" width="170" height="100" rx="18" fill="#f2ecff" stroke="#d8c8ff"/>
+<text x="907" y="425" text-anchor="middle" class="small">Request</text><text x="907" y="458" text-anchor="middle" class="mono" font-size="18" fill="#5b21b6">HTTP / HTTPS</text><text x="907" y="482" text-anchor="middle" class="small">/api/orders</text>
+<line x1="1005" y1="442" x2="1060" y2="442" stroke="#7c3aed" stroke-width="4" marker-end="url(#ap)"/>
+<rect x="1080" y="380" width="340" height="125" rx="18" fill="#f7f3ff" stroke="#d8c8ff"/>
+<text x="1104" y="414" class="small">Target group</text>
+<rect x="1104" y="432" width="82" height="48" rx="10" fill="#8b5cf6"/><text x="1145" y="462" text-anchor="middle" font="700 15px Arial" fill="#fff">EC2-1</text>
+<rect x="1200" y="432" width="82" height="48" rx="10" fill="#8b5cf6"/><text x="1241" y="462" text-anchor="middle" font="700 15px Arial" fill="#fff">EC2-2</text>
+<rect x="1296" y="432" width="82" height="48" rx="10" fill="#8b5cf6"/><text x="1337" y="462" text-anchor="middle" font="700 15px Arial" fill="#fff">EC2-3</text>
+<text x="822" y="540" class="h" fill="#5b21b6">Typical ALB responsibilities</text>
+<circle cx="842" cy="576" r="6" fill="#8b5cf6"/><text x="862" y="582" class="body">HTTP / HTTPS request routing</text>
+<circle cx="842" cy="612" r="6" fill="#8b5cf6"/><text x="862" y="618" class="body">Health checks and target selection</text>
+<circle cx="842" cy="648" r="6" fill="#8b5cf6"/><text x="862" y="654" class="body">Path / host based routing, TLS termination</text>
+
+<rect x="48" y="730" width="1440" height="118" rx="26" fill="#102a56"/>
+<text x="82" y="770" font="700 25px Arial" fill="#fff">The key distinction</text>
+<rect x="350" y="751" width="455" height="68" rx="15" fill="#173b70"/><text x="378" y="780" font="700 19px Arial" fill="#8fc5ff">DNS</text><text x="378" y="805" font="400 17px Arial" fill="#dcecff">“Where should this hostname go?”</text>
+<rect x="830" y="751" width="620" height="68" rx="15" fill="#173b70"/><text x="858" y="780" font="700 19px Arial" fill="#d8c2ff">ALB</text><text x="858" y="805" font="400 17px Arial" fill="#dcecff">“Which healthy application target should handle it?”</text>
+
+<rect x="48" y="875" width="1440" height="108" rx="25" fill="#fff" class="card"/>
+<text x="78" y="908" class="small">Together in a common AWS architecture</text>
+<rect x="82" y="925" width="185" height="42" rx="12" fill="#e9f4ff"/><text x="174" y="952" text-anchor="middle" font="700 16px Arial" fill="#1746a2">User / Browser</text>
+<line x1="278" y1="946" x2="322" y2="946" stroke="#2563eb" stroke-width="3" marker-end="url(#ab)"/>
+<rect x="338" y="925" width="190" height="42" rx="12" fill="#e9f4ff"/><text x="433" y="952" text-anchor="middle" font="700 16px Arial" fill="#1746a2">Route 53 / DNS</text>
+<line x1="539" y1="946" x2="583" y2="946" stroke="#2563eb" stroke-width="3" marker-end="url(#ab)"/>
+<rect x="599" y="925" width="180" height="42" rx="12" fill="#f2ecff"/><text x="689" y="952" text-anchor="middle" font="700 16px Arial" fill="#5b21b6">ALB</text>
+<line x1="790" y1="946" x2="834" y2="946" stroke="#7c3aed" stroke-width="3" marker-end="url(#ap)"/>
+<rect x="850" y="925" width="210" height="42" rx="12" fill="#eafaf5"/><text x="955" y="952" text-anchor="middle" font="700 16px Arial" fill="#087a60">Target Group</text>
+<line x1="1070" y1="946" x2="1114" y2="946" stroke="#20b486" stroke-width="3" marker-end="url(#ab)"/>
+<rect x="1130" y="925" width="310" height="42" rx="12" fill="#eafaf5"/><text x="1285" y="952" text-anchor="middle" font="700 16px Arial" fill="#087a60">EC2 / Application Servers</text>
+</svg>

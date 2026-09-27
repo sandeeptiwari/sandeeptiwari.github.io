@@ -1,13 +1,5 @@
 .experience-card {
     position: relative;
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 30px -15px;
-    border-radius: 10px;
-    border: 1px solid rgba(211, 211, 211, 0.397);
-}
-
-.experience-card:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px -10px;
 }
 
 .experience-banner {
@@ -15,7 +7,7 @@
     background-repeat: no-repeat;
     background-size: 150%;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
-    border-radius: 10px 10px 0px 0px;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
     -webkit-filter: blur(0px);
     -moz-filter: blur(0px);
     -o-filter: blur(0px);
@@ -39,7 +31,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
 
 .experience-div-company {
