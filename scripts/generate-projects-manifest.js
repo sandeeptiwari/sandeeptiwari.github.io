@@ -18,6 +18,9 @@
  *     "features": ["..." | {"title": "...", "text": "..."}],  // key features
  *     "requirements": [{"label": "Platform", "value": "Web, Android"}],
  *     "customisation": ["Game name", "Package ID", ...],
+ *     "gallery": [{"src": "architecture.png", "caption": "..."}],  // images/GIFs in the modal
+ *     "benefitsTitle": "Why get the source",   // heading for benefits
+ *     "sourceCode": false,          // not a source-for-sale project: hides licensing tabs
  *     "benefits": ["..."],          // what a buyer of the source gets / learns
  *     "techStack": ["Java", "libGDX"],
  *     "sourceCode": {
@@ -91,6 +94,7 @@ function readProject(id) {
   let image = meta.image || "";
   if (image && !/^(https?:)?\//.test(image)) image = toUrl(path.join(dir, image));
   if (!image) image = findCover(dir);
+  const resolve = (src) => (/^(https?:)?\//.test(src) ? src : toUrl(path.join(dir, src)));
 
   return {
     id,
@@ -105,8 +109,13 @@ function readProject(id) {
     benefits: meta.benefits || [],
     requirements: meta.requirements || [],
     customisation: meta.customisation || [],
+    gallery: (meta.gallery || []).map((g) => ({ src: resolve(g.src), caption: g.caption || "" })),
+    benefitsTitle: meta.benefitsTitle || "",
     techStack: meta.techStack || [],
-    sourceCode: { status: "on-request", price: "", includes: [], excludes: [], ...(meta.sourceCode || {}) },
+    sourceCode:
+      meta.sourceCode === false
+        ? null
+        : { status: "on-request", price: "", includes: [], excludes: [], ...(meta.sourceCode || {}) },
     order: typeof meta.order === "number" ? meta.order : 999,
   };
 }

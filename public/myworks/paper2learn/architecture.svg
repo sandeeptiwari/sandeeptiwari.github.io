@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1060" viewBox="0 0 1600 1060" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#425466"/>
+    </marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#b7442e"/>
+    </marker>
+    <style>
+      .box{fill:#fff;stroke:#e1e6eb;stroke-width:2}
+      .hd{font-size:25px;font-weight:700;fill:#001c55}
+      .sub{font-size:17px;font-weight:600;fill:#687385;letter-spacing:.06em}
+      .t{font-size:19px;fill:#1e2a3b}
+      .m{font-size:17px;fill:#425466}
+      .n{font-size:17px;font-weight:700;fill:#fff}
+      .ln{stroke:#425466;stroke-width:2.5;fill:none}
+      .ai{stroke:#b7442e;stroke-width:2.5;fill:none}
+    </style>
+  </defs>
+
+  <rect width="1600" height="1060" fill="#f6f8fa"/>
+  <text x="40" y="58" font-size="34" font-weight="700" fill="#1e2a3b">Paper2Learn — system architecture</text>
+  <text x="40" y="92" class="m">Deterministic ingestion writes structured data first; AI runs only when an admin processes a paper, and humans approve before publishing.</text>
+
+  <!-- Column labels -->
+  <g class="sub">
+    <text x="40" y="146">SOURCES</text><text x="350" y="146">INGESTION (NO AI)</text>
+    <text x="830" y="146">STORAGE</text><text x="1180" y="146">SERVING</text>
+  </g>
+
+  <!-- Sources -->
+  <rect x="40" y="166" width="270" height="118" rx="12" class="box"/>
+  <text x="62" y="206" class="hd">arXiv API</text>
+  <text x="62" y="238" class="m">Atom search by category</text>
+  <text x="62" y="262" class="m">and submission date</text>
+  <rect x="40" y="306" width="270" height="118" rx="12" class="box"/>
+  <text x="62" y="346" class="hd">arXiv OAI-PMH</text>
+  <text x="62" y="378" class="m">Licence of each paper</text>
+  <text x="62" y="402" class="m">(copyright policy input)</text>
+  <rect x="40" y="446" width="270" height="118" rx="12" class="box"/>
+  <text x="62" y="486" class="hd">Triggers</text>
+  <text x="62" y="518" class="m">GitHub Actions (daily cron)</text>
+  <text x="62" y="542" class="m">Admin “Run now” / add by ID</text>
+
+  <!-- Ingestion -->
+  <rect x="350" y="166" width="440" height="398" rx="12" class="box"/>
+  <text x="372" y="206" class="hd">One PDF at a time</text>
+  <g>
+    <circle cx="387" cy="245" r="15" fill="#001c55"/><text x="387" y="251" class="n" text-anchor="middle">1</text>
+    <text x="414" y="251" class="t">Metadata → dedup by source ID</text>
+    <circle cx="387" cy="295" r="15" fill="#001c55"/><text x="387" y="301" class="n" text-anchor="middle">2</text>
+    <text x="414" y="301" class="t">Stream PDF to temp file + SHA-256</text>
+    <text x="414" y="324" class="m">SSRF guard · size cap · dedup by hash</text>
+    <circle cx="387" cy="364" r="15" fill="#001c55"/><text x="387" y="370" class="n" text-anchor="middle">3</text>
+    <text x="414" y="370" class="t">PyMuPDF text extraction</text>
+    <text x="414" y="393" class="m">parallel page ranges for large PDFs</text>
+    <circle cx="387" cy="433" r="15" fill="#001c55"/><text x="387" y="439" class="n" text-anchor="middle">4</text>
+    <text x="414" y="439" class="t">Deterministic sectioner</text>
+    <text x="414" y="462" class="m">font + numbering heuristics → typed sections</text>
+    <circle cx="387" cy="502" r="15" fill="#001c55"/><text x="387" y="508" class="n" text-anchor="middle">5</text>
+    <text x="414" y="508" class="t">Licence → save → delete temp PDF</text>
+    <text x="414" y="531" class="m">no PDFs stored, only structured data</text>
+  </g>
+
+  <!-- Storage -->
+  <rect x="830" y="166" width="310" height="398" rx="12" class="box"/>
+  <ellipse cx="985" cy="212" rx="112" ry="18" fill="#e9f5ee" stroke="#3f9b5c" stroke-width="2"/>
+  <text x="985" y="218" font-size="17" font-weight="700" fill="#2d7a45" text-anchor="middle">MongoDB Atlas M0</text>
+  <g class="t">
+    <text x="852" y="266">papers</text><text x="1118" y="266" class="m" text-anchor="end">metadata · licence</text>
+    <text x="852" y="306">sections</text><text x="1118" y="306" class="m" text-anchor="end">$text index</text>
+    <text x="852" y="346">chunks</text><text x="1118" y="346" class="m" text-anchor="end">768-d vectors</text>
+    <text x="852" y="386">tutorials</text><text x="1118" y="386" class="m" text-anchor="end">draft + provenance</text>
+    <text x="852" y="426">runs · metrics</text><text x="1118" y="426" class="m" text-anchor="end">TTL, aggregated</text>
+  </g>
+  <line x1="852" y1="454" x2="1118" y2="454" stroke="#e1e6eb" stroke-width="2"/>
+  <text x="852" y="486" class="m">~230 KB per paper incl. indexes</text>
+  <text x="852" y="512" class="m">500 papers ≈ 125 MB (~24% of 512 MB)</text>
+  <text x="852" y="538" class="m">Atlas Vector Search for semantic search</text>
+
+  <!-- Serving -->
+  <rect x="1180" y="166" width="380" height="398" rx="12" class="box"/>
+  <text x="1202" y="206" class="hd">FastAPI on Render (free)</text>
+  <g class="t">
+    <text x="1202" y="250">• Papers, sections, text</text>
+    <text x="1202" y="286">• Full-text + semantic search</text>
+    <text x="1202" y="322">• LLM-ready retrieval tools</text>
+    <text x="1202" y="358">• Blog XML (approved only)</text>
+    <text x="1202" y="394">• Admin API + live SSE progress</text>
+  </g>
+  <text x="1202" y="440" class="m">API keys · CORS allow-list</text>
+  <text x="1202" y="466" class="m">uniform JSON errors · no raw DB docs</text>
+  <text x="1202" y="492" class="m">metrics: tokens, traffic, storage</text>
+  <text x="1202" y="530" class="m">GET /health → {"status":"UP"}</text>
+
+  <!-- main flow arrows -->
+  <path d="M310 225H346" class="ln" marker-end="url(#a)"/>
+  <path d="M310 365H330V420H346" class="ln" marker-end="url(#a)"/>
+  <path d="M310 505H330V470" class="ln"/>
+  <path d="M790 365H826" class="ln" marker-end="url(#a)"/>
+  <path d="M1140 365H1176" class="ln" marker-end="url(#a)"/>
+
+  <!-- AI lane -->
+  <text x="40" y="632" class="sub" fill="#b7442e" style="fill:#b7442e">AI SIMPLIFICATION — ONLY ON ADMIN CLICK, ONE PAPER AT A TIME</text>
+  <rect x="40" y="652" width="1520" height="220" rx="14" fill="#fbf1ee" stroke="#f0d3ca" stroke-width="2"/>
+
+  <g>
+    <rect x="66" y="690" width="220" height="146" rx="12" class="box"/>
+    <text x="86" y="728" class="hd">Admin</text>
+    <text x="86" y="760" class="m">clicks “Process”</text>
+    <text x="86" y="784" class="m">watches % via SSE</text>
+    <text x="86" y="808" class="m">approves / rejects</text>
+
+    <rect x="336" y="690" width="260" height="146" rx="12" class="box"/>
+    <text x="356" y="728" class="hd">Gemini</text>
+    <text x="356" y="760" class="m">1 call: chunk embeddings</text>
+    <text x="356" y="784" class="m">1 call: summary + JSON</text>
+    <text x="356" y="808" class="m">daily caps · timeouts</text>
+
+    <rect x="646" y="690" width="280" height="146" rx="12" class="box"/>
+    <text x="666" y="728" class="hd">Deterministic checks</text>
+    <text x="666" y="760" class="m">verbatim-copy detector</text>
+    <text x="666" y="784" class="m">numbers grounded in source</text>
+    <text x="666" y="808" class="m">licence policy per paper</text>
+
+    <rect x="976" y="690" width="250" height="146" rx="12" class="box"/>
+    <text x="996" y="728" class="hd">Human review</text>
+    <text x="996" y="760" class="m">PENDING_REVIEW →</text>
+    <text x="996" y="784" class="m">APPROVED / REJECTED</text>
+    <text x="996" y="808" class="m">licence acknowledgement</text>
+
+    <rect x="1276" y="690" width="258" height="146" rx="12" fill="#001c55"/>
+    <text x="1296" y="728" font-size="25" font-weight="700" fill="#fff">Blog</text>
+    <text x="1296" y="760" font-size="17" fill="#c9d6ee">sandeeptiwari.me</text>
+    <text x="1296" y="784" font-size="17" fill="#c9d6ee">renders template XML</text>
+    <text x="1296" y="808" font-size="17" fill="#c9d6ee">with source + licence</text>
+  </g>
+  <path d="M286 763H332" class="ai" marker-end="url(#r)"/>
+  <path d="M596 763H642" class="ai" marker-end="url(#r)"/>
+  <path d="M926 763H972" class="ai" marker-end="url(#r)"/>
+  <path d="M1226 763H1272" class="ai" marker-end="url(#r)"/>
+  <!-- storage ↔ AI -->
+  <path d="M985 564V640" class="ai" stroke-dasharray="7 6" marker-end="url(#r)"/>
+  <text x="995" y="608" font-size="16" fill="#b7442e">reads sections, writes chunks + drafts</text>
+
+  <!-- footer -->
+  <text x="40" y="930" class="sub">DELIVERY</text>
+  <text x="40" y="966" class="t">GitHub push → pytest (MongoDB service) → Render deploy hook → health check      ·      Cost: Render Free + Atlas M0 + GitHub Actions + Gemini free tier ≈ $0</text>
+  <text x="40" y="1004" class="m">Provenance on every AI result: provider, model, prompt version, sectioner version, input sections, tokens, timestamps.</text>
+</svg>

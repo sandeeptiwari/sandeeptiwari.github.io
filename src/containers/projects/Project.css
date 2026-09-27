@@ -696,3 +696,26 @@
     justify-content: center;
   }
 }
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.project-gallery figure {
+  margin: 0;
+}
+
+.project-gallery img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #e9eef0;
+}
+
+.project-gallery figcaption {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}

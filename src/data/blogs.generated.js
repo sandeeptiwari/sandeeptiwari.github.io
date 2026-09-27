@@ -14,6 +14,13 @@ const internalBlogs = [
     category: "Networking &amp; Distributed Systems",
     readTime: "60 min read",
   },
+  {
+    url: "/blogs/paper2learn-architecture",
+    title: "Paper2Learn — Turning Research Papers into Beginner Tutorials at Near-Zero Cost",
+    description: "How I designed and shipped Paper2Learn: a pipeline that ingests arXiv papers one PDF at a time, splits them into typed sections without an LLM, stores them compactly in MongoDB Atlas, and turns them into beginner-friendly tutorials only when an admin asks — with copyright checks, human approval, live progress over Server-Sent Events, and a deployment that costs close to $0.",
+    category: "System Design",
+    readTime: "14 min read",
+  },
 ];
 
 export { internalBlogs };

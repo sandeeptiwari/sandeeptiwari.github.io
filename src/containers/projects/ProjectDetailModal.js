@@ -79,14 +79,35 @@ function FeatureGrid({ features }) {
   );
 }
 
+function Gallery({ items }) {
+  if (!items || !items.length) return null;
+  return (
+    <div className="project-gallery">
+      {items.map(({ src, caption }) => (
+        <figure key={src}>
+          <a href={src} {...newTab}>
+            <img src={src} alt={caption} loading="lazy" />
+          </a>
+          {caption && <figcaption>{caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 function OverviewTab({ project }) {
   return (
     <>
+      {project.gallery && project.gallery.length > 0 && (
+        <Section title="Gallery">
+          <Gallery items={project.gallery} />
+        </Section>
+      )}
       <Section title="Key features">
         <FeatureGrid features={project.features} />
       </Section>
       {project.benefits.length > 0 && (
-        <Section title="Why get the source">
+        <Section title={project.benefitsTitle || "Why get the source"}>
           <CheckList items={project.benefits} icon="mdi:check-circle-outline" />
         </Section>
       )}
@@ -95,7 +116,7 @@ function OverviewTab({ project }) {
 }
 
 function IncludedTab({ project }) {
-  const { includes, excludes } = project.sourceCode;
+  const { includes, excludes } = project.sourceCode || { includes: [], excludes: [] };
   return (
     <>
       {project.requirements.length > 0 && (
@@ -111,9 +132,11 @@ function IncludedTab({ project }) {
         </Section>
       )}
       <div className="project-modal-columns">
-        <Section title="Included in the download">
-          <CheckList items={includes} />
-        </Section>
+        {includes.length > 0 && (
+          <Section title="Included in the download">
+            <CheckList items={includes} />
+          </Section>
+        )}
         {excludes.length > 0 && (
           <Section title="Not included (bring your own)">
             <CheckList items={excludes} icon="mdi:close" tone="muted" />
@@ -243,6 +266,10 @@ function SourceCodePanel({ project }) {
 export default function ProjectDetailModal({ project, onClose }) {
   const closeRef = useRef(null);
   const [tab, setTab] = useState("overview");
+  // Projects without source for sale only get overview + tech details.
+  const tabs = project.sourceCode
+    ? TABS
+    : [TABS[0], { id: "included", label: "Tech details" }];
 
   useEffect(() => {
     const previouslyFocused = document.activeElement;
@@ -263,10 +290,10 @@ export default function ProjectDetailModal({ project, onClose }) {
 
   // Arrow-key navigation between tabs (WAI-ARIA tabs pattern).
   const onTabKey = (e) => {
-    const i = TABS.findIndex((t) => t.id === tab);
+    const i = tabs.findIndex((t) => t.id === tab);
     const delta = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
     if (!delta) return;
-    const next = TABS[(i + delta + TABS.length) % TABS.length];
+    const next = tabs[(i + delta + tabs.length) % tabs.length];
     setTab(next.id);
     document.getElementById(`${panelId}-tab-${next.id}`).focus();
   };
@@ -327,7 +354,7 @@ export default function ProjectDetailModal({ project, onClose }) {
           </div>
 
           <div className="project-tabs" role="tablist" aria-label="Project details">
-            {TABS.map((t) => (
+            {tabs.map((t) => (
               <button
                 key={t.id}
                 id={`${panelId}-tab-${t.id}`}
@@ -357,7 +384,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             {tab === "licence" && <LicenceTab />}
           </div>
 
-          <SourceCodePanel project={project} />
+          {project.sourceCode && <SourceCodePanel project={project} />}
         </div>
       </div>
     </div>,

@@ -1,0 +1,51 @@
+{
+  "name": "Paper2Learn",
+  "description": "Turns new arXiv research papers into beginner-friendly tutorials: deterministic ingestion, vector search, and AI simplification with human review, running at near-zero cost.",
+  "category": "AI · System Design",
+  "image": "cover.svg",
+  "order": 3,
+  "links": {
+    "Read the architecture": "/blogs/paper2learn-architecture"
+  },
+  "overview": "Paper2Learn discovers new research papers on arXiv, processes them one PDF at a time without storing any PDFs, and splits each paper into typed sections (introduction, method, results…) using deterministic layout analysis instead of an LLM. Papers are stored compactly in MongoDB Atlas with full-text and vector search. When an admin clicks Process, Gemini produces a beginner tutorial that passes copyright and grounding checks, streams its progress live over Server-Sent Events, and waits for human approval before it appears on the blog. The whole system runs on free tiers: Render, MongoDB Atlas M0, GitHub Actions and Gemini.",
+  "gallery": [
+    { "src": "architecture.png", "caption": "Architecture at a glance" },
+    { "src": "admin-tour.gif", "caption": "Tour of the live admin console" }
+  ],
+  "features": [
+    "Idempotent arXiv ingestion: two-level deduplication by source ID and SHA-256 content hash.",
+    "One PDF at a time: streamed, processed and deleted, so no PDFs are ever stored.",
+    "Deterministic section detection for LaTeX- and IEEE-style papers, with a human review queue.",
+    "Full-text search and Atlas Vector Search, plus LLM-ready retrieval tools with character budgets.",
+    "AI tutorials on demand, with live progress (Server-Sent Events) and human approval.",
+    "Licence-aware copyright checks: verbatim-copy detector and number grounding.",
+    "Admin console: storage, token and traffic dashboards, paper management, review queues.",
+    "CI/CD: tests against real MongoDB, automatic Render deploy, daily ingestion workflow."
+  ],
+  "benefitsTitle": "What it shows about how I build",
+  "benefits": [
+    "Cost-aware AI: two model calls per paper, daily caps, and results reused instead of regenerated.",
+    "Storage measured and designed for a 512 MB free cluster (~230 KB per paper).",
+    "Reliability first: idempotent jobs, failure isolation, timeouts, provenance on every AI result.",
+    "Responsible AI: human-in-the-loop publishing, attribution and licence handling."
+  ],
+  "requirements": [
+    { "label": "Language", "value": "Python 3.12" },
+    { "label": "Framework", "value": "FastAPI, Pydantic, PyMuPDF" },
+    { "label": "Data", "value": "MongoDB Atlas (full-text and Vector Search)" },
+    { "label": "AI", "value": "Gemini (embeddings and structured generation)" },
+    { "label": "Hosting", "value": "Render Free, GitHub Actions" }
+  ],
+  "techStack": [
+    "Python",
+    "FastAPI",
+    "PyMuPDF",
+    "MongoDB Atlas",
+    "Vector Search",
+    "Gemini",
+    "SSE",
+    "Render",
+    "GitHub Actions"
+  ],
+  "sourceCode": false
+}

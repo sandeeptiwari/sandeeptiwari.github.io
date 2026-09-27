@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<article>
+
+  <meta>
+
+    <title>Paper2Learn — Turning Research Papers into Beginner Tutorials at Near-Zero Cost</title>
+
+    <slug>paper2learn-architecture</slug>
+
+    <author>Sandeep Tiwari</author>
+
+    <date>2026-09-27</date>
+
+    <category>System Design</category>
+
+    <readTime>14 min read</readTime>
+
+    <summary>
+      How I designed and shipped Paper2Learn: a pipeline that ingests arXiv
+      papers one PDF at a time, splits them into typed sections without an LLM,
+      stores them compactly in MongoDB Atlas, and turns them into beginner-friendly
+      tutorials only when an admin asks — with copyright checks, human approval,
+      live progress over Server-Sent Events, and a deployment that costs close to $0.
+    </summary>
+
+    <thumbnail
+      src="/myworks/paper2learn/cover.png"
+      alt="Paper2Learn pipeline: arXiv PDF to sections to MongoDB Atlas to AI simplification to tutorial"
+    />
+
+    <tags>
+      <tag>System Design</tag>
+      <tag>Python</tag>
+      <tag>FastAPI</tag>
+      <tag>MongoDB Atlas</tag>
+      <tag>Vector Search</tag>
+      <tag>RAG</tag>
+      <tag>Gemini</tag>
+      <tag>Server-Sent Events</tag>
+      <tag>Render</tag>
+      <tag>GitHub Actions</tag>
+    </tags>
+
+  </meta>
+
+
+  <content>
+
+    <tle>Paper2Learn — Turning Research Papers into Beginner Tutorials at Near-Zero Cost</tle>
+
+    <smr>
+      Research papers are written for experts. Paper2Learn reads new papers from arXiv,
+      understands their structure without AI, and produces tutorials that answer what a
+      beginner actually asks: what is it, why does it matter, how does it work, and what
+      should I learn next? AI is used for one thing only, simplification, and a human
+      approves every tutorial before it is published.
+    </smr>
+
+    <img
+      src="/myworks/paper2learn/architecture.png"
+      alt="Paper2Learn system architecture: sources, deterministic ingestion, MongoDB Atlas storage, FastAPI serving, and the admin-triggered AI simplification lane"
+      caption="End-to-end architecture. The top row runs without any AI; the red lane runs only when an admin clicks Process."
+    />
+
+
+    <hd1>1. The Problem</hd1>
+
+    <p>
+      Hundreds of AI papers appear on arXiv every day. Summaries exist, but a summary does
+      not teach. A beginner needs the idea in plain words, the intuition behind the method,
+      how it is implemented, what the results really mean, and which concepts to study first.
+    </p>
+
+    <p>
+      The engineering challenge was to do this reliably and cheaply: no duplicate papers,
+      no lost data, no runaway AI bills, no copyright problems, and a deployment that fits
+      entirely inside free tiers.
+    </p>
+
+    <quote>
+      Design rule: use deterministic code for everything deterministic, and spend AI only
+      where language understanding is genuinely needed.
+    </quote>
+
+
+    <hd1>2. Architecture at a Glance</hd1>
+
+    <list type="arrow">
+      <item>Sources — arXiv search API for papers, arXiv OAI-PMH for each paper's licence.</item>
+      <item>Ingestion — one PDF at a time: download, hash, extract, section, licence, save, delete. No AI.</item>
+      <item>Storage — MongoDB Atlas M0 (free, 512 MB) with full-text and vector search.</item>
+      <item>Serving — a FastAPI service on Render Free: REST APIs, retrieval tools, blog XML, admin console.</item>
+      <item>AI lane — only when an admin clicks Process: embeddings and a simplified tutorial, then deterministic checks and human review.</item>
+      <item>Delivery — every push is tested in GitHub Actions and deployed to Render automatically; a daily workflow ingests new papers.</item>
+    </list>
+
+    <codet>
+arXiv API ──► GitHub Actions (daily) / Admin "Run now"
+                 │  one PDF at a time, never stored
+                 ▼
+   metadata ─► dedup(source id) ─► stream PDF ─► SHA-256 ─► dedup(hash)
+                 ─► PyMuPDF extract ─► sectioner ─► licence ─► MongoDB ─► delete temp PDF
+
+Admin clicks "Process" (one paper) ──► Gemini: embeddings + summary/JSON
+                 ─► copyright + grounding checks ─► PENDING_REVIEW ─► human approves
+                 ─► /api/v1/blog/posts/{slug}.xml ─► sandeeptiwari.me renders it
+    </codet>
+
+
+    <hd1>3. Ingestion: One PDF at a Time</hd1>
+
+    <p>
+      The hosting constraints shaped the pipeline. Render Free has 512 MB of memory and no
+      persistent disk, and Atlas M0 has 512 MB of storage. So the pipeline never keeps a PDF:
+      each file is streamed to a temporary file, processed, and deleted before the next one starts.
+      Only structured data reaches the database.
+    </p>
+
+    <list type="number">
+      <item>Fetch metadata from the arXiv API (respecting its limit of one request every three seconds).</item>
+      <item>Skip the paper if its source ID is already stored — before downloading anything.</item>
+      <item>Stream the PDF to a temp file while computing its SHA-256 hash, with a size cap, a PDF signature check and an SSRF guard that rejects private or non-HTTPS targets, including after redirects.</item>
+      <item>Skip the paper if the same content hash already exists (a second deduplication level).</item>
+      <item>Extract text with PyMuPDF. Large PDFs are split into page ranges processed in parallel worker processes, then joined in page order.</item>
+      <item>Split the paper into typed sections (next section), look up its licence, save everything, and delete the temp file.</item>
+    </list>
+
+    <p>
+      Every step is idempotent. Re-running the same window, or importing papers that are already
+      present, inserts nothing twice. One failing paper never stops the batch: the error is
+      recorded and the run continues.
+    </p>
+
+    <hd2>A real-world surprise</hd2>
+
+    <p>
+      arXiv's edge consistently answered one HTTP client library with an empty 406 response,
+      while byte-identical requests from Python's standard library succeeded. After ruling out
+      headers, TLS settings and header order, the metadata client was switched to the standard
+      library and the behaviour was documented. Verifying live behaviour, rather than trusting
+      the documentation, saved a lot of guesswork later.
+    </p>
+
+
+    <hd1>4. Understanding Structure Without an LLM</hd1>
+
+    <p>
+      Tutorials need the right parts of a paper: the introduction for "what is it", the method
+      for "how does it work", the results for "what did they find". Instead of asking an LLM to
+      find them, a deterministic sectioner reads the PDF layout.
+    </p>
+
+    <list type="dot">
+      <item>The body font size is the size carrying the most characters; headings are short lines that are bold or larger.</item>
+      <item>It recognises LaTeX-style numbered headings ("2" followed by "Related Work"), inline headings ("3 Method") and IEEE style ("III. APPROACH", "B. Sub-title").</item>
+      <item>A numbering-sequence check rejects table values such as "65.3" that happen to be styled like headings.</item>
+      <item>Keyword rules map headings to types: introduction, background, method, experiments, results, discussion, limitations, conclusion, references, appendix.</item>
+      <item>Untitled sections between the introduction and the experiments are inferred as method and marked as inferred.</item>
+    </list>
+
+    <p>
+      On real arXiv papers, the share of papers needing human review fell from 43% to about 18%
+      after adding IEEE support and the sequence check. The remaining papers go to a review
+      queue instead of producing a poor tutorial.
+    </p>
+
+
+    <hd1>5. Storage Designed for 512 MB</hd1>
+
+    <p>
+      The free Atlas cluster has about 512 MB. The target was roughly 500 papers with a healthy
+      margin, so I measured before designing the final schema.
+    </p>
+
+    <list type="arrow">
+      <item>Before optimising: about 315 KB per paper, mostly because the full text was stored twice and the full-text index was huge.</item>
+      <item>Dropped the duplicate full text; the text is rebuilt from sections when needed.</item>
+      <item>No text stored for references, acknowledgements or front matter; appendices capped; a per-paper text cap for outliers.</item>
+      <item>Full-text index restricted to body sections through a partial index.</item>
+      <item>Embeddings stored as compact float32 binary vectors — 3 KB for 768 dimensions — with chunk text read from sections by offset, never duplicated.</item>
+      <item>Tutorial XML rendered on demand from the stored draft; traffic metrics stored as daily aggregates with automatic expiry.</item>
+    </list>
+
+    <p>
+      Measured result on Atlas: about 230 KB per paper including indexes, so 500 papers take about
+      125 MB — roughly a quarter of the free cluster. The biggest lesson: a MongoDB text index cost
+      about 3.4 times the text it indexed, much more than I had estimated, which is exactly why
+      measuring beats guessing.
+    </p>
+
+
+    <hd1>6. Retrieval: Search and LLM-Ready Tools</hd1>
+
+    <p>
+      Before any AI is involved, the data is already searchable and retrievable in a controlled way.
+    </p>
+
+    <list type="dot">
+      <item>Full-text search over paper titles, abstracts and section text, using MongoDB's built-in text index at no extra cost.</item>
+      <item>Semantic search: sections are chunked deterministically, embedded with Gemini, and queried through Atlas Vector Search.</item>
+      <item>Five retrieval tools with JSON schemas in LLM tool-calling format: search papers, get a paper outline, get the sections suggested for a learning goal, get specific sections, and search inside sections.</item>
+      <item>Every text-returning tool has a hard character budget and reports what was truncated or missing, so a model can never pull a whole paper by accident.</item>
+    </list>
+
+    <p>
+      Learning goals map to section types: overview (abstract, introduction, conclusion),
+      how it works (method, background), implementation (method, experiments, appendix),
+      evaluation (experiments, results, discussion, limitations) and prerequisites
+      (background, related work, introduction).
+    </p>
+
+
+    <hd1>7. AI Simplification with a Human in the Loop</hd1>
+
+    <p>
+      Early runs showed that calling the model automatically for every new paper wasted calls and
+      made progress hard to follow. The final design makes AI an explicit admin action.
+    </p>
+
+    <list type="number">
+      <item>The admin console lists pending and processed papers with counts.</item>
+      <item>The admin clicks Process on one paper; only one AI job runs at a time.</item>
+      <item>One call creates the chunk embeddings; one call produces the simplified summary and a structured tutorial as validated JSON.</item>
+      <item>Progress streams live to the browser over Server-Sent Events: embeddings, summary, completed or failed, with a percentage bar.</item>
+      <item>Deterministic checks run on the result, and the tutorial waits in PENDING_REVIEW.</item>
+      <item>A human reads it and approves or rejects it. Only approved tutorials appear on the blog.</item>
+    </list>
+
+    <p>
+      The tutorial always follows the same beginner structure: What is it, Why does it matter,
+      How does it work, How is it implemented, What did they find, Key concepts, What to learn next,
+      and Source and licence. It is rendered into the same XML format as this article.
+    </p>
+
+    <hd2>Cost and reliability controls</hd2>
+
+    <list type="dot">
+      <item>Two model calls per paper, about 5,000 input and 1,600 output tokens for the tutorial.</item>
+      <item>A finished draft is reused instead of regenerated unless a new version is explicitly requested.</item>
+      <item>Daily call caps, a minimum spacing between calls and hard HTTP timeouts, so a throttled request fails visibly instead of hanging.</item>
+      <item>Every AI result records provider, model, prompt version, sectioner version, input sections, token counts and timestamps.</item>
+    </list>
+
+
+    <hd1>8. Copyright and Honesty Safeguards</hd1>
+
+    <p>
+      Ideas and results are not protected by copyright; a paper's wording, figures and tables are.
+      Each paper's licence is fetched from arXiv and mapped to a policy. In a sample of 107 papers,
+      about 41% used licences that grant no reuse rights, so this mattered.
+    </p>
+
+    <list type="arrow">
+      <item>The prompt requires original wording, at most one short attributed quote, and no reproduced figures or tables.</item>
+      <item>A verbatim detector compares the tutorial with the paper using 8-word shingles and enforces per-licence limits on the longest copied run and the copied ratio. In a live run it caught a copied 16-word sentence.</item>
+      <item>A grounding check requires every number in the tutorial to appear in the paper excerpts, which guards against invented results.</item>
+      <item>Restrictive licences need an explicit licence acknowledgement and a written note before approval.</item>
+      <item>Every tutorial ends with attribution, a link to the original paper and its licence. PDFs are never stored or redistributed.</item>
+    </list>
+
+
+    <hd1>9. Admin Console and Observability</hd1>
+
+    <img
+      src="/myworks/paper2learn/admin-tour.gif"
+      alt="Animated tour of the Paper2Learn admin console: dashboard, processing, papers, tutorials, ingestion and section review tabs"
+      caption="A tour of the live admin console: storage, token and traffic dashboard, processing queue, papers, tutorial review, ingestion runs and section review."
+    />
+
+    <list type="dot">
+      <item>Dashboard: Atlas usage and KB per paper, per-collection data and index sizes, licence mix and tutorial status counts.</item>
+      <item>LLM token usage per day and model, and API traffic per day and per route, stored as small aggregated counters.</item>
+      <item>Paper management: add a paper by arXiv ID, search, edit metadata, delete with confirmation.</item>
+      <item>Processing: pending, processed, failed and needs-review lists with one-click processing and live progress.</item>
+      <item>Review queues for sectioning and tutorials, and a manual ingestion run with streamed events.</item>
+    </list>
+
+
+    <hd1>10. Deployment at Near-Zero Cost</hd1>
+
+    <list type="arrow">
+      <item>Render Free runs the FastAPI service with a production ASGI server, configuration from environment variables, and a health endpoint that returns UP without touching the database.</item>
+      <item>MongoDB Atlas M0 stores everything, including vector search.</item>
+      <item>GitHub Actions runs the test suite against a real MongoDB service container on every push, then triggers the Render deploy hook and checks health.</item>
+      <item>A scheduled workflow ingests new papers daily — no AI calls, so no model cost.</item>
+      <item>Gemini's free tier covers embeddings and summaries within daily caps.</item>
+    </list>
+
+    <hd2>Lessons from production</hd2>
+
+    <list type="dot">
+      <item>An Atlas IP access-list block surfaces as a TLS handshake error, not an access error. Knowing that turned a confusing SSL failure into a one-minute fix.</item>
+      <item>Hosting dashboards can keep spaces in imported variable names, so the app now normalises names and the admin console shows which settings the server actually resolved.</item>
+      <item>A single missing parenthesis blanked the admin page, so the console's JavaScript is now syntax-checked in CI.</item>
+      <item>Free hosting sleeps when idle; long work runs in GitHub Actions or as short, resumable admin jobs.</item>
+    </list>
+
+
+    <hd1>11. Tech Stack</hd1>
+
+    <list type="dot">
+      <item>Python, FastAPI, Pydantic, Uvicorn</item>
+      <item>PyMuPDF for PDF extraction and layout analysis</item>
+      <item>MongoDB Atlas with full-text search and Atlas Vector Search; PyMongo</item>
+      <item>Gemini for embeddings and structured generation</item>
+      <item>Server-Sent Events for live progress; a vanilla-JavaScript admin console</item>
+      <item>pytest with real MongoDB integration tests, headless-browser UI checks</item>
+      <item>Render, GitHub Actions, Docker Compose for local development</item>
+    </list>
+
+
+    <hd1>12. Results and What Is Next</hd1>
+
+    <list type="arrow">
+      <item>115 papers ingested and split into about 2,700 typed sections.</item>
+      <item>About 230 KB per paper, leaving room for roughly 1,700 papers before reaching 80% of the free cluster.</item>
+      <item>Two model calls per processed paper, with every tutorial reviewed by a human before publishing.</item>
+      <item>Next: a side-by-side review view that highlights copied runs, semantic retrieval in tutorial generation, and more sources such as OpenAlex and Semantic Scholar.</item>
+    </list>
+
+    <quote>
+      The most valuable decisions were not about AI: measuring storage before designing the
+      schema, keeping ingestion deterministic, and making every AI step explicit, observable
+      and reviewable.
+    </quote>
+
+  </content>
+
+</article>

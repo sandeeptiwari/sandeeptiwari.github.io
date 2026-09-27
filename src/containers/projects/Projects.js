@@ -86,7 +86,7 @@ export function ProjectCard({ project }) {
           onClick={() => setShowDetails(true)}
         >
           <Icon icon="mdi:information-outline" />
-          Details &amp; source code
+          {project.sourceCode ? "Details & source code" : "Details"}
         </button>
       </div>
       {showDetails && (

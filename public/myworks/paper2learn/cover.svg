@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#001c55"/>
+      <stop offset="1" stop-color="#0b2f6b"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#f2b8a8"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="110" y="200" fill="#ffffff" font-size="96" font-weight="700" letter-spacing="-1">Paper2Learn</text>
+  <text x="112" y="262" fill="#c9d6ee" font-size="36" font-weight="500">Research papers → beginner-friendly tutorials</text>
+  <rect x="112" y="296" width="120" height="8" rx="4" fill="#b7442e"/>
+
+  <!-- Pipeline: PDF → Sections → MongoDB → AI → Tutorial -->
+  <g transform="translate(66 420)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 1 PDF -->
+    <g>
+      <rect x="0" y="0" width="220" height="250" rx="18" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.18"/>
+      <path d="M70 40h60l30 30v110H70z" fill="#ffffff"/>
+      <path d="M130 40v30h30" fill="#dfe6f3"/>
+      <rect x="82" y="90" width="66" height="8" rx="4" fill="#b7442e"/>
+      <rect x="82" y="110" width="58" height="6" rx="3" fill="#aab7cc"/>
+      <rect x="82" y="124" width="66" height="6" rx="3" fill="#aab7cc"/>
+      <rect x="82" y="138" width="46" height="6" rx="3" fill="#aab7cc"/>
+      <text x="110" y="222" fill="#ffffff" font-size="26" font-weight="600" text-anchor="middle">arXiv PDF</text>
+    </g>
+    <line x1="232" y1="125" x2="300" y2="125" stroke="#f2b8a8" stroke-width="5" marker-end="url(#arrow)"/>
+    <!-- 2 Sections -->
+    <g transform="translate(312 0)">
+      <rect x="0" y="0" width="220" height="250" rx="18" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.18"/>
+      <rect x="45" y="42" width="130" height="30" rx="7" fill="#ffffff"/>
+      <rect x="45" y="82" width="130" height="30" rx="7" fill="#ffffff" fill-opacity="0.85"/>
+      <rect x="45" y="122" width="130" height="30" rx="7" fill="#ffffff" fill-opacity="0.65"/>
+      <rect x="57" y="53" width="60" height="8" rx="4" fill="#b7442e"/>
+      <rect x="57" y="93" width="80" height="8" rx="4" fill="#001c55" fill-opacity="0.6"/>
+      <rect x="57" y="133" width="50" height="8" rx="4" fill="#001c55" fill-opacity="0.6"/>
+      <text x="110" y="222" fill="#ffffff" font-size="26" font-weight="600" text-anchor="middle">Sections</text>
+    </g>
+    <line x1="544" y1="125" x2="612" y2="125" stroke="#f2b8a8" stroke-width="5" marker-end="url(#arrow)"/>
+    <!-- 3 MongoDB -->
+    <g transform="translate(624 0)">
+      <rect x="0" y="0" width="220" height="250" rx="18" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.18"/>
+      <ellipse cx="110" cy="58" rx="62" ry="18" fill="#ffffff"/>
+      <path d="M48 58v90c0 10 28 18 62 18s62-8 62-18V58c0 10-28 18-62 18s-62-8-62-18z" fill="#ffffff" fill-opacity="0.85"/>
+      <path d="M48 88c0 10 28 18 62 18s62-8 62-18M48 118c0 10 28 18 62 18s62-8 62-18" fill="none" stroke="#001c55" stroke-opacity="0.35" stroke-width="3"/>
+      <path d="M110 70c-8 14-8 38 0 62 8-24 8-48 0-62z" fill="#3f9b5c"/>
+      <text x="110" y="222" fill="#ffffff" font-size="26" font-weight="600" text-anchor="middle">MongoDB Atlas</text>
+    </g>
+    <line x1="856" y1="125" x2="924" y2="125" stroke="#f2b8a8" stroke-width="5" marker-end="url(#arrow)"/>
+    <!-- 4 AI + human review -->
+    <g transform="translate(936 0)">
+      <rect x="0" y="0" width="220" height="250" rx="18" fill="#b7442e" fill-opacity="0.9"/>
+      <path d="M110 44l14 34 34 14-34 14-14 34-14-34-34-14 34-14z" fill="#ffffff"/>
+      <path d="M160 40l6 14 14 6-14 6-6 14-6-14-14-6 14-6z" fill="#ffffff" fill-opacity="0.8"/>
+      <text x="110" y="192" fill="#ffffff" font-size="26" font-weight="600" text-anchor="middle">AI simplify</text>
+      <text x="110" y="224" fill="#ffe3db" font-size="20" font-weight="500" text-anchor="middle">+ human review</text>
+    </g>
+    <line x1="1168" y1="125" x2="1236" y2="125" stroke="#f2b8a8" stroke-width="5" marker-end="url(#arrow)"/>
+    <!-- 5 Tutorial -->
+    <g transform="translate(1248 0)">
+      <rect x="0" y="0" width="220" height="250" rx="18" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.18"/>
+      <rect x="40" y="38" width="140" height="120" rx="10" fill="#ffffff"/>
+      <rect x="54" y="54" width="70" height="10" rx="5" fill="#001c55"/>
+      <rect x="54" y="74" width="112" height="6" rx="3" fill="#aab7cc"/>
+      <rect x="54" y="88" width="100" height="6" rx="3" fill="#aab7cc"/>
+      <rect x="54" y="106" width="50" height="36" rx="5" fill="#dfe6f3"/>
+      <path d="M150 122l6 6 12-14" fill="none" stroke="#3f9b5c" stroke-width="5"/>
+      <text x="110" y="222" fill="#ffffff" font-size="26" font-weight="600" text-anchor="middle">Tutorial</text>
+    </g>
+  </g>
+
+  <!-- Footer chips -->
+  <g font-size="22" font-weight="600" fill="#c9d6ee">
+    <text x="112" y="808">FastAPI · PyMuPDF · MongoDB Atlas · Vector Search · Gemini · SSE · Render · GitHub Actions</text>
+  </g>
+</svg>
