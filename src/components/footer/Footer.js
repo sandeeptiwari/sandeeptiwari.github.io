@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import { Fade } from "react-reveal";
+import { Fade } from "../fade/Fade";
 import emoji from "react-easy-emoji";
 
 export default function Footer() {

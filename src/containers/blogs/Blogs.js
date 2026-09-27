@@ -3,13 +3,15 @@ import "./Blog.css";
 import BlogCard from "../../components/blogCard/BlogCard";
 import Button from "../../components/button/Button";
 import { blogSection } from "../../data/blogs";
-import { Fade } from "react-reveal";
+import { Fade } from "../../components/fade/Fade";
+import useBlogs from "../../blog/useBlogs";
 
 const HOMEPAGE_BLOG_LIMIT = 6;
 
 export default function Blogs() {
-  const previewBlogs = blogSection.blogs.slice(0, HOMEPAGE_BLOG_LIMIT);
-  const hasMoreBlogs = blogSection.blogs.length > HOMEPAGE_BLOG_LIMIT;
+  const blogs = useBlogs();
+  const previewBlogs = blogs.slice(0, HOMEPAGE_BLOG_LIMIT);
+  const hasMoreBlogs = blogs.length > HOMEPAGE_BLOG_LIMIT;
 
   return (
     <Fade bottom duration={1000} distance="20px">

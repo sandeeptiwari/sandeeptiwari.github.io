@@ -2,6 +2,7 @@ name: Build and Deploy
 env:
   CI: false
   REACT_APP_GITHUB_TOKEN: ${{ secrets.OPEN_SOURCE_TOKEN }}
+  REACT_APP_PAPER2LEARN_API_KEY: ${{ secrets.PAPER2LEARN_API_KEY }}
 on:
   push:
     branches:

@@ -15,9 +15,14 @@ function App() {
     return () => window.removeEventListener("popstate", handleRouteChange);
   }, []);
 
+  const paper2LearnMatch = route.match(/^\/blogs\/p2l\/([^/?#]+)/);
   const blogMatch = route.match(/^\/blogs\/([^/?#]+)/);
   const isBlogListRoute = /^\/blogs\/?$/.test(route);
   const isProjectsRoute = /^\/projects\/?$/.test(route);
+
+  if (paper2LearnMatch) {
+    return <BlogPage blogSlug={paper2LearnMatch[1]} source="paper2learn" />;
+  }
 
   if (blogMatch) {
     return <BlogPage blogSlug={blogMatch[1]} />;

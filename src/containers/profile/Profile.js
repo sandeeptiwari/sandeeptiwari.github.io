@@ -40,13 +40,18 @@ export default function Profile() {
         setProfileFunction(result.data.user);
       })
       .catch(function (error) {
-          console.log(error);
+          console.warn("GitHub profile unavailable, showing Contact section:", error.message);
           setProfileFunction("Error");
-          console.log("Because of this Error Contact Section is Showed instead of Profile");
           openSource.showGithubProfile = "false";
       });
   }, []);
   useEffect(() => {
+    // Without a token GitHub returns 401, so skip the call and show Contact instead.
+    if (!openSource.githubConvertedToken) {
+      openSource.showGithubProfile = "false";
+      setProfileFunction("Error");
+      return;
+    }
     if (openSource.showGithubProfile === "true") {
       getProfileData();
     }

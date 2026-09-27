@@ -2,7 +2,7 @@ import React from "react";
 import "./WorkExperience.css";
 import ExperienceCard from "../../components/experienceCard/ExperienceCard";
 import { workExperiences } from "../../portfolio";
-import { Fade } from "react-reveal";
+import { Fade } from "../../components/fade/Fade";
 
 
 export default function WorkExperience() {
