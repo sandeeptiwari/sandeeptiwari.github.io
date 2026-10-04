@@ -159,6 +159,58 @@
   height: 16px;
 }
 
+/* ---------- Project type tabs (Games / Applications / Tools) ---------- */
+.project-type-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  border-bottom: 1px solid #d5dde4;
+  scrollbar-width: none;
+}
+
+.project-type-tab {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: -1px;
+  padding: 10px 16px;
+  color: #5e6872;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.project-type-tab svg {
+  width: 18px;
+  height: 18px;
+}
+
+.project-type-tab:hover {
+  color: #172a3a;
+}
+
+.project-type-tab[aria-selected="true"] {
+  color: #b7442e;
+  border-bottom-color: #b7442e;
+}
+
+.project-type-count {
+  min-width: 20px;
+  padding: 1px 7px;
+  color: #173f56;
+  background: #eef2f6;
+  border-radius: 999px;
+  font-size: 12px;
+  text-align: center;
+}
+
 .project-view-all-wrapper {
   display: flex;
   justify-content: center;

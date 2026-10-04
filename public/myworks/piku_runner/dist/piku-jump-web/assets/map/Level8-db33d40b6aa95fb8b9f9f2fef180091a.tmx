@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="280" height="16" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="TileMap_5" tilewidth="40" tileheight="40" spacing="2" margin="2">
+  <image source="TileMap_5.png" trans="ff00ff" width="474" height="474"/>
+ </tileset>
+ <tileset firstgid="122" name="coins" tilewidth="40" tileheight="40">
+  <image source="coins.png" trans="ff00ff" width="480" height="40"/>
+ </tileset>
+ <tileset firstgid="134" name="boxer" tilewidth="40" tileheight="40">
+  <image source="boxer.png" trans="ff00ff" width="40" height="40"/>
+ </tileset>
+ <layer name="Decoration" width="280" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1zkOwjAUBcB09JwGCUqWkuUYuf8BcAESRUKCHccknpFeh7cX6Us0DQAAAAAAAAAAANRhU/oCsDD7kEPpSyzENnG9rtPU2F+JN+9eSXEMOYWcQy6Ra6eWa9+pxM6XlK6ps7+lv/kacgu5hzya32bWe22uO6WYYvb2iZ0vKV1TZ381vnnNxny/1P9HAGvRfqT02W1Hun6X4/yhTHHGXMb22PfGmLXf1g+dN6dc3zZmrzEdjen2H3rtY76YL+ZLmb1yz5cnZmVbdA==
+  </data>
+ </layer>
+ <layer name="Ground" width="280" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztl01OwzAQRiN+llAkvGFDj8CmXII9rMv9L4EjBQkZj2NPPHbjvid9m6RtJvbnJ9VNAAA2uN4DAMCw4BcAsAK/AIAV+AUArMAvAGAFfgEAK/ALAFiBXwDAipH9cvJ57z3EILRay48le4S+/Wdkv3z6fPUewpCWZ3Fey+8Gzzku0dLTT6P3TcPIfjlPbc5EL56XtODS/HJUxpLzNHbfNOzJLzc+d4rcCrlvO3519u6XLW6QXJHySOz63CmpHxaROqeZY+tvtei/y5xFk5yzH75jam3efA4+j5XyFDx77t9rJGEva3Yy9jwpThmr2UvfK8cRkh+s/PIwlXXmkMja/Tlh57RzxPpb+lux70tn4Hf/Uvdjn3V/1qXk3V6W5O5F7jum1mZt71L7nuuXGOH1mp0soYZfND1eW8dYYlyqX2p0Kbeje/CLRMl/zNAvFrHyy5Y5Untt5ZfScyjRwy8lZ+sa/LI11+aXH6lCMws=
+  </data>
+ </layer>
+ <layer name="Bugs" width="280" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAAAAAAAAAHgYRgAAAQ==
+  </data>
+ </layer>
+ <layer name="Coins" width="280" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1UEOwjAMBMC8O6/n0gNCTRHYNHGYkSr1FLmOvW0NAAAAAAAAAIjox0NclV5WqZPa+uB9J3ftUqVeyhd+7Wy+RjNnFq990ssd9JaTUVk511tOTbvm7kp3dXYuY1f9yerdu7uduReRvZYv99j1u771Oi9Z/8tIHTOtnC/PVukX/2FmNkRUrBkAAACqewC4SSUt
+  </data>
+ </layer>
+</map>

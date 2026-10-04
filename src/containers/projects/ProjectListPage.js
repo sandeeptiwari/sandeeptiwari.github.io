@@ -1,7 +1,7 @@
 import React from "react";
 import "./Project.css";
 import { projectSection } from "../../portfolio";
-import { ProjectCard } from "./Projects";
+import { ProjectTabs } from "./Projects";
 
 export default function ProjectListPage() {
   return (
@@ -13,11 +13,7 @@ export default function ProjectListPage() {
         <h1 className="project-title">{projectSection.title}</h1>
         <p>{projectSection.subtitle}</p>
       </div>
-      <div className="project-grid">
-        {projectSection.projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
+      <ProjectTabs projects={projectSection.projects} />
     </main>
   );
 }

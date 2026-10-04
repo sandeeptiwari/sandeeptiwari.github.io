@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="150" height="16" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="TileMap" tilewidth="40" tileheight="40" spacing="2" margin="2">
+  <image source="TileMap.png" trans="ff00ff" width="474" height="474"/>
+ </tileset>
+ <tileset firstgid="122" name="coins" tilewidth="40" tileheight="40">
+  <image source="coins.png" trans="ff00ff" width="480" height="40"/>
+ </tileset>
+ <tileset firstgid="134" name="boxer" tilewidth="40" tileheight="40">
+  <image source="boxer.png" trans="ff00ff" width="40" height="40"/>
+ </tileset>
+ <layer name="Decoration" width="150" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztkrkKwkAURdPZ+x/2Lq1aunVunVtwiQu4/L23MDJIIMNkxvei98AhCQTecl8UEUIIIYQQQggh5aABm7Al3QgpjKYs27ADu9KNGGjaz7fwMbOWLHuwDwdwCEey7bzRsp+QVD6+i86sKcsxnMApnMG5YC8pmvYTkqrx7mNmTVku4BKu4BpuBHtJ0bSfkJh35WNm2yy3cAf38OBQx4YEHuEJnuEF1mHt9ZRA463n4ZKVeVc+ZrbN8gpv8A4fDnXKisZbz8MlK/OuyjgzIT6IDaVrxxlm/Reifp4+avwTvKvfu6snNMhE+A==
+  </data>
+ </layer>
+ <layer name="Ground" width="150" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztkrEOwiAURU3VUWsii4v9BJf6E+466///hG9gIAReeJRXEO9JzmJqewPHbAAoj6k9AHQJugIaoCugAboCGqAroAG6AhqgK6ABugIa9NzVTN5rj/hTeu7qSb5qj1DkYW2Rnrt6k5/aIxQ5W1vkl7oayF2G24j7decXp/WuYue+1JQ79+92YN53I0fyWMiT9+2JvAacBBulhr4X02SqtZ3T2DOW3tfFyj0zOqbe7SHxfRIlXYXwf+c2SndLKNGVdLu7X/Ifk/GdnPMs2dWSHa5rdcUpoUZXKXcY8gueKhgw
+  </data>
+ </layer>
+ <layer name="Bugs" width="150" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20Hb6AAAAAAAAAAAAB4DCWAAAE=
+  </data>
+ </layer>
+ <layer name="Coins" width="150" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1LEKACAIBcC+269vaQmylgqKOxCc1WcpAAAAAKxEK9glkv4ncnPXaNbZ/O3lTTsydSqXbupdfnUvJgVuAgDIVGBRDN8=
+  </data>
+ </layer>
+</map>

@@ -2,6 +2,7 @@
   "name": "PigRunner",
   "description": "A colorful endless runner game. Jump in and see how far you can go.",
   "category": "Game",
+  "type": "Game",
   "image": "dist/web/assets/images/menuBg-8aac7e9a2d302e3405354da08ec2771a.jpg",
   "order": 1,
   "overview": "PigRunner is a side-scrolling endless runner built with libGDX and compiled to the web with GWT. It features physics-based jumping, procedurally generated hills, coin collection, particle effects and sound, all running at a smooth frame rate in the browser.",

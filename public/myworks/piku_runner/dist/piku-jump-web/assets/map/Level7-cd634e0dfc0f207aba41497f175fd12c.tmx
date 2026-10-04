@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="260" height="16" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="TileMap_5" tilewidth="40" tileheight="40" spacing="2" margin="2">
+  <image source="TileMap_5.png" trans="ff00ff" width="474" height="474"/>
+ </tileset>
+ <tileset firstgid="122" name="coins" tilewidth="40" tileheight="40">
+  <image source="coins.png" trans="ff00ff" width="480" height="40"/>
+ </tileset>
+ <tileset firstgid="134" name="boxer" tilewidth="40" tileheight="40">
+  <image source="boxer.png" trans="ff00ff" width="40" height="40"/>
+ </tileset>
+ <layer name="Decoration" width="260" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1E0OgkAMhmF27j0NiS79WaIeg/sfwC4wEOL8gENbxvdJGheMmfYLtGkAAAAAAAAAAAAAYHSwbgCAG0frBgC4EdoHJ6mzZiOVILc8/56TxfwXqWvizHwffP5zk7ovuEtjPs/v0NrcNHnIbw85bcly/k7qkTgz3wfd8PuUekm1Q4VozFfyjrZJz7TG0tw0efoGPeeU65eea5g/RmO+2jMs6Vsu5AcAwKiflDVPvcRMe+wzSqOX1P2lzqXOpPoKPdNide9eeMrGUy8x7AP2Qa43P6dNJQ==
+  </data>
+ </layer>
+ <layer name="Ground" width="260" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztlrFSwzAMhnuFjjQMWbq0LwFzmdlhhvd/CZwjPoLP1LIj2ebyfXf/ZCeSFemPxx0AwDdj6wQAoBvwAwDw4AcA4MEPAMCDHwCABz8AAA9+AAAe/ABivM7aanwrnpyeWydxA/wAYlxmbTW+FVenl9ZJ3GCLftCLR/eSRwzNeSw5Zy0/qH0PeXN6rxgvly36QS/fpOd/heY8lpyzlh/Uvod8OH2ueH7vdGeo/+wHU23ulRTWJbX/oJB/bV+a+v4s0CWQpB5SlcRvrRjWczkp1mMPTkeBhlmSvUuNFc5lVZ9UbU4L5dZlSOgxyEXTmzS1rJn0PxjOg6QeUknja+1L7UndD/5am3pPqybSHsuJm9vvSz84FryjdM7CmcvZH9ZH85vk5m6Zy7D77WVea3sKP4ivl/rBmt4v6bEacUfj91v7Qavcrf3A4h+DH8TX8YMffQG8hzQp
+  </data>
+ </layer>
+ <layer name="Bugs" width="260" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAAAAAAAAvgZBAAAB
+  </data>
+ </layer>
+ <layer name="Coins" width="260" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt10sKwCAMBUDP7em7F+1XJdYZKHSZmGdKUwIAAAAAAACAf8jFAyOd5WxmFlfO+8i6c+MdervK2g7fph69RdgH5awizqt3XVH7XFHr/kc2Yv72wf06epyTfVD3ZG7R9/6ZWk7f9rBi/19F+V/Y8exnWvV+AwAAwO4O4toksw==
+  </data>
+ </layer>
+</map>

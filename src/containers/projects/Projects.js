@@ -99,8 +99,63 @@ export function ProjectCard({ project }) {
   );
 }
 
+// Tab order; any other type found in the data is appended after these.
+const TYPE_TABS = [
+  { type: "Game", label: "Games", icon: "mdi:gamepad-variant-outline" },
+  { type: "Application", label: "Applications", icon: "mdi:application-outline" },
+  { type: "Tool", label: "Tools", icon: "mdi:tools" },
+];
+
+export function ProjectTabs({ projects, limit }) {
+  const types = [...new Set(projects.map((p) => p.type))];
+  const tabs = [
+    ...TYPE_TABS.filter((t) => types.includes(t.type)),
+    ...types
+      .filter((type) => !TYPE_TABS.some((t) => t.type === type))
+      .map((type) => ({ type, label: type, icon: "mdi:folder-outline" })),
+  ];
+  const [active, setActive] = useState(tabs[0] && tabs[0].type);
+  const visible = projects.filter((p) => p.type === active);
+  const shown = limit ? visible.slice(0, limit) : visible;
+
+  return (
+    <>
+      <div className="project-type-tabs" role="tablist" aria-label="Project types">
+        {tabs.map((tab) => {
+          const count = projects.filter((p) => p.type === tab.type).length;
+          return (
+            <button
+              key={tab.type}
+              type="button"
+              role="tab"
+              id={`project-type-tab-${tab.type}`}
+              aria-selected={active === tab.type}
+              aria-controls="project-type-panel"
+              className="project-type-tab"
+              onClick={() => setActive(tab.type)}
+            >
+              <Icon icon={tab.icon} />
+              {tab.label}
+              <span className="project-type-count">{count}</span>
+            </button>
+          );
+        })}
+      </div>
+      <div
+        className="project-grid"
+        role="tabpanel"
+        id="project-type-panel"
+        aria-labelledby={`project-type-tab-${active}`}
+      >
+        {shown.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
+    </>
+  );
+}
+
 export default function Projects() {
-  const previewProjects = projectSection.projects.slice(0, 3);
 
   return (
     <section className="main projects-section" id="projects">
@@ -108,11 +163,7 @@ export default function Projects() {
         <h1 className="project-title">{projectSection.title}</h1>
         <p>{projectSection.subtitle}</p>
       </div>
-      <div className="project-grid">
-        {previewProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
+      <ProjectTabs projects={projectSection.projects} limit={3} />
       <div className="project-view-all-wrapper">
         <a className="main-button" href="/projects">
           View All Projects

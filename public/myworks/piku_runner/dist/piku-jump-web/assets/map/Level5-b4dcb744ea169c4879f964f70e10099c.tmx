@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="220" height="16" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="TileMap_2" tilewidth="40" tileheight="40" spacing="2" margin="2">
+  <image source="TileMap_2.png" trans="ff00ff" width="474" height="474"/>
+ </tileset>
+ <tileset firstgid="122" name="coins" tilewidth="40" tileheight="40">
+  <image source="coins.png" trans="ff00ff" width="480" height="40"/>
+ </tileset>
+ <tileset firstgid="134" name="boxer" tilewidth="40" tileheight="40">
+  <image source="boxer.png" trans="ff00ff" width="40" height="40"/>
+ </tileset>
+ <layer name="Decoration" width="220" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztlLtuwkAQRd3R8wnu6YGEjlcFIV14dCSAgIQECZK/zy1sZK0WezHL7lh7j3Rkgbyeh2ccRYQQQgghhBBCCCGEEEJMacE2fPKdCCEabMynpBnvwh7s+04kg6T+uCLEmlVqmv9szKeUGR/BMXyBE/jqN50LUvrjkhBrVqkrv23Mp6QZf4NTOINzuPCYS4qk/rgixJp1qPtmYz4lzfgSvsMPuIJrj7mkSOqPK0KsWYe6bzbm0/QZW7iDe/hZIo4JX/AAv+EPPMImbCRXH0j8BhRx77uqYs15PMMOHMDhDefUfbs2n3GiCabPOMEz/IV/N+RcdSR+A4rIe1exoo4q1kwIIa7ZZPQde6NRd98j4hdpI4YrTPt4rcYyZ/POF8ULCe4b9y2UffsHzZhq/A==
+  </data>
+ </layer>
+ <layer name="Ground" width="220" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztk00OwiAQhRt/lloT2bjRI7jRS7jXtd7/EkLCoiFAZygMLX1f8jatlgHepzoAgBSq9gAArAj4BoAc8A0AOeAbAHLANwDkgG8AyAHfAJADvgEgR8u+PXSetYdoBKmzfNm0Ssu+vXU+tYcoiGQ3zVn+BNa52aQyd19b9u3byXSkFmcbCebm2y0xtVmSbxudXUK2gexlx8/O0n2b4krInZhXvuemU6F+lIgq+G2KC27nY/u/6/Q6x0w5OWub+7h64t5TzjvyrReKSkyp2bn7ojgT8qWUb4eO15k+krH3JmrwO866FxvqbNTOx/Y/tpfYOVB98+E+z3lHHHL4xp19OD/nPz7m6luOLlE7qgjfSE0p36bMMYyUb9xehqjhG6dra/Btav5EQSkB
+  </data>
+ </layer>
+ <layer name="Bugs" width="220" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAA4M8ANwAAAQ==
+  </data>
+ </layer>
+ <layer name="Coins" width="220" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt0zEOwyAQBEDezetdxEUKm8iyDSyZkZAolz2uFAAAAAAAgFx1P9yX0mVKztXUk/tKev2tpC7tW39HfZ/NwGzarnS5glqyd/aJ7G+9P7XTXlr9PNXdr9mO/PuJu5eW9221cUblGGnmffs2S1//auSu3JGYGQAA+NgAR+AdjQ==
+  </data>
+ </layer>
+</map>

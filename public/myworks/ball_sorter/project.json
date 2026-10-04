@@ -2,6 +2,7 @@
   "name": "Ball Sort Puzzle",
   "description": "A relaxing color-sorting puzzle. Stack matching balls into the same tube.",
   "category": "Game",
+  "type": "Game",
   "image": "cover.png",
   "order": 2,
   "overview": "Ball Sort Puzzle is a casual brain-teaser: move balls between tubes until every tube holds a single color. It is built with libGDX and runs in the browser through GWT.",

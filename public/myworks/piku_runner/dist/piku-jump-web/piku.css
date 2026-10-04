@@ -1,0 +1,4 @@
+/* The game fills whatever box the page (or the embedding iframe) gives it. */
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #1c2a12; }
+#embed-html { width: 100%; height: 100%; }
+canvas { display: block; outline: none; cursor: default; touch-action: none; }

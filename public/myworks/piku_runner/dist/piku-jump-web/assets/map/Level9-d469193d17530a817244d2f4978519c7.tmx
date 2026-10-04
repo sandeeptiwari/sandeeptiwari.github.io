@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="300" height="16" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="TileMap_5" tilewidth="40" tileheight="40" spacing="2" margin="2">
+  <image source="TileMap_5.png" trans="ff00ff" width="474" height="474"/>
+ </tileset>
+ <tileset firstgid="122" name="coins" tilewidth="40" tileheight="40">
+  <image source="coins.png" trans="ff00ff" width="480" height="40"/>
+ </tileset>
+ <tileset firstgid="134" name="boxer" tilewidth="40" tileheight="40">
+  <image source="boxer.png" trans="ff00ff" width="40" height="40"/>
+ </tileset>
+ <layer name="Decoration" width="300" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1UkOwjAMheHu2Pc0TEuGJcMxev8DYKRWWFEMaQuNjf5PsqpGIdgPKTQNAAAAAAAAAAAAAAAAAGCwqt0AABRqazcAAIWe99VGaiu1k9r367k1S7qn5DMe1eo7al6eWBkume26ryUdpI7qGZ2eIzdTq9ZPUudkr16zzh72lHzGo1p9R83LEytDb9n+6i67SF3VMzo9R26mVq3fpO7JXr1mnT3sSd9r/N9MUavvqHl5YmVItgAAvHSqECeL3O/WTaylWN/97r1kxrFnlJ4zN58xZ37qp7Tnb8/gzT/ONEeULLivuK+83VcP0ulk7g==
+  </data>
+ </layer>
+ <layer name="Ground" width="300" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztlstOwzAQRS0eSwgS3rBpfgLWZV3WsIb//wkcyVatwU7s8bjxlHukq0ZRdZtM4+NYAwAAOrB7XwAAABQCXwEAtABfAQC0AF8BALQAXwEAtABfAQC0AF/9bz58ANAAfKWPV5c3oa5nH2DMyQeMC3zFQ9IZtRxd3oW64Kszsw8YFy2+kvSDRJekM2r5dPkS6oKvzkj46mTk39P23BtHQ4uvJNeohGuW6/lp7Lhxud05wVd3JPeN9zYyMzO13VLsuTeOhhZffZt2PwQk3HcU6HhweWRmisLtWBJ8NZE8Nd7byORcsuYZep7rvFw/d+86FHSu7T+z71jrsYlI3kNNbOd+OqcR3ilKQ985JBLPYyRf0fPUV2GtHZjpNU+a1G+nXJOi1ldrHaU9geVZoHtGSbY6w7OS23/mzHEM9VPOV6nneRL6DMc2cb4kLz5b36Nzalmj8Tpt6eA4YSulXfE8NPqKS+08uXNPcS2+Sv1/W52X9lXsGen/OfZVr0j7Klx3q3t63jN89ZdLzTnFtfgq5+fRfNVrfS29vx9EObg=
+  </data>
+ </layer>
+ <layer name="Bugs" width="300" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAAAAAAAAAAADgZ0sAAAE=
+  </data>
+ </layer>
+ <layer name="Coins" width="300" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt11sKgCAQAMDO7en7CQRBUNxqyxkQf4J9wZLHAQAAAAAAAAB7KdcBAABi+c+uvDvi6OV3ZZ1bae6sSudEx5iJvxLnzjqy+HNtEUb6E/XNrIxza3OKyrG3WzL2gGq3ub1dn301rpdPtjx5zm77CgAAAFh3AsPgIdc=
+  </data>
+ </layer>
+</map>

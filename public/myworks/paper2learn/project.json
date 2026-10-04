@@ -2,6 +2,7 @@
   "name": "Paper2Learn",
   "description": "Turns new arXiv research papers into beginner-friendly tutorials: deterministic ingestion, vector search, and AI simplification with human review, running at near-zero cost.",
   "category": "AI · System Design",
+  "type": "Application",
   "image": "cover.svg",
   "order": 3,
   "links": {

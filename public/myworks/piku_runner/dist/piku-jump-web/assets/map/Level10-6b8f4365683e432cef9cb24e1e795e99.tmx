@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="350" height="16" tilewidth="40" tileheight="40" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" name="TileMap" tilewidth="40" tileheight="40" spacing="2" margin="2" tilecount="121" columns="11">
+  <image source="TileMap.png" trans="ff00ff" width="474" height="474"/>
+ </tileset>
+ <tileset firstgid="122" name="coins" tilewidth="40" tileheight="40" tilecount="12" columns="12">
+  <image source="coins.png" trans="ff00ff" width="480" height="40"/>
+ </tileset>
+ <tileset firstgid="134" name="boxer" tilewidth="40" tileheight="40" tilecount="1" columns="1">
+  <image source="boxer.png" trans="ff00ff" width="40" height="40"/>
+ </tileset>
+ <layer id="1" name="Decoration" width="350" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1j1PAkEUhWE6e3p7G3uQVi1R7BDt/NogfiaA/55TkGjhZmecGefO7PskJzS7l7N7A5nBAAAAAAAAAAAAAADsGysnyiR3EQDoiVPlTDnPXQSAKZbPZJa7dZkqF8qlMlOu8tYxr+RdA74sn8ksd+syV66VhXKj3OatY17Ju0Z9DhLOtnwms9zNxZ1yrzwoj8pT3jqmlb5r1GeYcLblM5nlbi5elTflXflQPpWRcrz/xLfSd436HCac7XomWyrPykp56Zjpc22MbrnEes5ahLwP67tG/xwlnO16JlsrG2WrfHXM9Lk2RrdcYj1nLULeh/VdAwCA/mp+BOW8i9/21vwx/6Xtu316htzvOi9kZuydhPaoPaWq4RliKuVdpPiNp9b23T49Q+53nRcyM/ZOcv+vWU8KO7sWuUE=
+  </data>
+ </layer>
+ <layer id="2" name="Ground" width="350" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztlsFOhDAQhomuR2UTe/GiL6Hn9bye9azv/xKyCU2wizLtTMuOfF/yh4SUoR3ClwkdAAC0JKy9AQCAjYF3AQDagncBANqCdwEA2oJ3AQDagncBANqCd7fN2xgAaAfe9cfzkBejWvdjwB/HMeAPvFuGpftyOQx5NaqFd/0SOv5fr3j5bpaes6hl6b5c3od8GNXCu37Bu37x8t0sXWPhzNN+vpQ1roZcr5zo3V2SG+XZoD7Ru4+Fwdvr4aXvn53ecxELhx8MatwOuStMP0lpjVOid/ske+XZ/hNPyqRofWnlTby7TJyNdsKrdG3o6sxRMencdAkznjTpDGiRaT8uybvp/dS70SGljqjVT8mcrvXk3D0pf3lXSw3vBkF+q1MaSa3cd2n2OCX+o73wKl0bZp6T5GHM0rr0/9W4ZuobTY0Sty1FWmvaD4/eLSW3n6V9n5vTc/a9de/CT2p7t1asvZuesdShNc+Md89p1We82+75LVDLu98KWDc9
+  </data>
+ </layer>
+ <layer id="3" name="Bugs" width="350" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAD8GVeAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Coins" width="350" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1ksKxSAMAMCe29N386BQEOxrIrHOgFS68RcTjwMAAAAAAAAAAACAXbVfA2AOefe7nOtFnO/HmTNbu32rap0WPcaT8d+Mk7mOr4vcs9bpc6m2L6vfmfvcI2N5Rp4kV2Z9i6hbEfMY+VfF6Lqj61Klu7t6nezNecW1kKPandvdyFlE5qV/32VZby5xCAAAAKzmBF1rJiE=
+  </data>
+ </layer>
+</map>

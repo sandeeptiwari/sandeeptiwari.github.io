@@ -3,7 +3,7 @@
  * Scans public/myworks/<project>/ and writes src/data/projects.generated.js.
  *
  * Each project folder may contain:
- *   - dist/index.html or dist/web/index.html  -> playable build, card launches it
+ *   - dist/index.html or dist/<any folder>/index.html  -> playable build, card launches it
  *   - project.json (optional)                 -> metadata + external links
  *
  * project.json shape (all fields optional):
@@ -11,6 +11,7 @@
  *     "name": "Ball Sort",
  *     "description": "...",
  *     "category": "Game",
+ *     "type": "Game",       // tab on the projects section: "Game" | "Application" | "Tool"
  *     "image": "/myworks/ball_sorter/cover.png",   // or relative: "cover.png"
  *     "order": 1,
  *     "links": { "youtube": "https://...", "github": "https://...", "website": "https://..." },
@@ -48,9 +49,14 @@ function titleCase(id) {
 }
 
 function findEntry(dir) {
-  for (const rel of ["dist/index.html", "dist/web/index.html"]) {
-    const abs = path.join(dir, rel);
-    if (fs.existsSync(abs)) return abs;
+  const dist = path.join(dir, "dist");
+  if (!fs.existsSync(dist)) return null;
+  const direct = path.join(dist, "index.html");
+  if (fs.existsSync(direct)) return direct;
+  // Any one-level build folder, e.g. dist/web or dist/piku-jump-web.
+  for (const e of fs.readdirSync(dist, { withFileTypes: true })) {
+    const abs = path.join(dist, e.name, "index.html");
+    if (e.isDirectory() && fs.existsSync(abs)) return abs;
   }
   return null;
 }
@@ -101,6 +107,7 @@ function readProject(id) {
     name: meta.name || titleCase(id),
     description: meta.description || "",
     category: meta.category || (entry ? "Game" : "Project"),
+    type: meta.type || (entry ? "Game" : "Application"),
     image,
     launchUrl: entry ? toUrl(entry) : "",
     links,

@@ -1,0 +1,8 @@
+{
+  "name": "Rancho Runner",
+  "description": "This is Level wise running game developed into Libgdx(Development is Going On...).",
+  "category": "Game",
+  "type": "Game",
+  "image": "cover.png",
+  "order": 4
+}
