@@ -1,8 +1,8 @@
 {
-  "name": "Rancho Runner",
-  "description": "This is Level wise running game developed into Libgdx(Development is Going On...).",
+  "name": "Rancho Run",
+  "description": "A finite, level-based running game. Run through each stage, clear the hurdles, and reach the finish.",
   "category": "Game",
   "type": "Game",
   "image": "cover.png",
-  "order": 4
+  "order": 2
 }

@@ -1,0 +1,72 @@
+{
+  "name": "Brain Booster",
+  "description": "A number-memory game: memorize the numbers while they are visible, then click them in ascending order after they disappear.",
+  "category": "Game",
+  "type": "Game",
+  "image": "cover.png",
+  "order": 2,
+  "overview": "Brain Booster is a quick memory challenge. Study the numbers while they are briefly visible, then select them in ascending order once they disappear. It is built with libGDX and runs in the browser through GWT.",
+  "features": [
+    "Memorize numbers during a limited preview",
+    "Select the hidden numbers in ascending order",
+    "Challenge memory, focus and number sequencing",
+    "Mouse and touch-friendly number selection",
+    "Runs in any modern browser, no install needed"
+  ],
+  "benefits": [
+    "A clear, replayable memory-game loop that is easy to extend",
+    "A good starting point for publishing a casual brain-training game",
+    "Cross-platform libGDX setup for web, desktop, Android and iOS"
+  ],
+  "techStack": ["Java", "libGDX", "GWT"],
+  "sourceCode": {
+    "status": "on-request",
+    "includes": [
+      "Complete Java source",
+      "Gradle build for web, desktop, Android and iOS",
+      "Difficulty and round configuration",
+      "Placeholder art so the project builds",
+      "Licence and third-party notices"
+    ],
+    "excludes": [
+      "Artwork, sprites and backgrounds",
+      "Music and sound effects",
+      "Fonts",
+      "Game name, logo and store listing"
+    ]
+  },
+  "requirements": [
+    {
+      "label": "Language",
+      "value": "Java (JDK 17 recommended)"
+    },
+    {
+      "label": "Framework",
+      "value": "libGDX + Gradle"
+    },
+    {
+      "label": "Targets",
+      "value": "Web (GWT), desktop, Android, iOS"
+    },
+    {
+      "label": "IDE",
+      "value": "Android Studio or IntelliJ IDEA (iOS builds need a Mac with Xcode)"
+    }
+  ],
+  "customisation": [
+    "Game name",
+    "Package ID",
+    "App icon",
+    "Splash screen",
+    "Backgrounds",
+    "Sprites",
+    "Sounds",
+    "Fonts",
+    "Difficulty",
+    "Levels",
+    "Number range",
+    "Number preview duration",
+    "Sequence length",
+    "Visual themes"
+  ]
+}
