@@ -1,0 +1,8 @@
+{
+  "name": "Raving Race",
+  "description": "A infinite, car racing game, We have to drive safe from multiple huddle and other vehicles",
+  "category": "Game",
+  "type": "Game",
+  "image": "cover.png",
+  "order": 2
+}

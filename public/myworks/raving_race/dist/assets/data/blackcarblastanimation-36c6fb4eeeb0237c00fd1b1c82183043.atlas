@@ -1,0 +1,82 @@
+
+blackcarblastanimation.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+explosion01
+  rotate: false
+  xy: 0, 680
+  size: 315, 309
+  orig: 315, 309
+  offset: 0, 0
+  index: -1
+explosion02
+  rotate: false
+  xy: 0, 371
+  size: 315, 309
+  orig: 315, 309
+  offset: 0, 0
+  index: -1
+explosion03
+  rotate: false
+  xy: 315, 680
+  size: 315, 309
+  orig: 315, 309
+  offset: 0, 0
+  index: -1
+explosion05
+  rotate: false
+  xy: 0, 62
+  size: 315, 309
+  orig: 315, 309
+  offset: 0, 0
+  index: -1
+explosion06
+  rotate: false
+  xy: 315, 371
+  size: 315, 309
+  orig: 315, 309
+  offset: 0, 0
+  index: -1
+explosion07
+  rotate: false
+  xy: 630, 680
+  size: 315, 309
+  orig: 315, 309
+  offset: 0, 0
+  index: -1
+explosion08
+  rotate: false
+  xy: 315, 62
+  size: 315, 309
+  orig: 315, 309
+  offset: 0, 0
+  index: -1
+explosion04
+  rotate: false
+  xy: 630, 371
+  size: 314, 309
+  orig: 314, 309
+  offset: 0, 0
+  index: -1
+black_explosion_icon
+  rotate: false
+  xy: 630, 243
+  size: 115, 128
+  orig: 115, 128
+  offset: 0, 0
+  index: -1
+black_missile
+  rotate: false
+  xy: 945, 832
+  size: 78, 157
+  orig: 78, 157
+  offset: 0, 0
+  index: -1
+blackbasemissileicon
+  rotate: false
+  xy: 0, 0
+  size: 72, 62
+  orig: 72, 62
+  offset: 0, 0
+  index: -1

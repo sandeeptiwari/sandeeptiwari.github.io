@@ -1,0 +1,132 @@
+race_vehicles_0.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+truck_yellow_hauler_up
+  rotate: false
+  xy: 4, 4
+  size: 347, 665
+  orig: 347, 665
+  offset: 0, 0
+  index: -1
+car_azure_gt_up
+  rotate: false
+  xy: 355, 4
+  size: 395, 543
+  orig: 395, 543
+  offset: 0, 0
+  index: -1
+car_carbon_hyper_up
+  rotate: false
+  xy: 754, 4
+  size: 391, 539
+  orig: 391, 539
+  offset: 0, 0
+  index: -1
+car_silver_suv_up
+  rotate: false
+  xy: 1149, 4
+  size: 371, 528
+  orig: 371, 528
+  offset: 0, 0
+  index: -1
+car_sunburst_super_up
+  rotate: false
+  xy: 1524, 4
+  size: 398, 503
+  orig: 398, 503
+  offset: 0, 0
+  index: -1
+car_crimson_muscle_up
+  rotate: false
+  xy: 4, 673
+  size: 374, 497
+  orig: 374, 497
+  offset: 0, 0
+  index: -1
+car_azure_gt_shadow
+  rotate: false
+  xy: 382, 673
+  size: 377, 280
+  orig: 377, 280
+  offset: 0, 0
+  index: -1
+car_carbon_hyper_shadow
+  rotate: false
+  xy: 763, 673
+  size: 367, 272
+  orig: 367, 272
+  offset: 0, 0
+  index: -1
+car_silver_suv_shadow
+  rotate: false
+  xy: 1134, 673
+  size: 375, 269
+  orig: 375, 269
+  offset: 0, 0
+  index: -1
+car_crimson_muscle_shadow
+  rotate: false
+  xy: 1513, 673
+  size: 348, 267
+  orig: 348, 267
+  offset: 0, 0
+  index: -1
+car_sunburst_super_shadow
+  rotate: false
+  xy: 4, 1174
+  size: 330, 265
+  orig: 330, 265
+  offset: 0, 0
+  index: -1
+car_azure_gt_right
+  rotate: false
+  xy: 338, 1174
+  size: 357, 260
+  orig: 357, 260
+  offset: 0, 0
+  index: -1
+car_carbon_hyper_right
+  rotate: false
+  xy: 699, 1174
+  size: 347, 252
+  orig: 347, 252
+  offset: 0, 0
+  index: -1
+car_silver_suv_right
+  rotate: false
+  xy: 1050, 1174
+  size: 355, 249
+  orig: 355, 249
+  offset: 0, 0
+  index: -1
+car_crimson_muscle_right
+  rotate: false
+  xy: 1409, 1174
+  size: 328, 247
+  orig: 328, 247
+  offset: 0, 0
+  index: -1
+car_sunburst_super_right
+  rotate: false
+  xy: 4, 1443
+  size: 310, 245
+  orig: 310, 245
+  offset: 0, 0
+  index: -1
+truck_yellow_hauler_shadow
+  rotate: false
+  xy: 318, 1443
+  size: 442, 240
+  orig: 442, 240
+  offset: 0, 0
+  index: -1
+truck_yellow_hauler_right
+  rotate: false
+  xy: 764, 1443
+  size: 422, 220
+  orig: 422, 220
+  offset: 0, 0
+  index: -1
+

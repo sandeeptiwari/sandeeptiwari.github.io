@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <title>Raving Racer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta id="gameViewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="icon" href="data:,">
+  <link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div align="center" id="embed-html"></div>
+<div id="rotate-hint"><div>&#10227;<br>Rotate your device to landscape</div></div>
+<script>
+// Browsers reject media play() before the first user gesture. libGDX starts menu music immediately, so
+// remember blocked elements and start them on the first click/tap/key (unless the game paused them since).
+(function () {
+  var blocked = [];
+  var play = HTMLMediaElement.prototype.play, pause = HTMLMediaElement.prototype.pause;
+  HTMLMediaElement.prototype.play = function () {
+    var el = this, p = play.apply(el, arguments);
+    if (p && p.catch) p.catch(function (e) { if (e && e.name === 'NotAllowedError' && blocked.indexOf(el) < 0) blocked.push(el); });
+    return p;
+  };
+  HTMLMediaElement.prototype.pause = function () {
+    var i = blocked.indexOf(this); if (i >= 0) blocked.splice(i, 1);
+    return pause.apply(this, arguments);
+  };
+  function unlock() {
+    var list = blocked; blocked = [];
+    list.forEach(function (el) { var p = play.call(el); if (p && p.catch) p.catch(function () {}); });
+    ['pointerdown', 'touchend', 'keydown'].forEach(function (t) { window.removeEventListener(t, unlock, true); });
+  }
+  ['pointerdown', 'touchend', 'keydown'].forEach(function (t) { window.addEventListener(t, unlock, true); });
+})();
+</script>
+<script type="text/javascript" src="html/html.nocache.js"></script>
+</body>
+<script>
+// Keep focus on the game and stop the page (or parent page) from scrolling on game keys.
+function handleMouseDown(evt) { evt.preventDefault(); evt.stopPropagation(); window.focus(); }
+function handleMouseUp(evt) { evt.preventDefault(); evt.stopPropagation(); }
+document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+document.getElementById('embed-html').addEventListener('mousedown', handleMouseDown, false);
+document.getElementById('embed-html').addEventListener('mouseup', handleMouseUp, false);
+window.addEventListener('keydown', function (e) {
+  if ([' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Tab'].indexOf(e.key) >= 0) e.preventDefault();
+}, false);
+</script>
+</html>

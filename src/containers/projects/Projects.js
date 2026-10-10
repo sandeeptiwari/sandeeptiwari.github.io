@@ -106,7 +106,7 @@ const TYPE_TABS = [
   { type: "Tool", label: "Tools", icon: "mdi:tools" },
 ];
 
-export function ProjectTabs({ projects, limit }) {
+export function ProjectTabs({ projects, limit, allowExpand = false }) {
   const types = [...new Set(projects.map((p) => p.type))];
   const tabs = [
     ...TYPE_TABS.filter((t) => types.includes(t.type)),
@@ -115,8 +115,10 @@ export function ProjectTabs({ projects, limit }) {
       .map((type) => ({ type, label: type, icon: "mdi:folder-outline" })),
   ];
   const [active, setActive] = useState(tabs[0] && tabs[0].type);
+  const [showAll, setShowAll] = useState(false);
   const visible = projects.filter((p) => p.type === active);
-  const shown = limit ? visible.slice(0, limit) : visible;
+  const canExpand = allowExpand && limit && visible.length > limit;
+  const shown = limit && !(canExpand && showAll) ? visible.slice(0, limit) : visible;
 
   return (
     <>
@@ -132,7 +134,10 @@ export function ProjectTabs({ projects, limit }) {
               aria-selected={active === tab.type}
               aria-controls="project-type-panel"
               className="project-type-tab"
-              onClick={() => setActive(tab.type)}
+              onClick={() => {
+                setActive(tab.type);
+                setShowAll(false);
+              }}
             >
               <Icon icon={tab.icon} />
               {tab.label}
@@ -151,6 +156,19 @@ export function ProjectTabs({ projects, limit }) {
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
+      {canExpand && (
+        <div className="project-view-all-wrapper">
+          <button
+            type="button"
+            className="main-button"
+            aria-expanded={showAll}
+            aria-controls="project-type-panel"
+            onClick={() => setShowAll((expanded) => !expanded)}
+          >
+            {showAll ? "Show Fewer Projects" : "View All Projects"}
+          </button>
+        </div>
+      )}
     </>
   );
 }
@@ -163,12 +181,7 @@ export default function Projects() {
         <h1 className="project-title">{projectSection.title}</h1>
         <p>{projectSection.subtitle}</p>
       </div>
-      <ProjectTabs projects={projectSection.projects} limit={3} />
-      <div className="project-view-all-wrapper">
-        <a className="main-button" href="/projects">
-          View All Projects
-        </a>
-      </div>
+      <ProjectTabs projects={projectSection.projects} limit={4} allowExpand />
     </section>
   );
 }

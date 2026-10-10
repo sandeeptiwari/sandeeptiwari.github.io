@@ -1,0 +1,38 @@
+
+help_screen.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+help1
+  rotate: false
+  xy: 0, 129
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+help2
+  rotate: false
+  xy: 480, 129
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+help_btn
+  rotate: false
+  xy: 0, 0
+  size: 109, 129
+  orig: 109, 129
+  offset: 0, 0
+  index: -1
+
+help_screen2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+help3
+  rotate: false
+  xy: 0, 0
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1

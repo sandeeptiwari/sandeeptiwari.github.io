@@ -1,0 +1,118 @@
+race_fx_items_0.png
+size: 2048, 1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+powerup_shield
+  rotate: false
+  xy: 4, 4
+  size: 287, 288
+  orig: 287, 288
+  offset: 0, 0
+  index: -1
+fx_burst_small
+  rotate: false
+  xy: 295, 4
+  size: 339, 285
+  orig: 339, 285
+  offset: 0, 0
+  index: -1
+powerup_nitro
+  rotate: false
+  xy: 638, 4
+  size: 327, 284
+  orig: 327, 284
+  offset: 0, 0
+  index: -1
+fx_burst_large
+  rotate: false
+  xy: 969, 4
+  size: 469, 278
+  orig: 469, 278
+  offset: 0, 0
+  index: -1
+fx_rainbow_boost
+  rotate: false
+  xy: 1442, 4
+  size: 444, 262
+  orig: 444, 262
+  offset: 0, 0
+  index: -1
+powerup_coin
+  rotate: false
+  xy: 4, 296
+  size: 256, 262
+  orig: 256, 262
+  offset: 0, 0
+  index: -1
+powerup_brake
+  rotate: false
+  xy: 264, 296
+  size: 252, 261
+  orig: 252, 261
+  offset: 0, 0
+  index: -1
+powerup_gem
+  rotate: false
+  xy: 520, 296
+  size: 276, 255
+  orig: 276, 255
+  offset: 0, 0
+  index: -1
+fx_drift_trail
+  rotate: false
+  xy: 800, 296
+  size: 369, 253
+  orig: 369, 253
+  offset: 0, 0
+  index: -1
+fx_smoke_cloud
+  rotate: false
+  xy: 1173, 296
+  size: 364, 240
+  orig: 364, 240
+  offset: 0, 0
+  index: -1
+fx_sparks
+  rotate: false
+  xy: 4, 562
+  size: 555, 239
+  orig: 555, 239
+  offset: 0, 0
+  index: -1
+fx_electric
+  rotate: false
+  xy: 563, 562
+  size: 475, 172
+  orig: 475, 172
+  offset: 0, 0
+  index: -1
+fx_neon_swoosh
+  rotate: false
+  xy: 1042, 562
+  size: 808, 158
+  orig: 808, 158
+  offset: 0, 0
+  index: -1
+fx_fast_streak
+  rotate: false
+  xy: 4, 805
+  size: 465, 129
+  orig: 465, 129
+  offset: 0, 0
+  index: -1
+fx_blue_beam_1
+  rotate: false
+  xy: 473, 805
+  size: 466, 114
+  orig: 466, 114
+  offset: 0, 0
+  index: -1
+fx_blue_beam_2
+  rotate: false
+  xy: 943, 805
+  size: 449, 105
+  orig: 449, 105
+  offset: 0, 0
+  index: -1
+

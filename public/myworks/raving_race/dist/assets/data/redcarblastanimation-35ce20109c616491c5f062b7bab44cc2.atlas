@@ -1,0 +1,159 @@
+
+redcarblastanimation.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+green_explosion_icon
+  rotate: false
+  xy: 0, 351
+  size: 115, 131
+  orig: 115, 131
+  offset: 0, 0
+  index: -1
+yellow_explosion_icon
+  rotate: false
+  xy: 0, 224
+  size: 115, 127
+  orig: 115, 127
+  offset: 0, 0
+  index: -1
+ex01
+  rotate: false
+  xy: 115, 370
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex02
+  rotate: false
+  xy: 0, 112
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex03
+  rotate: false
+  xy: 115, 258
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex04
+  rotate: false
+  xy: 224, 370
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex05
+  rotate: false
+  xy: 0, 0
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex06
+  rotate: false
+  xy: 224, 258
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex07
+  rotate: false
+  xy: 333, 370
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex08
+  rotate: false
+  xy: 333, 258
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex09
+  rotate: false
+  xy: 442, 370
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex10
+  rotate: false
+  xy: 442, 258
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex11
+  rotate: false
+  xy: 551, 370
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex12
+  rotate: false
+  xy: 551, 258
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex13
+  rotate: false
+  xy: 660, 370
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex14
+  rotate: false
+  xy: 660, 258
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex15
+  rotate: false
+  xy: 769, 370
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+ex16
+  rotate: false
+  xy: 769, 258
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+yellow_missile
+  rotate: false
+  xy: 878, 329
+  size: 62, 153
+  orig: 62, 153
+  offset: 0, 0
+  index: -1
+yellowbasemissileicon
+  rotate: false
+  xy: 115, 216
+  size: 129, 42
+  orig: 129, 42
+  offset: 0, 0
+  index: -1
+green_missile
+  rotate: false
+  xy: 940, 396
+  size: 60, 86
+  orig: 60, 86
+  offset: 0, 0
+  index: -1
+greenbasemissileicon
+  rotate: false
+  xy: 244, 214
+  size: 65, 44
+  orig: 65, 44
+  offset: 0, 0
+  index: -1

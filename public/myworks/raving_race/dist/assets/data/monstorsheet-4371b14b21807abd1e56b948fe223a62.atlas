@@ -1,0 +1,250 @@
+
+monstorsheet.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bluemissile01
+  rotate: false
+  xy: 0, 545
+  size: 141, 472
+  orig: 141, 472
+  offset: 0, 0
+  index: -1
+bluemissile02
+  rotate: false
+  xy: 0, 73
+  size: 141, 472
+  orig: 141, 472
+  offset: 0, 0
+  index: -1
+bluemissile03
+  rotate: false
+  xy: 141, 545
+  size: 141, 472
+  orig: 141, 472
+  offset: 0, 0
+  index: -1
+bluemissile04
+  rotate: false
+  xy: 141, 73
+  size: 141, 472
+  orig: 141, 472
+  offset: 0, 0
+  index: -1
+bluemissile05
+  rotate: false
+  xy: 282, 545
+  size: 141, 472
+  orig: 141, 472
+  offset: 0, 0
+  index: -1
+bluemissile06
+  rotate: false
+  xy: 282, 73
+  size: 141, 472
+  orig: 141, 472
+  offset: 0, 0
+  index: -1
+bluemissile07
+  rotate: false
+  xy: 423, 545
+  size: 141, 472
+  orig: 141, 472
+  offset: 0, 0
+  index: -1
+bluemissile08
+  rotate: false
+  xy: 423, 73
+  size: 141, 472
+  orig: 141, 472
+  offset: 0, 0
+  index: -1
+transparent_strip
+  rotate: false
+  xy: 0, 27
+  size: 478, 46
+  orig: 478, 46
+  offset: 0, 0
+  index: -1
+monstor_truck_green
+  rotate: false
+  xy: 564, 856
+  size: 92, 161
+  orig: 92, 161
+  offset: 0, 0
+  index: -1
+health
+  rotate: false
+  xy: 656, 871
+  size: 106, 146
+  orig: 106, 146
+  offset: 0, 0
+  index: -1
+blue_explosion_icon
+  rotate: false
+  xy: 762, 872
+  size: 106, 145
+  orig: 106, 145
+  offset: 0, 0
+  index: -1
+monstor_truck_red
+  rotate: false
+  xy: 564, 728
+  size: 91, 128
+  orig: 91, 128
+  offset: 0, 0
+  index: -1
+nos41
+  rotate: false
+  xy: 868, 889
+  size: 80, 128
+  orig: 80, 128
+  offset: 0, 0
+  index: -1
+nos42
+  rotate: false
+  xy: 564, 600
+  size: 80, 128
+  orig: 80, 128
+  offset: 0, 0
+  index: -1
+nos11
+  rotate: false
+  xy: 564, 477
+  size: 84, 123
+  orig: 84, 123
+  offset: 0, 0
+  index: -1
+nos12
+  rotate: false
+  xy: 564, 354
+  size: 84, 123
+  orig: 84, 123
+  offset: 0, 0
+  index: -1
+nos31
+  rotate: false
+  xy: 564, 231
+  size: 84, 123
+  orig: 84, 123
+  offset: 0, 0
+  index: -1
+nos32
+  rotate: false
+  xy: 564, 108
+  size: 84, 123
+  orig: 84, 123
+  offset: 0, 0
+  index: -1
+fire_button_change
+  rotate: false
+  xy: 478, 7
+  size: 106, 66
+  orig: 106, 66
+  offset: 0, 0
+  index: -1
+monstor_truck_black
+  rotate: false
+  xy: 584, 3
+  size: 83, 105
+  orig: 83, 105
+  offset: 0, 0
+  index: -1
+monstor_truck_green_headlight
+  rotate: false
+  xy: 644, 625
+  size: 93, 103
+  orig: 93, 103
+  offset: 0, 0
+  index: -1
+off_btn
+  rotate: false
+  xy: 0, 0
+  size: 85, 27
+  orig: 85, 27
+  offset: 0, 0
+  index: -1
+on_btn
+  rotate: false
+  xy: 85, 0
+  size: 84, 27
+  orig: 84, 27
+  offset: 0, 0
+  index: -1
+herocar123headlights
+  rotate: false
+  xy: 648, 569
+  size: 79, 56
+  orig: 79, 56
+  offset: 0, 0
+  index: -1
+bluebasemissileicon
+  rotate: false
+  xy: 948, 960
+  size: 50, 57
+  orig: 50, 57
+  offset: 0, 0
+  index: -1
+monstor_truck_taillight
+  rotate: false
+  xy: 648, 521
+  size: 52, 48
+  orig: 52, 48
+  offset: 0, 0
+  index: -1
+monstor_truck_headlight
+  rotate: false
+  xy: 648, 484
+  size: 56, 37
+  orig: 56, 37
+  offset: 0, 0
+  index: -1
+headlight_on
+  rotate: false
+  xy: 948, 922
+  size: 37, 38
+  orig: 37, 38
+  offset: 0, 0
+  index: -1
+monstor_truck456_taillight
+  rotate: false
+  xy: 169, 5
+  size: 52, 22
+  orig: 52, 22
+  offset: 0, 0
+  index: -1
+headlight_off
+  rotate: false
+  xy: 648, 446
+  size: 33, 38
+  orig: 33, 38
+  offset: 0, 0
+  index: -1
+tyre01
+  rotate: false
+  xy: 998, 978
+  size: 24, 39
+  orig: 24, 39
+  offset: 0, 0
+  index: -1
+tyre02
+  rotate: false
+  xy: 700, 530
+  size: 24, 39
+  orig: 24, 39
+  offset: 0, 0
+  index: -1
+blacktruck_frame01
+  rotate: false
+  xy: 868, 881
+  size: 13, 8
+  orig: 13, 8
+  offset: 0, 0
+  index: -1
+frame02
+  rotate: false
+  xy: 564, 100
+  size: 13, 8
+  orig: 13, 8
+  offset: 0, 0
+  index: -1

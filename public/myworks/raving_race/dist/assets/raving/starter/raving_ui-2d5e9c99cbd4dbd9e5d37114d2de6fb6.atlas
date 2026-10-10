@@ -1,0 +1,290 @@
+raving_ui.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+logo_raving_racer
+  rotate: false
+  xy: 4, 4
+  size: 1774, 887
+  orig: 1774, 887
+  offset: 0, 0
+  index: -1
+panel_large
+  rotate: false
+  xy: 4, 895
+  size: 660, 460
+  split: 30, 30, 30, 30
+  orig: 660, 460
+  offset: 0, 0
+  index: -1
+panel_result
+  rotate: false
+  xy: 668, 895
+  size: 730, 260
+  split: 32, 32, 32, 32
+  orig: 730, 260
+  offset: 0, 0
+  index: -1
+panel_medium
+  rotate: false
+  xy: 1402, 895
+  size: 460, 250
+  split: 30, 30, 30, 30
+  orig: 460, 250
+  offset: 0, 0
+  index: -1
+button_icon_up
+  rotate: false
+  xy: 1866, 895
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: -1
+button_icon_down
+  rotate: false
+  xy: 4, 1359
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: -1
+panel_hud
+  rotate: false
+  xy: 164, 1359
+  size: 420, 128
+  split: 25, 25, 25, 25
+  orig: 420, 128
+  offset: 0, 0
+  index: -1
+button_primary_up
+  rotate: false
+  xy: 588, 1359
+  size: 410, 116
+  split: 38, 38, 30, 30
+  orig: 410, 116
+  offset: 0, 0
+  index: -1
+button_primary_down
+  rotate: false
+  xy: 1002, 1359
+  size: 410, 116
+  split: 38, 38, 30, 30
+  orig: 410, 116
+  offset: 0, 0
+  index: -1
+button_secondary_up
+  rotate: false
+  xy: 1416, 1359
+  size: 410, 116
+  split: 38, 38, 30, 30
+  orig: 410, 116
+  offset: 0, 0
+  index: -1
+button_secondary_down
+  rotate: false
+  xy: 4, 1519
+  size: 410, 116
+  split: 38, 38, 30, 30
+  orig: 410, 116
+  offset: 0, 0
+  index: -1
+icon_pause
+  rotate: false
+  xy: 418, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_play
+  rotate: false
+  xy: 534, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_back
+  rotate: false
+  xy: 650, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_forward
+  rotate: false
+  xy: 766, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_home
+  rotate: false
+  xy: 882, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_restart
+  rotate: false
+  xy: 998, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_settings
+  rotate: false
+  xy: 1114, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_audio
+  rotate: false
+  xy: 1230, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_audio_off
+  rotate: false
+  xy: 1346, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_boost
+  rotate: false
+  xy: 1462, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_shield
+  rotate: false
+  xy: 1578, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_coin
+  rotate: false
+  xy: 1694, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_heart
+  rotate: false
+  xy: 1810, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_left
+  rotate: false
+  xy: 1926, 1519
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_right
+  rotate: false
+  xy: 4, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_brake
+  rotate: false
+  xy: 120, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_flag
+  rotate: false
+  xy: 236, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_lock
+  rotate: false
+  xy: 352, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_close
+  rotate: false
+  xy: 468, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_garage
+  rotate: false
+  xy: 584, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_question
+  rotate: false
+  xy: 700, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_check
+  rotate: false
+  xy: 816, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_trophy
+  rotate: false
+  xy: 932, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+icon_steer
+  rotate: false
+  xy: 1048, 1639
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+progress_track
+  rotate: false
+  xy: 1164, 1639
+  size: 460, 58
+  split: 26, 26, 21, 21
+  orig: 460, 58
+  offset: 0, 0
+  index: -1
+progress_fill_cyan
+  rotate: false
+  xy: 4, 1755
+  size: 460, 58
+  split: 26, 26, 21, 21
+  orig: 460, 58
+  offset: 0, 0
+  index: -1
+progress_fill_amber
+  rotate: false
+  xy: 468, 1755
+  size: 460, 58
+  split: 26, 26, 21, 21
+  orig: 460, 58
+  offset: 0, 0
+  index: -1
+progress_fill_health
+  rotate: false
+  xy: 932, 1755
+  size: 460, 58
+  split: 26, 26, 21, 21
+  orig: 460, 58
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,96 @@
+
+tutorials_sheet.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+tute_tapbg
+  rotate: false
+  xy: 1, 100
+  size: 351, 399
+  orig: 351, 399
+  offset: 0, 0
+  index: -1
+tute_tapleftfingure
+  rotate: false
+  xy: 354, 257
+  size: 212, 242
+  orig: 212, 242
+  offset: 0, 0
+  index: -1
+tute_tiletostire
+  rotate: false
+  xy: 568, 311
+  size: 200, 188
+  orig: 200, 188
+  offset: 0, 0
+  index: -1
+tute_collectsMessile
+  rotate: false
+  xy: 1, 1
+  size: 289, 97
+  orig: 289, 97
+  offset: 0, 0
+  index: -1
+tute_taprightfingure
+  rotate: false
+  xy: 770, 296
+  size: 155, 203
+  orig: 155, 203
+  offset: 0, 0
+  index: -1
+tute_collectcoin
+  rotate: false
+  xy: 354, 193
+  size: 213, 62
+  orig: 213, 62
+  offset: 0, 0
+  index: -1
+tute_tapleft
+  rotate: false
+  xy: 354, 129
+  size: 223, 62
+  orig: 223, 62
+  offset: 0, 0
+  index: -1
+tute_collecthealth
+  rotate: false
+  xy: 354, 98
+  size: 242, 29
+  orig: 242, 29
+  offset: 0, 0
+  index: -1
+tute_speedingup
+  rotate: false
+  xy: 568, 279
+  size: 172, 30
+  orig: 172, 30
+  offset: 0, 0
+  index: -1
+tute_greatgoandwin
+  rotate: false
+  xy: 569, 214
+  size: 187, 63
+  orig: 187, 63
+  offset: 0, 0
+  index: -1
+tute_tapright
+  rotate: false
+  xy: 579, 150
+  size: 194, 62
+  orig: 194, 62
+  offset: 0, 0
+  index: -1
+tute_taptostart
+  rotate: false
+  xy: 598, 119
+  size: 201, 29
+  orig: 201, 29
+  offset: 0, 0
+  index: -1
+tute_ready
+  rotate: false
+  xy: 927, 469
+  size: 90, 30
+  orig: 90, 30
+  offset: 0, 0
+  index: -1
