@@ -90,10 +90,7 @@ export function ProjectCard({ project }) {
         </button>
       </div>
       {showDetails && (
-        <ProjectDetailModal
-          project={project}
-          onClose={closeDetails}
-        />
+        <ProjectDetailModal project={project} onClose={closeDetails} />
       )}
     </article>
   );
@@ -102,7 +99,11 @@ export function ProjectCard({ project }) {
 // Tab order; any other type found in the data is appended after these.
 const TYPE_TABS = [
   { type: "Game", label: "Games", icon: "mdi:gamepad-variant-outline" },
-  { type: "Application", label: "Applications", icon: "mdi:application-outline" },
+  {
+    type: "Application",
+    label: "Applications",
+    icon: "mdi:application-outline",
+  },
   { type: "Tool", label: "Tools", icon: "mdi:tools" },
 ];
 
@@ -118,11 +119,16 @@ export function ProjectTabs({ projects, limit, allowExpand = false }) {
   const [showAll, setShowAll] = useState(false);
   const visible = projects.filter((p) => p.type === active);
   const canExpand = allowExpand && limit && visible.length > limit;
-  const shown = limit && !(canExpand && showAll) ? visible.slice(0, limit) : visible;
+  const shown =
+    limit && !(canExpand && showAll) ? visible.slice(0, limit) : visible;
 
   return (
     <>
-      <div className="project-type-tabs" role="tablist" aria-label="Project types">
+      <div
+        className="project-type-tabs"
+        role="tablist"
+        aria-label="Project types"
+      >
         {tabs.map((tab) => {
           const count = projects.filter((p) => p.type === tab.type).length;
           return (
@@ -174,7 +180,6 @@ export function ProjectTabs({ projects, limit, allowExpand = false }) {
 }
 
 export default function Projects() {
-
   return (
     <section className="main projects-section" id="projects">
       <div className="project-header">
