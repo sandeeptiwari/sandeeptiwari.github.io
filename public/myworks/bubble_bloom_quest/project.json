@@ -1,0 +1,8 @@
+{
+  "name": "Bubble Bloom Quest",
+  "description": "Bubble Bloom Quest: a libGDX bubble shooter for Android, desktop and web, with 100 levels, a predictive aim guide, physics-driven effects and polished Scene2D animations.",
+  "category": "Game",
+  "type": "Game",
+  "image": "cover.png",
+  "order": 2
+}

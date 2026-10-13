@@ -1,0 +1,40 @@
+theme_extras_0.png
+size: 2048, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+brand_logo
+  rotate: false
+  xy: 4, 4
+  size: 917, 745
+  orig: 917, 745
+  offset: 0, 0
+  index: -1
+reward_chest_panel
+  rotate: false
+  xy: 950, 4
+  size: 843, 380
+  orig: 843, 380
+  offset: 0, 0
+  index: -1
+shooter_cannon
+  rotate: false
+  xy: 960, 430
+  size: 412, 451
+  orig: 412, 451
+  offset: 0, 0
+  index: -1
+coin_gold
+  rotate: false
+  xy: 1460, 440
+  size: 136, 136
+  orig: 136, 136
+  offset: 0, 0
+  index: -1
+flower_white_new
+  rotate: false
+  xy: 1620, 440
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

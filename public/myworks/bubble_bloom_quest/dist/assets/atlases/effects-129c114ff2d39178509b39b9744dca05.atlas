@@ -1,0 +1,41 @@
+effects_0.png
+size: 512, 256
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+aim_dot
+  rotate: false
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+aim_target
+  rotate: false
+  xy: 202, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+impact_ring
+  rotate: false
+  xy: 270, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+shooter_base
+  rotate: false
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+sparkle
+  rotate: false
+  xy: 338, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+

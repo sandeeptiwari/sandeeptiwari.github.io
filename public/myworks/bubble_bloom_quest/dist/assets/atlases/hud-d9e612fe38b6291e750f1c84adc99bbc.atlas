@@ -1,0 +1,174 @@
+hud_0.png
+size: 2048, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+blank_bar
+  rotate: false
+  xy: 401, 471
+  size: 494, 161
+  orig: 494, 161
+  offset: 0, 0
+  index: -1
+blank_counter_long
+  rotate: false
+  xy: 2, 471
+  size: 395, 162
+  orig: 395, 162
+  offset: 0, 0
+  index: -1
+booster_bomb_count
+  rotate: false
+  xy: 1043, 2
+  size: 219, 208
+  orig: 219, 208
+  offset: 0, 0
+  index: -1
+booster_ice_count
+  rotate: false
+  xy: 2, 279
+  size: 219, 188
+  orig: 219, 188
+  offset: 0, 0
+  index: -1
+booster_lightning_count
+  rotate: false
+  xy: 1266, 2
+  size: 217, 199
+  orig: 217, 199
+  offset: 0, 0
+  index: -1
+booster_rainbow_count
+  rotate: false
+  xy: 225, 279
+  size: 219, 188
+  orig: 219, 188
+  offset: 0, 0
+  index: -1
+booster_vortex_count
+  rotate: false
+  xy: 448, 279
+  size: 226, 187
+  orig: 226, 187
+  offset: 0, 0
+  index: -1
+coin_counter
+  rotate: false
+  xy: 350, 637
+  size: 341, 144
+  orig: 341, 144
+  offset: 0, 0
+  index: -1
+combo_badge
+  rotate: false
+  xy: 1487, 2
+  size: 402, 192
+  orig: 402, 192
+  offset: 0, 0
+  index: -1
+crown_counter
+  rotate: false
+  xy: 1106, 279
+  size: 495, 163
+  orig: 495, 163
+  offset: 0, 0
+  index: -1
+gem_counter
+  rotate: false
+  xy: 695, 637
+  size: 351, 143
+  orig: 351, 143
+  offset: 0, 0
+  index: -1
+hanging_sign_large
+  rotate: false
+  xy: 291, 2
+  size: 476, 246
+  orig: 476, 246
+  offset: 0, 0
+  index: -1
+hanging_sign_small
+  rotate: false
+  xy: 771, 2
+  size: 268, 231
+  orig: 268, 231
+  offset: 0, 0
+  index: -1
+level_shield
+  rotate: false
+  xy: 2, 2
+  size: 285, 273
+  orig: 285, 273
+  offset: 0, 0
+  index: -1
+lives_counter
+  rotate: false
+  xy: 1532, 471
+  size: 344, 152
+  orig: 344, 152
+  offset: 0, 0
+  index: -1
+move_counter
+  rotate: false
+  xy: 2, 637
+  size: 344, 144
+  orig: 344, 144
+  offset: 0, 0
+  index: -1
+notification_alert
+  rotate: false
+  xy: 1267, 637
+  size: 93, 93
+  orig: 93, 93
+  offset: 0, 0
+  index: -1
+notification_dot
+  rotate: false
+  xy: 1444, 637
+  size: 66, 67
+  orig: 66, 67
+  offset: 0, 0
+  index: -1
+plus_green
+  rotate: false
+  xy: 1050, 637
+  size: 113, 115
+  orig: 113, 115
+  offset: 0, 0
+  index: -1
+plus_green_small
+  rotate: false
+  xy: 1364, 637
+  size: 76, 80
+  orig: 76, 80
+  offset: 0, 0
+  index: -1
+plus_orange
+  rotate: false
+  xy: 1167, 637
+  size: 96, 99
+  orig: 96, 99
+  offset: 0, 0
+  index: -1
+star_header
+  rotate: false
+  xy: 678, 279
+  size: 424, 184
+  orig: 424, 184
+  offset: 0, 0
+  index: -1
+star_progress
+  rotate: false
+  xy: 899, 471
+  size: 629, 155
+  orig: 629, 155
+  offset: 0, 0
+  index: -1
+timer_counter
+  rotate: false
+  xy: 1605, 279
+  size: 338, 163
+  orig: 338, 163
+  offset: 0, 0
+  index: -1
+

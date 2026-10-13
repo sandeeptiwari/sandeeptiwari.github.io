@@ -1,0 +1,16 @@
+# Main menu / level select strings (key=value). Add menu_<lang>.txt for localisation.
+play=Play
+continue_level=Continue Level %d
+quick_access=QUICK ACCESS
+levels=Levels
+settings=Settings
+collection=Collection
+daily_gift=Daily Gift
+progress=Level %d of %d • %d unlocked
+levels_title=Levels
+collection_title=Collection
+collection_body=Coming soon\nNo card system exists yet
+daily_title=Daily Gift
+daily_body=Coming soon\nNeeds rewards and an economy
+ok=OK
+coming_soon=Coming soon

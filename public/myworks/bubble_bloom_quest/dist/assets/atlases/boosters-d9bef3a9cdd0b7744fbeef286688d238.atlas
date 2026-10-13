@@ -1,0 +1,111 @@
+boosters_0.png
+size: 2048, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+rainbow
+  rotate: false
+  xy: 1160, 334
+  size: 273, 276
+  orig: 273, 276
+  offset: 0, 0
+  index: -1
+chain
+  rotate: false
+  xy: 577, 334
+  size: 280, 280
+  orig: 280, 280
+  offset: 0, 0
+  index: -1
+extra_moves
+  rotate: false
+  xy: 2, 620
+  size: 233, 238
+  orig: 233, 238
+  offset: 0, 0
+  index: -1
+fire
+  rotate: false
+  xy: 290, 334
+  size: 283, 280
+  orig: 283, 280
+  offset: 0, 0
+  index: -1
+hammer
+  rotate: false
+  xy: 1726, 334
+  size: 256, 275
+  orig: 256, 275
+  offset: 0, 0
+  index: -1
+ice
+  rotate: false
+  xy: 935, 2
+  size: 284, 286
+  orig: 284, 286
+  offset: 0, 0
+  index: -1
+lightning
+  rotate: false
+  xy: 861, 334
+  size: 295, 279
+  orig: 295, 279
+  offset: 0, 0
+  index: -1
+locked
+  rotate: false
+  xy: 1514, 2
+  size: 285, 284
+  orig: 285, 284
+  offset: 0, 0
+  index: -1
+nature
+  rotate: false
+  xy: 617, 2
+  size: 314, 298
+  orig: 314, 298
+  offset: 0, 0
+  index: -1
+bomb
+  rotate: false
+  xy: 2, 2
+  size: 292, 328
+  orig: 292, 328
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 2, 334
+  size: 284, 282
+  orig: 284, 282
+  offset: 0, 0
+  index: -1
+stone
+  rotate: false
+  xy: 1437, 334
+  size: 285, 275
+  orig: 285, 275
+  offset: 0, 0
+  index: -1
+swap
+  rotate: false
+  xy: 239, 620
+  size: 233, 228
+  orig: 233, 228
+  offset: 0, 0
+  index: -1
+target
+  rotate: false
+  xy: 1223, 2
+  size: 287, 284
+  orig: 287, 284
+  offset: 0, 0
+  index: -1
+vortex
+  rotate: false
+  xy: 298, 2
+  size: 315, 303
+  orig: 315, 303
+  offset: 0, 0
+  index: -1
+

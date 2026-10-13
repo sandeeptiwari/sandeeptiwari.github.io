@@ -1,0 +1,202 @@
+dialogs_0.png
+size: 2048, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+chest_reward
+  rotate: false
+  xy: 1435, 2
+  size: 430, 327
+  orig: 430, 327
+  offset: 0, 0
+  index: -1
+close_red
+  rotate: false
+  xy: 1164, 735
+  size: 104, 105
+  orig: 104, 105
+  offset: 0, 0
+  index: -1
+star_large
+  rotate: false
+  xy: 846, 735
+  size: 111, 106
+  orig: 111, 106
+  offset: 0, 0
+  index: -1
+confirm
+  rotate: false
+  xy: 528, 439
+  size: 458, 274
+  orig: 458, 274
+  offset: 0, 0
+  index: -1
+daily_reward
+  rotate: false
+  xy: 2, 439
+  size: 522, 292
+  orig: 522, 292
+  offset: 0, 0
+  index: -1
+fail
+  rotate: false
+  xy: 982, 2
+  size: 449, 388
+  orig: 449, 388
+  offset: 0, 0
+  index: -1
+flower_white
+  rotate: false
+  xy: 961, 735
+  size: 107, 106
+  orig: 107, 106
+  offset: 0, 0
+  index: -1
+leaf_cluster
+  rotate: false
+  xy: 1709, 735
+  size: 93, 100
+  orig: 93, 100
+  offset: 0, 0
+  index: -1
+leaf_corner
+  rotate: false
+  xy: 1272, 735
+  size: 103, 105
+  orig: 103, 105
+  offset: 0, 0
+  index: -1
+leaf_flowers
+  rotate: false
+  xy: 706, 735
+  size: 136, 106
+  orig: 136, 106
+  offset: 0, 0
+  index: -1
+leaf_mini
+  rotate: false
+  xy: 1072, 735
+  size: 88, 106
+  orig: 88, 106
+  offset: 0, 0
+  index: -1
+leaf_sprig
+  rotate: false
+  xy: 577, 735
+  size: 125, 114
+  orig: 125, 114
+  offset: 0, 0
+  index: -1
+panel_icy
+  rotate: false
+  xy: 990, 439
+  size: 283, 147
+  orig: 283, 147
+  offset: 0, 0
+  index: -1
+panel_light
+  rotate: false
+  xy: 290, 735
+  size: 283, 132
+  orig: 283, 132
+  offset: 0, 0
+  index: -1
+panel_plain
+  rotate: false
+  xy: 2, 735
+  size: 284, 135
+  orig: 284, 135
+  offset: 0, 0
+  index: -1
+panel_vines
+  rotate: false
+  xy: 1552, 439
+  size: 283, 140
+  orig: 283, 140
+  offset: 0, 0
+  index: -1
+panel_wood_small
+  rotate: false
+  xy: 1277, 439
+  size: 271, 143
+  orig: 271, 143
+  offset: 0, 0
+  index: -1
+plaque_wood
+  rotate: false
+  xy: 1379, 735
+  size: 223, 103
+  orig: 223, 103
+  offset: 0, 0
+  index: -1
+ribbon_blue
+  rotate: false
+  xy: 2, 874
+  size: 265, 86
+  orig: 265, 86
+  offset: 0, 0
+  index: -1
+ribbon_gold
+  rotate: false
+  xy: 778, 874
+  size: 238, 84
+  orig: 238, 84
+  offset: 0, 0
+  index: -1
+ribbon_green
+  rotate: false
+  xy: 515, 874
+  size: 259, 84
+  orig: 259, 84
+  offset: 0, 0
+  index: -1
+ribbon_purple
+  rotate: false
+  xy: 271, 874
+  size: 240, 85
+  orig: 240, 85
+  offset: 0, 0
+  index: -1
+ribbon_red
+  rotate: false
+  xy: 1020, 874
+  size: 267, 83
+  orig: 267, 83
+  offset: 0, 0
+  index: -1
+settings
+  rotate: false
+  xy: 545, 2
+  size: 433, 395
+  orig: 433, 395
+  offset: 0, 0
+  index: -1
+close_wood
+  rotate: false
+  xy: 1606, 735
+  size: 99, 100
+  orig: 99, 100
+  offset: 0, 0
+  index: -1
+star_medium
+  rotate: false
+  xy: 1806, 735
+  size: 93, 91
+  orig: 93, 91
+  offset: 0, 0
+  index: -1
+star_small
+  rotate: false
+  xy: 1291, 874
+  size: 73, 72
+  orig: 73, 72
+  offset: 0, 0
+  index: -1
+win
+  rotate: false
+  xy: 2, 2
+  size: 539, 433
+  orig: 539, 433
+  offset: 0, 0
+  index: -1
+

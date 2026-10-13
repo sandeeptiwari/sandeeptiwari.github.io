@@ -1,0 +1,195 @@
+map_0.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+album_collectible
+  rotate: false
+  xy: 1188, 2
+  size: 485, 207
+  orig: 485, 207
+  offset: 0, 0
+  index: -1
+chest_gem
+  rotate: false
+  xy: 1554, 667
+  size: 164, 148
+  orig: 164, 148
+  offset: 0, 0
+  index: -1
+chest_heart
+  rotate: false
+  xy: 1875, 667
+  size: 143, 132
+  orig: 143, 132
+  offset: 0, 0
+  index: -1
+chest_wood
+  rotate: false
+  xy: 1722, 667
+  size: 149, 134
+  orig: 149, 134
+  offset: 0, 0
+  index: -1
+daily_badge
+  rotate: false
+  xy: 567, 667
+  size: 207, 185
+  orig: 207, 185
+  offset: 0, 0
+  index: -1
+frame_wood
+  rotate: false
+  xy: 2, 667
+  size: 388, 199
+  orig: 388, 199
+  offset: 0, 0
+  index: -1
+gift_box
+  rotate: false
+  xy: 985, 2
+  size: 199, 213
+  orig: 199, 213
+  offset: 0, 0
+  index: -1
+label_wood
+  rotate: false
+  xy: 738, 870
+  size: 378, 95
+  orig: 378, 95
+  offset: 0, 0
+  index: -1
+level_complete
+  rotate: false
+  xy: 394, 870
+  size: 115, 118
+  orig: 115, 118
+  offset: 0, 0
+  index: -1
+level_locked
+  rotate: false
+  xy: 627, 870
+  size: 107, 102
+  orig: 107, 102
+  offset: 0, 0
+  index: -1
+level_open
+  rotate: false
+  xy: 513, 870
+  size: 110, 102
+  orig: 110, 102
+  offset: 0, 0
+  index: -1
+level_selected
+  rotate: false
+  xy: 1394, 667
+  size: 156, 151
+  orig: 156, 151
+  offset: 0, 0
+  index: -1
+path_bend
+  rotate: false
+  xy: 1290, 667
+  size: 57, 156
+  orig: 57, 156
+  offset: 0, 0
+  index: -1
+path_curve_left
+  rotate: false
+  xy: 1558, 870
+  size: 174, 73
+  orig: 174, 73
+  offset: 0, 0
+  index: -1
+path_curve_right
+  rotate: false
+  xy: 1424, 870
+  size: 130, 80
+  orig: 130, 80
+  offset: 0, 0
+  index: -1
+path_horizontal
+  rotate: false
+  xy: 103, 1002
+  size: 108, 38
+  orig: 108, 38
+  offset: 0, 0
+  index: -1
+path_vertical
+  rotate: false
+  xy: 1351, 667
+  size: 39, 155
+  orig: 39, 155
+  offset: 0, 0
+  index: -1
+profile_medallion
+  rotate: false
+  xy: 394, 667
+  size: 169, 186
+  orig: 169, 186
+  offset: 0, 0
+  index: -1
+season_badge
+  rotate: false
+  xy: 1677, 2
+  size: 223, 206
+  orig: 223, 206
+  offset: 0, 0
+  index: -1
+stage_large
+  rotate: false
+  xy: 2, 870
+  size: 388, 128
+  orig: 388, 128
+  offset: 0, 0
+  index: -1
+stage_small
+  rotate: false
+  xy: 1120, 870
+  size: 300, 90
+  orig: 300, 90
+  offset: 0, 0
+  index: -1
+stars_one
+  rotate: false
+  xy: 1882, 870
+  size: 142, 60
+  orig: 142, 60
+  offset: 0, 0
+  index: -1
+stars_three
+  rotate: false
+  xy: 1736, 870
+  size: 142, 64
+  orig: 142, 64
+  offset: 0, 0
+  index: -1
+stars_two
+  rotate: false
+  xy: 2, 1002
+  size: 97, 58
+  orig: 97, 58
+  offset: 0, 0
+  index: -1
+terrain_grass
+  rotate: false
+  xy: 978, 667
+  size: 308, 172
+  orig: 308, 172
+  offset: 0, 0
+  index: -1
+trophy_badge
+  rotate: false
+  xy: 778, 667
+  size: 196, 182
+  orig: 196, 182
+  offset: 0, 0
+  index: -1
+world_island
+  rotate: false
+  xy: 2, 2
+  size: 979, 661
+  orig: 979, 661
+  offset: 0, 0
+  index: -1
+
